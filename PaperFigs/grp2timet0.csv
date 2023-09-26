@@ -1,0 +1,4 @@
+genus,adj.p,p.value,statistic.t,parameter.df,conf.int1,conf.int2,estimate.mean in group neg,estimate.mean in group pos
+Streptococcus_pneumoniae,0.6095999999999999,0.2032,1.4972,4.3381,-3.3986,11.9083,13.728,9.4731
+Streptococcus_thermophilus,1,0.4218,-0.8928,4.0528,-6.5167,3.3331,3.9067,5.4985
+Streptococcus_agalactiae,1,0.6468,-0.4771,7.5526,-3.9805,2.6275,5.8598,6.5363

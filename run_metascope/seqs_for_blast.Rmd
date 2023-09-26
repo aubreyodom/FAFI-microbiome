@@ -1,0 +1,76 @@
+---
+title: "Plot Contamination"
+author: "Aubrey Odom-Mabey"
+date: '2022-09-27'
+output: html_document
+---
+
+** Note: this has been properly adapted for the 2021 library **
+
+# Setup
+```{R}
+suppressPackageStartupMessages({
+  library(Rsamtools)
+  library(tidyverse)
+  library(seqRFLP) #https://github.com/helixcn/seqRFLP
+})
+```
+
+# Get fastas
+```{R}
+stem <- "~/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out"
+
+check_blast <- function(org = "Shigella_flexneri", fileID = "X1998", subN = 100) {
+  # Pull out the bam file
+  reads_bam <- file.path(stem, paste0(fileID, ".bam"))
+
+  # "Upload" bam file into environment
+  p2 <- ScanBamParam(what = c("rname", "pos", "seq", "qname"))
+  res0 <- scanBam(reads_bam, param = p2)[[1]]
+  
+  tib_res0 <- tibble(qname = res0$qname,
+         rname = res0$rname,
+         pos = res0$pos,
+         seq = as.character(res0$seq))
+  rm(res0)
+  # Filter to org of interest, then distinct qname...
+  filt_res0 <- tib_res0 %>%
+    filter(!is.na(str_match(rname, org))) %>%
+    distinct(qname, .keep_all = TRUE)
+  
+  # Subsample for fasta
+  sub_ind <- sample(nrow(filt_res0),
+                    size = min(nrow(filt_res0), subN))
+  
+    this_seq <- filt_res0$seq[sub_ind]
+    this_pos <- filt_res0$pos[sub_ind]
+  
+  # Create fasta with
+  org_file <- str_replace_all(org, " ", "_") %>%
+    str_remove_all(",")
+  destination <- file.path(stem, paste0("blast_fastas/", fileID, "_", org_file, ".fasta"))
+  this_seq %>% as_tibble() %>% mutate(pos = paste("Seq", seq_along(this_seq),
+                       "Pos", this_pos, sep = "_")) %>%
+    relocate(pos) %>% as.data.frame() %>%
+    seqRFLP::dataframe2fas(., file = destination)
+}
+
+#check_blast("Streptococcus_sobrinus", "X1402")
+#check_blast("Streptococcus_pseudoporcinus", "X1402")
+#check_blast("Streptococcus_himalayensis", "X3975")
+#check_blast("Streptococcus_gordonii", "X3573")
+#check_blast("Streptococcus_thermophilus", "X13225")
+#check_blast("Streptococcus_pneumoniae", "X3975")
+#check_blast("Streptococcus_agalactiae", "X11223")
+#
+#check_blast("Streptococcus_agalactiae", "X8404")
+
+#check_blast("Leuconostoc_mesenteroides", "X4180")
+#check_blast("Leuconostoc_pseudomesenteroides", "X4180")
+check_blast(org = "Weissella_ceti", fileID = "X3333")
+check_blast(org = "Weissella_viridescens", fileID = "X3333")
+```
+
+```{R}
+#out <- sapply(seq_len(nrow(filt)), function(x) check_blast(filt$Genome[x], filt$names[x]))
+```

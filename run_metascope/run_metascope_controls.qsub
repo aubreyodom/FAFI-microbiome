@@ -1,0 +1,95 @@
+#!/bin/bash -l
+
+# Set SCC project
+#$ -P infant-microbiome
+
+# Specify hard time limit for the job. 
+#   The job will be aborted if it runs longer than this time.
+#   The default time is 12 hours
+#$ -l h_rt=258:00:00
+
+# Send an email when the job finishes or if it is aborted (by default no email is sent).
+#$ -m a
+
+# Give job a name
+#$ -N sepsis_metascope_c
+
+# Request cores
+#$ -pe omp 8
+
+# Memory overall
+#$ -l mem_total=150G
+
+# Memory per core
+#$ -l mem_per_core=11G
+
+# Combine output and error files into a single file
+#$ -j y
+
+# Specify the output file name
+#$ -o run_metascope_sepsis_controls.qlog
+
+# Submit an array job with N tasks 
+#$ -t 1-69
+
+#   ask for scratch space
+#$ -l scratch=100G
+
+# Use SGE_TASK_ID env variable to select appropriate input file from bash array
+# Bash array index starts from 0, so need to subtract one from SGE_TASK_ID value
+
+# Keep track of information related to the current job
+echo "=========================================================="
+echo "Start date : $(date)"
+echo "Job name : $JOB_NAME"
+echo "Job ID : $SGE_TASK_ID"
+echo "=========================================================="
+
+threads=8
+
+dataDir=/restricted/projectnb/infant-microbiome/data/death_sepsis_controls
+inputFastqFiles=($(ls -d $dataDir/*R1_001.fastq.gz))
+index=$(($SGE_TASK_ID-1))
+#mapfile -t inputFastqFiles < /restricted/projectnb/decamp-nibr/analysis/aodom/Novartis_COPD/MetaScope_run/missing_fastq.txt
+sampleName=($(echo ${inputFastqFiles[$index]##*/} | cut -d_ -f1))
+
+### MAKE WORKING DIR
+workingDir=${sampleName}_tmp
+rm -rf $TMPDIR/$workingDir
+mkdir $TMPDIR/$workingDir
+
+### get read files
+reads1=$dataDir/$sampleName*_R1_001.fastq.gz
+reads2=$dataDir/$sampleName*_R2_001.fastq.gz
+
+### TRIM the reads
+java -jar ~/pathoscope/code/other/Trimmomatic-0.36/trimmomatic-0.36.jar PE \
+    -phred33 -threads $threads $reads1 $reads2 \
+    $TMPDIR/$workingDir/reads1.paired.fastq.gz \
+    $TMPDIR/$workingDir/reads1.unpaired.fastq.gz \
+    $TMPDIR/$workingDir/reads2.paired.fastq.gz \
+    $TMPDIR/$workingDir/reads2.unpaired.fastq.gz \
+    SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 \
+    CROP:225 HEADCROP:30
+
+### Run MetaScope
+readPath1=$TMPDIR/$workingDir/reads1.paired.fastq.gz
+readPath2=$TMPDIR/$workingDir/reads2.paired.fastq.gz
+indexDir="/restricted/projectnb/pathoscope/reflib/2020_index_bowtie"
+expTag=$sampleName
+outDir="/restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out"
+tmpDir="$TMPDIR/$workingDir/"
+
+# Choose filter and targets to download
+target="bacteria"
+filter="NA"
+
+module load samtools
+module load R
+Rscript --vanilla --max-ppsize=500000 run_MetaScope.R \
+${readPath1} ${readPath2} ${indexDir} ${expTag} ${outDir} ${tmpDir} ${threads} \
+${target} ${filter}
+
+rm -rf $TMPDIR/$workingDir
+
+

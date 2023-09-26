@@ -1,0 +1,1826 @@
+==========================================================
+Start date : Tue Jan 24 15:13:25 EST 2023
+Job name : sepsis_metascope
+Job ID : 1
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/1132_cat_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/1132_cat_L001_R2_001.fastq.gz /scratch/167689.1.linga/1132_tmp/reads1.paired.fastq.gz /scratch/167689.1.linga/1132_tmp/reads1.unpaired.fastq.gz /scratch/167689.1.linga/1132_tmp/reads2.paired.fastq.gz /scratch/167689.1.linga/1132_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 350590 Both Surviving: 211713 (60.39%) Forward Only Surviving: 5235 (1.49%) Reverse Only Surviving: 125738 (35.86%) Dropped: 7904 (2.25%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+==========================================================
+Start date : Tue Jan 24 15:14:17 EST 2023
+Job name : sepsis_metascope
+Job ID : 2
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/12014_S33_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/12014_S33_L001_R2_001.fastq.gz /scratch/167689.2.linga/12014_tmp/reads1.paired.fastq.gz /scratch/167689.2.linga/12014_tmp/reads1.unpaired.fastq.gz /scratch/167689.2.linga/12014_tmp/reads2.paired.fastq.gz /scratch/167689.2.linga/12014_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 73437 Both Surviving: 67199 (91.51%) Forward Only Surviving: 743 (1.01%) Reverse Only Surviving: 5206 (7.09%) Dropped: 289 (0.39%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+==========================================================
+Start date : Tue Jan 24 15:17:34 EST 2023
+Job name : sepsis_metascope
+Job ID : 3
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/13225_S22_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/13225_S22_L001_R2_001.fastq.gz /scratch/167689.3.linga/13225_tmp/reads1.paired.fastq.gz /scratch/167689.3.linga/13225_tmp/reads1.unpaired.fastq.gz /scratch/167689.3.linga/13225_tmp/reads2.paired.fastq.gz /scratch/167689.3.linga/13225_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 82864 Both Surviving: 76077 (91.81%) Forward Only Surviving: 1050 (1.27%) Reverse Only Surviving: 5347 (6.45%) Dropped: 390 (0.47%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+==========================================================
+Start date : Tue Jan 24 15:18:30 EST 2023
+Job name : sepsis_metascope
+Job ID : 5
+==========================================================
+==========================================================
+Start date : Tue Jan 24 15:18:30 EST 2023
+Job name : sepsis_metascope
+Job ID : 6
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/15699_S24_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/15699_S24_L001_R2_001.fastq.gz /scratch/167689.6.linga/15699_tmp/reads1.paired.fastq.gz /scratch/167689.6.linga/15699_tmp/reads1.unpaired.fastq.gz /scratch/167689.6.linga/15699_tmp/reads2.paired.fastq.gz /scratch/167689.6.linga/15699_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/14212_S23_L001_R1_001.TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/1402_S6_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/1402_S6_L001_R2_001.fastq.gz /scratch/167689.4.linga/1402_tmp/reads1.paired.fastq.gz /scratch/167689.4.linga/1402_tmp/reads1.unpaired.fastq.gz /scratch/167689.4.linga/1402_tmp/reads2.paired.fastq.gz /scratch/167689.4.linga/1402_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+pped: 476 (0.57%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Input Read Pairs: 113040 Both Surviving: 103825 (91.85%) Forward Only Surviving: 2020 (1.79%) Reverse Only Surviving: 6507 (5.76%) Dropped: 688 (0.61%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Input Read Pairs: 142977 Both Surviving: 130882 (91.54%) Forward Only Surviving: 2167 (1.52%) Reverse Only Surviving: 9112 (6.37%) Dropped: 816 (0.57%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+==========================================================
+Start date : Tue Jan 24 15:20:34 EST 2023
+Job name : sepsis_metascope
+Job ID : 7
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/1749_cat_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/1749_cat_L001_R2_001.fastq.gz /scratch/167689.7.linga/1749_tmp/reads1.paired.fastq.gz /scratch/167689.7.linga/1749_tmp/reads1.unpaired.fastq.gz /scratch/167689.7.linga/1749_tmp/reads2.paired.fastq.gz /scratch/167689.7.linga/1749_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 292712 Both Surviving: 195601 (66.82%) Forward Only Surviving: 5097 (1.74%) Reverse Only Surviving: 85957 (29.37%) Dropped: 6057 (2.07%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+67199 reads; of these:
+  67199 (100.00%) were paired; of these:
+    2815 (4.19%) aligned concordantly 0 times
+    12 (0.02%) aligned concordantly exactly 1 time
+    64372 (95.79%) aligned concordantly >1 times
+    ----
+    2815 pairs aligned concordantly 0 times; of these:
+      3 (0.11%) aligned discordantly 1 time
+    ----
+    2812 pairs aligned 0 times concordantly or discordantly; of these:
+      5624 mates make up the pairs; of these:
+        2752 (48.93%) aligned 0 times
+        24 (0.43%) aligned exactly 1 time
+        2848 (50.64%) aligned >1 times
+97.95% overall alignment rate
+Filtering unmapped reads
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           [bam_sort_core] merging from 10 files and 1 in-memory blocks...
+==========================================================
+Start date : Tue Jan 24 15:22:40 EST 2023
+Job name : sepsis_metascope
+Job ID : 9
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/197_S27_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/197_S27_L001_R2_001.fastq.gz /scratch/167689.9.linga/197_tmp/reads1.paired.fastq.gz /scratch/167689.9.linga/197_tmp/reads1.unpaired.fastq.gz /scratch/167689.9.linga/197_tmp/reads2.paired.fastq.gz /scratch/167689.9.linga/197_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 134158 Both Surviving: 123744 (92.24%) Forward Only Surviving: 2560 (1.91%) Reverse Only Surviving: 6960 (5.19%) Dropped: 894 (0.67%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+==========================================================
+Start date : Tue Jan 24 15:24:36 EST 2023
+Job name : sepsis_metascope
+Job ID : 10
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/1998_S32_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/1998_S32_L001_R2_001.fastq.gz /scratch/167689.10.linga/1998_tmp/reads1.paired.fastq.gz /scratch/167689.10.linga/1998_tmp/reads1.unpaired.fastq.gz /scratch/167689.10.linga/1998_tmp/reads2.paired.fastq.gz /scratch/167689.10.linga/1998_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 82752 Both Surviving: 76083 (91.94%) Forward Only Surviving: 1128 (1.36%) Reverse Only Surviving: 5104 (6.17%) Dropped: 437 (0.53%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+76077 reads; of these:
+  76077 (100.00%) were paired; of these:
+    3236 (4.25%) aligned concordantly 0 times
+    15 (0.02%) aligned concordantly exactly 1 time
+    72826 (95.73%) aligned concordantly >1 times
+    ----
+    3236 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    3236 pairs aligned 0 times concordantly or discordantly; of these:
+      6472 mates make up the pairs; of these:
+        3647 (56.35%) aligned 0 times
+        54 (0.83%) aligned exactly 1 time
+        2771 (42.82%) aligned >1 times
+97.60% overall alignment rate
+Filtering unmapped reads
+[bam_sort_core] merging from 11 files and 1 in-memory blocks...
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ==========================================================
+Start date : Tue Jan 24 15:28:48 EST 2023
+Job name : sepsis_metascope
+Job ID : 13
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/2369_S10_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/2369_S10_L001_R2_001.fastq.gz /scratch/167689.13.linga/2369_tmp/reads1.paired.fastq.gz /scratch/167689.13.linga/2369_tmp/reads1.unpaired.fastq.gz /scratch/167689.13.linga/2369_tmp/reads2.paired.fastq.gz /scratch/167689.13.linga/2369_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 100212 Both Surviving: 92002 (91.81%) Forward Only Surviving: 1341 (1.34%) Reverse Only Surviving: 6376 (6.36%) Dropped: 493 (0.49%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Library alignment complete
+DONE! Alignments written to /scratch/167689.2.linga/12014_tmp/12014.bam
+Reading .bam file: /scratch/167689.2.linga/12014_tmp/12014.bam
+   73610 (96.96%) aligned concordantly >1 times
+    ----
+    2298 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    2298 pairs aligned 0 times concordantly or discordantly; of these:
+      4596 mates make up the pairs; of these:
+        2210 (48.09%) aligned 0 times
+        15 (0.33%) aligned exactly 1 time
+        2371 (51.59%) aligned >1 times
+98.54% overall alignment rate
+Filtering unmapped reads
+[bam_sort_core] merging from 12 files and 1 in-memory blocks...
+==========================================================
+                                                                                  Start date : Tue Jan 24 15:30:48 EST 2023
+Job name : sepsis_metascope
+Job ID : 14
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/238_cat_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/238_cat_L001_R2_001.fastq.gz /scratch/167689.14.linga/238_tmp/reads1.paired.fastq.gz /scratch/167689.14.linga/238_tmp/reads1.unpaired.fastq.gz /scratch/167689.14.linga/238_tmp/reads2.paired.fastq.gz /scratch/167689.14.linga/238_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+                                                          Input Read Pairs: 465335 Both Surviving: 257224 (55.28%) Forward Only Surviving: 7207 (1.55%) Reverse Only Surviving: 188002 (40.40%) Dropped: 12902 (2.77%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+                                                                                                                                                       103825 reads; of these:
+  103825 (100.00%) were paired; of these:
+    3018 (2.91%) aligned concordantly 0 times
+    18 (0.02%) aligned concordantly exactly 1 time
+    100789 (97.08%) aligned concordantly >1 times
+    ----
+    3018 pairs aligned concordantly 0 times; of these:
+      9 (0.30%) aligned discordantly 1 time
+    ----
+    3009 pairs aligned 0 times concordantly or discordantly; of these:
+      6018 mates make up the pairs; of these:
+        3985 (66.22%) aligned 0 times
+        24 (0.40%) aligned exactly 1 time
+        2009 (33.38%) aligned >1 times
+98.08% overall alignment rate
+	Found 3736 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+143312.9758213329
+2731819853.384579
+3158326.3733539
+4155627.638112238
+5155448.986127321
+6155655.043344213
+7155919.66042673
+8156159.69518202
+9148818.570213729
+1010166.857237714
+1110171.665448911
+126358.0086258775
+1311.3744239565154
+1411.343231132516
+1511.3705441717209
+1611.0870978056987
+178.21587879278181
+188.05738466753856
+197.94273788844288
+207.01983302639794
+214.77383345243215
+224.3460123942562
+233.47719008785772
+_R2_001.fastq.gz /scratch/167689.16.linga/3232_tmp/reads1.paired.fastq.gz /scratch/167689.16.linga/3232_tmp/reads1.unpaired.fastq.gz /scratch/167689.16.linga/3232_tmp/reads2.paired.fastq.gz /scratch/167689.16.linga/3232_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 85635 Both Surviving: 78743 (91.95%) Forward Only Surviving: 951 (1.11%) Reverse Only Surviving: 5551 (6.48%) Dropped: 390 (0.46%)
+TrimmomaticPE: Completed successfully
+243.47729951947447
+ been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+253.477272749896
+	DONE! Converged in 25 iterations.
+index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Found reads for 183 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/12014.metascope_id.csv
+No coverage plots created
+# A tibble: 183 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 1007099    Pseudomonas kuykendallii strain N~   42696  0.637   42835.  0.639 
+ 2 198214     Shigella flexneri 2a str. 301 chr~    4451  0.0664   4449.  0.0663
+ 3 76759      Pseudomonas monteilii strain USDA~    3311  0.0494   3161.  0.0471
+ 4 398511     Alkalihalophilus pseudofirmus OF4~    3278  0.0489   3257.  0.0486
+ 5 556533     Pseudomonas benzenivorans strain ~    2746  0.0409   2718.  0.0405
+ 6 111780     Stanieria cyanosphaera PCC 7437, ~    1651  0.0246   1649.  0.0246
+ 7 72758      Staphylococcus capitis subsp. cap~    1620  0.0242   1571.  0.0234
+ 8 169292     Corynebacterium aurimucosum strai~    1439  0.0215   1432.  0.0214
+ 9 1385518    Knoellia flava TL1 contig88, whol~    1230  0.0183   1141.  0.0170
+10 161899     Corynebacterium singulare strain ~     847  0.0126    841.  0.0125
+# ... with 173 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 18.72878 mins
+[bam_sort_core] merging from 17 files and 1 in-memory blocks...
+ date : Tue Jan 24 15:33:45 EST 2023
+Job name : sepsis_metascope
+Job ID : 17
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/3333_S14_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/3333_S14_L001_R2_001.fastq.gz /scratch/167689.17.linga/3333_tmp/reads1.paired.fastq.gz /scratch/167689.17.linga/3333_tmp/reads1.unpaired.fastq.gz /scratch/167689.17.linga/3333_tmp/reads2.paired.fastq.gz /scratch/167689.17.linga/3333_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 160607 Both Surviving: 149280 (92.95%) Forward Only Surviving: 2243 (1.40%) Reverse Only Surviving: 8285 (5.16%) Dropped: 799 (0.50%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Library alignment complete
+DONE! Alignments written to /scratch/167689.3.linga/13225_tmp/13225.bam
+Reading .bam file: /scratch/167689.3.linga/13225_tmp/13225.bam
+76083 reads; of these:
+  76083 (100.00%) were paired; of these:
+    1187 (1.56%) aligned concordantly 0 times
+    12 (0.02%) aligned concordantly exactly 1 time
+    74884 (98.42%) aligned concordantly >1 times
+    ----
+    1187 pairs aligned concordantly 0 times; of these:
+      3 (0.25%) aligned discordantly 1 time
+    ----
+    1184 pairs aligned 0 times concordantly or discordantly; of these:
+      2368 mates make up the pairs; of these:
+        1276 (53.89%) aligned 0 times
+        8 (0.34%) aligned exactly 1 time
+        1084 (45.78%) aligned >1 times
+99.16% overall alignment rate
+Filtering unmapped reads
+==========================================================
+Start date : Tue Jan 24 15:34:41 EST 2023
+Job name : sepsis_metascope
+Job ID : 18
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/3573_S11_L001_R1_001.faTrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/3574_S8_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/3574_S8_L001_R2_001.fastq.gz /scratch/167689.19.linga/3574_tmp/reads1.paired.fastq.gz /scratch/167689.19.linga/3574_tmp/reads1.unpaired.fastq.gz /scratch/167689.19.linga/3574_tmp/reads2.paired.fastq.gz /scratch/167689.19.linga/3574_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+0 (0.41%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Input Read Pairs: 101536 Both Surviving: 92550 (91.15%) Forward Only Surviving: 1567 (1.54%) Reverse Only Surviving: 6760 (6.66%) Dropped: 659 (0.65%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+[bam_sort_core] merging from 12 files and 1 in-memory blocks...
+ date : Tue Jan 24 15:35:43 EST 2023
+Job name : sepsis_metascope
+Job ID : 20
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/3975_S30_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/3975_S30_L001_R2_001.fastq.gz /scratch/167689.20.linga/3975_tmp/reads1.paired.fastq.gz /scratch/167689.20.linga/3975_tmp/reads1.unpaired.fastq.gz /scratch/167689.20.linga/3975_tmp/reads2.paired.fastq.gz /scratch/167689.20.linga/3975_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 138568 Both Surviving: 127163 (91.77%) Forward Only Surviving: 2115 (1.53%) Reverse Only Surviving: 8442 (6.09%) Dropped: 848 (0.61%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+	Found 75535 reads aligned to 4879 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 49 chunks
+123744 reads; of these:
+  123744 (100.00%) were paired; of these:
+    2173 (1.76%) aligned concordantly 0 times
+    4 (0.00%) aligned concordantly exactly 1 time
+    121567 (98.24%) aligned concordantly >1 times
+    ----
+    2173 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    2173 pairs aligned 0 times concordantly or discordantly; of these:
+      4346 mates make up the pairs; of these:
+        2159 (49.68%) aligned 0 times
+        20 (0.46%) aligned exactly 1 time
+        2167 (49.86%) aligned >1 times
+99.13% overall alignment rate
+Filtering unmapped reads
+	Found 3919 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+129102.4958677675
+228385276.2302281
+320714948.8016931
+423108144.2628665
+511870036.8830696
+658311.0108895112
+712852.8190501853
+813185.2449364119
+925140.4211436695
+1023481.9443872927
+1123102.9172331188
+1220476.725010197
+13294.686214413527
+1428.5799705124709
+1527.0753901645065
+1622.5129416517299
+1713.062719696339
+186.00224228162708
+195.96044329498513
+205.65420067476906
+214.28146501259419
+221.56044800424914
+231.4619700001653
+241.46051374060138
+251.45787677484121
+	DONE! Converged in 25 iterations.
+Found reads for 171 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/13225.metascope_id.csv
+No coverage plots created
+# A tibble: 171 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 1007099    Pseudomonas kuykendallii strain N~   28828  0.382   28901.  0.383 
+ 2 176280     Staphylococcus epidermidis ATCC 1~   18362  0.243   16773.  0.222 
+ 3 93061      Staphylococcus aureus subsp. aure~    4899  0.0649   6487.  0.0859
+ 4 76759      Pseudomonas monteilii strain USDA~    3980  0.0527   3793.  0.0502
+ 5 929703     Flectobacillus major DSM 103 Flem~    2815  0.0373   2816.  0.0373
+ 6 198214     Shigella flexneri 2a str. 301 chr~    2801  0.0371   2799.  0.0371
+ 7 205918     Pseudomonas syringae pv. syringae~    1911  0.0253   1803.  0.0239
+ 8 1051074    Streptococcus thermophilus JIM 82~    1638  0.0217   1638.  0.0217
+ 9 111780     Stanieria cyanosphaera PCC 7437, ~    1533  0.0203   1532.  0.0203
+10 556533     Pseudomonas benzenivorans strain ~    1526  0.0202   1699.  0.0225
+# ... with 161 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 21.033 mins
+[bam_sort_core] merging from 21 files and 1 in-memory blocks...
+    2101 (3.10%) aligned concordantly 0 times
+    14 (0.02%) aligned concordantly exactly 1 time
+    65655 (96.88%) aligned concordantly >1 times
+    ----
+    2101 pairs aligned concordantly 0 times; of these:
+      4 (0.19%) aligned discordantly 1 time
+    ----
+    2097 pairs aligned 0 times concordantly or discordantly; of these:
+      4194 mates make up the pairs; of these:
+        1854 (44.21%) aligned 0 times
+        164 (3.91%) aligned exactly 1 time
+        2176 (51.88%) aligned >1 times
+98.63% overall alignment rate
+Filtering unmapped reads
+97513 (100.00%) were paired; of these:
+    2037 (2.09%) aligned concordantly 0 times
+    20 (0.02%) aligned concordantly exactly 1 time
+    95456 (97.89%) aligned concordantly >1 times
+    ----
+    2037 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    2037 pairs aligned 0 times concordantly or discordantly; of these:
+      4074 mates make up the pairs; of these:
+        2167 (53.19%) aligned 0 times
+        50 (1.23%) aligned exactly 1 time
+        1857 (45.58%) aligned >1 times
+98.89% overall alignment rate
+Filtering unmapped reads
+=================================
+Start date : Tue Jan 24 15:39:32 EST 2023
+Job name : sepsis_metascope
+Job ID : 21
+==========================================================
+	Found 75421 reads aligned to 4459 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 45 chunks
+19_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/4180_S19_L001_R2_001.fastq.gz /scratch/167689.21.linga/4180_tmp/reads1.paired.fastq.gz /scratch/167689.21.linga/4180_tmp/reads1.unpaired.fastq.gz /scratch/167689.21.linga/4180_tmp/reads2.paired.fastq.gz /scratch/167689.21.linga/4180_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 82602 Both Surviving: 75857 (91.83%) Forward Only Surviving: 1144 (1.38%) Reverse Only Surviving: 5210 (6.31%) Dropped: 391 (0.47%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+53187 reads; of these:
+  53187 (100.00%) were paired; of these:
+    753 (1.42%) aligned concordantly 0 times
+    8 (0.02%) aligned concordantly exactly 1 time
+    52426 (98.57%) aligned concordantly >1 times
+    ----
+    753 pairs aligned concordantly 0 times; of these:
+      11 (1.46%) aligned discordantly 1 time
+    ----
+    742 pairs aligned 0 times concordantly or discordantly; of these:
+      1484 mates make up the pairs; of these:
+        752 (50.67%) aligned 0 times
+        5 (0.34%) aligned exactly 1 time
+        727 (48.99%) aligned >1 times
+99.29% overall alignment rate
+Filtering unmapped reads
+=================================
+Start date : Tue Jan 24 15:40:34 EST 2023
+Job name : sepsis_metascope
+Job ID : 22
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/4478_S20_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/4478_S20_L001_R2_001.fastq.gz /scratch/167689.22.linga/4478_tmp/reads1.paired.fastq.gz /scratch/167689.22.linga/4478_tmp/reads1.unpaired.fastq.gz /scratch/167689.22.linga/4478_tmp/reads2.paired.fastq.gz /scratch/167689.22.linga/4478_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 79604 Both Surviving: 72943 (91.63%) ForFiltering unmapped reads
+(0.83%) Reverse Only Surviving: 5707 (7.17%) Dropped: 296 (0.37%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+	Found 3671 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+112507.5627448768
+21821055299139.78
+342662020.1443706
+453019840.4757268
+566966799.015571
+62144096.8747154
+71942937.16051824
+8221926.234352375
+9812.111677660663
+10804.417545335214
+11803.210916190534
+12804.471432880588
+13805.452584067848
+14805.886302536569
+15805.466213596428
+16514.787669294042
+1768.5231259744424
+184.89664311346372
+194.35375559969642
+204.30871272988667
+214.30705031897582
+224.30597102806279
+234.30522691121388
+244.30469163463701
+254.30421784190149
+	DONE! Converged in 25 iterations.
+Found reads for 157 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/15699.metascope_id.csv
+No coverage plots created
+# A tibble: 157 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 93061      Staphylococcus aureus subsp. aure~   43673 0.579   42068.  0.558  
+ 2 29433      Moraxella ovis strain 199/55 chro~   16733 0.222   16087   0.213  
+ 3 176280     Staphylococcus epidermidis ATCC 1~    6504 0.0862   8099   0.107  
+ 4 71421      Haemophilus influenzae Rd KW20, c~    2968 0.0394   2964.  0.0393 
+ 5 573983     Moraxella porci DSM 25326 strain ~    2764 0.0366   3422.  0.0454 
+ 6 525260     Corynebacterium accolens ATCC 497~     827 0.0110    791.  0.0105 
+ 7 1121368    Corynebacterium pseudodiphtheriti~     409 0.00542   424.  0.00562
+ 8 169292     Corynebacterium aurimucosum strai~     402 0.00533   424.  0.00563
+ 9 1351754    Avibacterium paragallinarum JF421~     370 0.00491   373.  0.00494
+10 1284       Staphylococcus hyicus strain ATCC~      98 0.00130    97.8 0.00130
+# ... with 147 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 23.22113 mins
+211713 reads; of these:
+  211713 (100.00%) were paired; of these:
+    5050 (2.39%) aligned concordantly 0 times
+    90 (0.04%) aligned concordantly exactly 1 time
+    206573 (97.57%) aligned concordantly >1 times
+    ----
+    5050 pairs aligned concordantly 0 times; of these:
+      4 (0.08%) aligned discordantly 1 time
+    ----
+    5046 pairs aligned 0 times concordantly or discordantly; of these:
+      10092 mates make up the pairs; of these:
+        5374 (53.25%) aligned 0 times
+        34 (0.34%) aligned exactly 1 time
+        4684 (46.41%) aligned >1 times
+98.73% overall alignment rate
+Filtering unmapped reads
+=================================
+Start date : Tue Jan 24 15:42:33 EST 2023
+Job name : sepsis_metascope
+Job ID : 24
+==========================================================
+==========================================================
+Start date : Tue Jan 24 15:42:33 EST 2023
+Job name : sepsis_metascope
+Job ID : 23
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/4688_S15_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/4688_S15_L001_R2_001.fastq.gz /scratch/167689.24.linga/4688_tmp/reads1.paired.fastq.gz /scratch/167689.24.linga/4688_tmp/reads1.unpaired.fastq.gz /scratch/167689.24.linga/4688_tmp/reads2.paired.fastq.gz /scratch/167689.24.linga/4688_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/4654_S9_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/4654_S9_L001_R2_001.fastq.gz /scratch/167689.23.linga/4654_tmp/reads1.paired.fastq.gz /scratch/167689.23.linga/4654_tmp/reads1.unpaired.fastq.gz /scratch/167689.23.linga/4654_tmp/reads2.paired.fastq.gz /scratch/167689.23.linga/4654_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 80409 Both Surviving: 72841 (90.59%) Forward Only Surviving: 560 (0.70%) Reverse Only Surviving: 6762 (8.41%) Dropped: 246 (0.31%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Input Read Pairs: 105303 Both Surviving: 96668 (91.80%) Forward Only Surviving: 1647 (1.56%) Reverse Only Surviving: 6385 (6.06%) Dropped: 603 (0.57%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Library alignment complete
+DONE! Alignments written to /scratch/167689.10.linga/1998_tmp/1998.bam
+Reading .bam file: /scratch/167689.10.linga/1998_tmp/1998.bam
+=======================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/5264_S21_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/5264_S21_L001_R2_001.fastq.gz /scratch/167689.25.linga/5264_tmp/reads1.paired.fastq.gz /scratch/167689.25.linga/5264_tmp/reads1.unpaired.fastq.gz /scratch/167689.25.linga/5264_tmp/reads2.paired.fastq.gz /scratch/167689.25.linga/5264_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 129874 Both Surviving: 118915 (91.56%) Forward Only Surviving: 2266 (1.74%) Reverse Only Surviving: 7810 (6.01%) Dropped: 883 (0.68%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Library alignment complete
+DONE! Alignments written to /scratch/167689.5.linga/14212_tmp/14212.bam
+Reading .bam file: /scratch/167689.5.linga/14212_tmp/14212.bam
+	Found 75955 reads aligned to 4539 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 46 chunks
+[bam_sort_core] merging from 35 files and 1 in-memory blocks...
+xonomy and genome names
+Accession list broken into 48 chunks
+aligned concordantly exactly 1 time
+    77536 (98.47%) aligned concordantly >1 times
+    ----
+    1190 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    1190 pairs aligned 0 times concordantly or discordantly; of these:
+      2380 mates make up the pairs; of these:
+        1240 (52.10%) aligned 0 times
+        10 (0.42%) aligned exactly 1 time
+        1130 (47.48%) aligned >1 times
+99.21% overall alignment rate
+Filtering unmapped reads
+7143.4372524046
+2210511826.072189
+315943.7136431958
+498.228497258545
+5360.725590865823
+Library alignment complete
+DONE! Alignments written to /scratch/167689.18.linga/3573_tmp/3573.bam
+Reading .bam file: /scratch/167689.18.linga/3573_tmp/3573.bam
+6958.109541760521
+7232.578150071739
+8137.754908512252
+of these:
+    2187 (2.38%) aligned concordantly 0 times
+    26 (0.03%) aligned concordantly exactly 1 time
+    89789 (97.59%) aligned concordantly >1 times
+    ----
+    2187 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    2187 pairs aligned 0 times concordantly or discordantly; of these:
+      4374 mates make up the pairs; of these:
+        1558 (35.62%) aligned 0 times
+        18 (0.41%) aligned exactly 1 time
+        2798 (63.97%) aligned >1 times
+99.15% overall alignment rate
+Filtering unmapped reads
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   [bam_sort_core] merging from 12 files and 1 in-memory blocks...
+onomy and genome names
+Accession list broken into 41 chunks
+352501.2679222548
+445231.9536704515
+543565.9107448639
+643516.2158805601
+743672.0368546582
+843682.1871688415
+943671.2714293776
+1043817.5726972644
+1143862.5569086016
+1242990.4570039744
+1346.8169428764089
+====================
+Start date : Tue Jan 24 15:48:11 EST 2023
+Job name : sepsis_metascope
+Job ID : 26
+==========================================================
+142.8186429237796
+152.8196278799069
+s:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/5318_S12_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/5318_S12_L001_R2_001.fastq.gz /scratch/167689.26.linga/5318_tmp/reads1.paired.fastq.gz /scratch/167689.26.linga/5318_tmp/reads1.unpaired.fastq.gz /scratch/167689.26.linga/5318_tmp/reads2.paired.fastq.gz /scratch/167689.26.linga/5318_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 84433 Both Surviving: 77083 (91.29%) Forward Only Surviving: 1164 (1.38%) Reverse Only Surviving: 5726 (6.78%) Dropped: 460 (0.54%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+162.8196873395461
+172.81626373941563
+nt on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+[bam_sort_core] merging from 12 files and 1 in-memory blocks...
+are for Windows only
+182.79966285184574
+192.73271150902962
+202.47549160992662
+211.8614474372671
+221.86144097713018
+231.86142195524894
+241.86137029039923
+251.86122601247282
+	DONE! Converged in 25 iterations.
+Found reads for 184 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/14212.metascope_id.csv
+No coverage plots created
+# A tibble: 184 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 93061      Staphylococcus aureus subsp. aure~   67498 0.657    66467. 0.647  
+ 2 1121368    Corynebacterium pseudodiphtheriti~   15692 0.153    15587. 0.152  
+ 3 176280     Staphylococcus epidermidis ATCC 1~    7227 0.0704    8259  0.0804 
+ 4 29433      Moraxella ovis strain 199/55 chro~    4927 0.0480    4871. 0.0474 
+ 5 525260     Corynebacterium accolens ATCC 497~    4395 0.0428    4352. 0.0424 
+ 6 1007099    Pseudomonas kuykendallii strain N~     644 0.00627    643. 0.00627
+ 7 573983     Moraxella porci DSM 25326 strain ~     511 0.00498    566. 0.00551
+ 8 1121354    Corynebacterium capitovis DSM 446~     340 0.00331    356. 0.00346
+ 9 169292     Corynebacterium aurimucosum strai~     134 0.00130    260. 0.00253
+10 76759      Pseudomonas monteilii strain USDA~     131 0.00128    130. 0.00127
+# ... with 174 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 30.38616 mins
+	Found 3297 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+130761.0812803838
+2591122.204869637
+3672.994557265363
+4681.429317586592
+=======================================
+==========================================================
+Start date : Tue Jan 24 15:49:04 EST 2023
+Job name : sepsis_metascope
+Job ID : 29
+==========================================================
+==========================================================
+Start date : Tue Jan 24 15:49:04 EST 2023
+Job name : sepsis_metascope
+Job ID : 28
+==========================================================
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/539_cat_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/539_cat_L001_R2_001.fastq.gz /scratch/167689.27.linga/539_tmp/reads1.paired.fastq.gz /scratch/167689.27.linga/539_tmp/reads1.unpaired.fastq.gz /scratch/167689.27.linga/539_tmp/reads2.paired.fastq.gz /scratch/167689.27.linga/539_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/6731_S13_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/6731_S13_L001_R2_001.fastq.gz /scratch/167689.29.linga/6731_tmp/reads1.paired.fastq.gz /scratch/167689.29.linga/6731_tmp/reads1.unpaired.fastq.gz /scratch/167689.29.linga/6731_tmp/reads2.paired.fastq.gz /scratch/167689.29.linga/6731_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+TrimmomaticPE: Started with arguments:
+ -phred33 -threads 8 /restricted/projectnb/infant-microbiome/data/death_sepsis/6260_S16_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/6260_S16_L001_R2_001.fastq.gz /scratch/167689.28.linga/6260_tmp/reads1.paired.fastq.gz /scratch/167689.28.linga/6260_tmp/reads1.unpaired.fastq.gz /scratch/167689.28.linga/6260_tmp/reads2.paired.fastq.gz /scratch/167689.28.linga/6260_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 73613 Both Surviving: 67861 (92.19%) Forward Only Surviving: 874 (1.19%) Reverse Only Surviving: 4556 (6.19%) Dropped: 322 (0.44%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Input Read Pairs: 120711 Both Surviving: 111013 (91.97%) Forward Only Surviving: 1901 (1.57%) Reverse Only Surviving: 7102 (5.88%) Dropped: 695 (0.58%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+Input Read Pairs: 412890 Both Surviving: 239930 (58.11%) Forward Only Surviving: 7021 (1.70%) Reverse Only Surviving: 155906 (37.76%) Dropped: 10033 (2.43%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+5684.648502982559
+6685.250593859437
+7614.665573918302
+814.2344663191814
+914.2675845697386
+1014.2755285266982
+1114.2377772494472
+1214.223137634336
+1314.2182960721244
+1414.2157557212561
+1514.2139421091971
+1614.212650057442
+1714.2118819780289
+1814.2115860741596
+1914.211633507205
+ctnb/infant-microbiome/data/death_sepsis/7691_S17_L001_R1_001.fastq.gz /restricted/projectnb/infant-microbiome/data/death_sepsis/7691_S17_L001_R2_001.fastq.gz /scratch/167689.30.linga/7691_tmp/reads1.paired.fastq.gz /scratch/167689.30.linga/7691_tmp/reads1.unpaired.fastq.gz /scratch/167689.30.linga/7691_tmp/reads2.paired.fastq.gz /scratch/167689.30.linga/7691_tmp/reads2.unpaired.fastq.gz SLIDINGWINDOW:4:20 LEADING:3 TRAILING:3 MINLEN:36 CROP:225 HEADCROP:30
+Input Read Pairs: 94885 Both Surviving: 86672 (91.34%) Forward Only Surviving: 1372 (1.45%) Reverse Only Surviving: 6314 (6.65%) Dropped: 527 (0.56%)
+TrimmomaticPE: Completed successfully
+
+The following have been reloaded with a version change:
+  1) R/4.1.2 => R/4.2.1
+
+Attempting to perform Bowtie2 alignment on bacteria index
+[1] "Samtools found on system. Using samtools to create bam file"
+arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
+2014.2118925239581
+2114.2122656832097
+2214.2126880084873
+2314.2130812779267
+2414.2128018693018
+2514.2023622514111
+	DONE! Converged in 25 iterations.
+Found reads for 130 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/3573.metascope_id.csv
+No coverage plots created
+# A tibble: 130 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 1007099    Pseudomonas kuykendallii strain N~   29971 0.564    30260. 0.569  
+ 2 48936      Novosphingobium subterraneum stra~   10485 0.197    10460. 0.197  
+ 3 983920     Novosphingobium nitrogenifigens D~    2508 0.0472    2536. 0.0477 
+ 4 556533     Pseudomonas benzenivorans strain ~    1817 0.0342    1680. 0.0316 
+ 5 76759      Pseudomonas monteilii strain USDA~    1577 0.0297    1468. 0.0276 
+ 6 1124983    Pseudomonas protegens CHA0, compl~    1493 0.0281    1413. 0.0266 
+ 7 198214     Shigella flexneri 2a str. 301 chr~    1201 0.0226    1199  0.0226 
+ 8 1202724    Flavobacterium akiainvivens strai~    1196 0.0225    1191. 0.0224 
+ 9 180195     Herbaspirillum autotrophicum stra~     750 0.0141     749. 0.0141 
+10 211589     Herbaspirillum chlorophenolicum s~     345 0.00649    343. 0.00645
+# ... with 120 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 15.27172 mins
+	Found 67657 reads aligned to 4521 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 46 chunks
+	Found 97181 reads aligned to 4790 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 48 chunks
+67689.9.linga/197_tmp/197.bam
+72841 reads; of these:
+  72841 (100.00%) were paired; of these:
+    1154 (1.58%) aligned concordantly 0 times
+    12 (0.02%) aligned concordantly exactly 1 time
+    71675 (98.40%) aligned concordantly >1 times
+    ----
+    1154 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    1154 pairs aligned 0 times concordantly or discordantly; of these:
+      2308 mates make up the pairs; of these:
+        990 (42.89%) aligned 0 times
+        11 (0.48%) aligned exactly 1 time
+        1307 (56.63%) aligned >1 times
+99.32% overall alignment rate
+Filtering unmapped reads
+	Found 3686 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+150268.8824153503
+21475551.83186422
+35535.26748624609
+41167.41141630869
+555.2836608608297
+645.2953524959383
+79.80287114289541
+82.62312949867925
+92.48932405997691
+102.23339368055863
+112.02515071621619
+122.02459094197154
+132.02441855440562
+142.023866811528
+152.02312841939542
+162.02241847492992
+Starting EM iterations
+145826.165369853
+21940002416005.19
+322552117.6054415
+416992557.5598673
+513938230.5578775
+612398612.037967
+79593857.14956623
+8178.071890819423
+910.3722502924251
+109.51200713148053
+119.52918879022788
+129.55357359385026
+139.57762887959817
+149.59926764934847
+159.61694399202339
+169.61831410602267
+179.49031159735657
+188.24444762820012
+193.48311609680876
+201.69777422359309
+211.77459541720598
+221.81563264272654
+231.69077860015642
+241.65943828838611
+251.65903085923356
+	DONE! Converged in 25 iterations.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         Found reads for 214 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/17642.metascope_id.csv
+No coverage plots created
+# A tibble: 214 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 29433      Moraxella ovis strain 199/55 chro~   70045 0.721    67949  0.699  
+ 2 573983     Moraxella porci DSM 25326 strain ~   10796 0.111    12888. 0.133  
+ 3 883103     Dolosigranulum pigrum ATCC 51524 ~    8428 0.0867    8422. 0.0867 
+ 4 1007099    Pseudomonas kuykendallii strain N~    2662 0.0274    2647. 0.0272 
+ 5 753702     Alkalibacterium subtropicum strai~     690 0.00710    695. 0.00715
+ 6 1121368    Corynebacterium pseudodiphtheriti~     625 0.00643    624. 0.00642
+ 7 76759      Pseudomonas monteilii strain USDA~     519 0.00534    519. 0.00534
+ 8 498211     Cellvibrio japonicus Ueda107, com~     435 0.00448    432  0.00444
+ 9 198214     Shigella flexneri 2a str. 301 chr~     336 0.00346    330. 0.00340
+10 398511     Alkalihalophilus pseudofirmus OF4~     274 0.00282    272. 0.00279
+# ... with 204 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 32.37958 mins
+	Found 123630 reads aligned to 4112 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 42 chunks
+aligned concordantly exactly 1 time
+    74301 (97.95%) aligned concordantly >1 times
+    ----
+    1539 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    1539 pairs aligned 0 times concordantly or discordantly; of these:
+      3078 mates make up the pairs; of these:
+        1540 (50.03%) aligned 0 times
+        16 (0.52%) aligned exactly 1 time
+        1522 (49.45%) aligned >1 times
+98.98% overall alignment rate
+Filtering unmapped reads
+72943 (100.00%) were paired; of these:
+    3119 (4.28%) aligned concordantly 0 times
+    7 (0.01%) aligned concordantly exactly 1 time
+    69817 (95.71%) aligned concordantly >1 times
+    ----
+    3119 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    3119 pairs aligned 0 times concordantly or discordantly; of these:
+      6238 mates make up the pairs; of these:
+        2680 (42.96%) aligned 0 times
+        16 (0.26%) aligned exactly 1 time
+        3542 (56.78%) aligned >1 times
+98.16% overall alignment rate
+Filtering unmapped reads
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           209.02017553065845
+219.00838008931998
+229.00465255938635
+239.00348911452428
+249.00312777160921
+259.00302281375581
+	DONE! Converged in 25 iterations.
+Found reads for 129 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/197.metascope_id.csv
+No coverage plots created
+# A tibble: 129 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 176280     Staphylococcus epidermidis ATCC 1~   85952 6.95e-1  82036. 6.64e-1
+ 2 93061      Staphylococcus aureus subsp. aure~   24788 2.01e-1  28701. 2.32e-1
+ 3 1121368    Corynebacterium pseudodiphtheriti~    5725 4.63e-2   5699. 4.61e-2
+ 4 169292     Corynebacterium aurimucosum strai~    2760 2.23e-2   2742  2.22e-2
+ 5 525260     Corynebacterium accolens ATCC 497~    1944 1.57e-2   1997  1.62e-2
+ 6 1007099    Pseudomonas kuykendallii strain N~     827 6.69e-3    826. 6.69e-3
+ 7 161899     Corynebacterium singulare strain ~     293 2.37e-3    277. 2.24e-3
+ 8 198214     Shigella flexneri 2a str. 301 chr~     209 1.69e-3    209. 1.69e-3
+ 9 1121354    Corynebacterium capitovis DSM 446~     131 1.06e-3    130. 1.05e-3
+10 1284       Staphylococcus hyicus strain ATCC~     120 9.71e-4    115. 9.30e-4
+# ... with 119 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 34.35192 mins
+Library alignment complete
+DONE! Alignments written to /scratch/167689.16.linga/3232_tmp/3232.bam
+Reading .bam file: /scratch/167689.16.linga/3232_tmp/3232.bam
+	Found 3536 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+140852.9131884148
+228802371.2973155
+323463241.571106
+422429338.2180908
+520798658.4273315
+62398968.13556812
+716123.2309748685
+815240.5494480459
+924.078883750125
+dantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    2381 pairs aligned 0 times concordantly or discordantly; of these:
+      4762 mates make up the pairs; of these:
+        2405 (50.50%) aligned 0 times
+        14 (0.29%) aligned exactly 1 time
+        2343 (49.20%) aligned >1 times
+98.70% overall alignment rate
+Filtering unmapped reads
+ 127163 (100.00%) were paired; of these:
+    3455 (2.72%) aligned concordantly 0 times
+    12 (0.01%) aligned concordantly exactly 1 time
+    123696 (97.27%) aligned concordantly >1 times
+    ----
+    3455 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    3455 pairs aligned 0 times concordantly or discordantly; of these:
+      6910 mates make up the pairs; of these:
+        4571 (66.15%) aligned 0 times
+        42 (0.61%) aligned exactly 1 time
+        2297 (33.24%) aligned >1 times
+98.20% overall alignment rate
+1016.5599989027952
+1114.5830686307963
+1214.6830378892729
+1314.7274040145203
+1414.7318448813774
+1514.7183145907638
+1614.6983810343323
+1714.6772118884155
+1814.6568404813857
+1914.6378699941676
+2014.6202866459371
+2114.6037611925779
+2214.5883437370048
+2314.5741531615456
+2414.5607632610819
+2514.5479705775595
+	DONE! Converged in 25 iterations.
+Found reads for 177 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/2369.metascope_id.csv
+No coverage plots created
+# A tibble: 177 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 759620     Weissella ceti strain WS105 chrom~   39994 0.435    39965. 0.435  
+ 2 1007099    Pseudomonas kuykendallii strain N~   31679 0.345    31663. 0.345  
+ 3 1629       Weissella viridescens strain DSM ~    7244 0.0788    7269. 0.0791 
+ 4 1226968    Azospirillum humicireducens strai~    7017 0.0764    7018. 0.0764 
+ 5 556533     Pseudomonas benzenivorans strain ~    2288 0.0249    2208. 0.0240 
+ 6 192        Azospirillum brasilense strain Sp~    1585 0.0172    1586. 0.0173 
+ 7 743720     Pseudomonas fulva 12-X, complete ~     488 0.00531    548. 0.00596
+ 8 176280     Staphylococcus epidermidis ATCC 1~     325 0.00354    296  0.00322
+ 9 53406      Pseudomonas anguilliseptica strai~     271 0.00295    299. 0.00325
+10 93061      Staphylococcus aureus subsp. aure~     119 0.00129    149. 0.00162
+# ... with 167 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 32.0447 mins
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       86672 reads; of these:
+  86672 (100.00%) were paired; of these:
+    1550 (1.79%) aligned concordantly 0 times
+    64 (0.07%) aligned concordantly exactly 1 time
+    85058 (98.14%) aligned concordantly >1 times
+    ----
+    1550 pairs aligned concordantly 0 times; of these:
+      11 (0.71%) aligned discordantly 1 time
+    ----
+    1539 pairs aligned 0 times concordantly or discordantly; of these:
+      3078 mates make up the pairs; of these:
+        1518 (49.32%) aligned 0 times
+        17 (0.55%) aligned exactly 1 time
+        1543 (50.13%) aligned >1 times
+99.12% overall alignment rate
+[bam_sort_core] merging from 21 files and 1 in-memory blocks...
+onomy and genome names
+Accession list broken into 44 e/metascope_out/3232.metascope_id.csv
+No coverage plots created
+# A tibble: 177 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 1007099    Pseudomonas kuykendallii strain N~   45986  0.585   46166.  0.587 
+ 2 398511     Alkalihalophilus pseudofirmus OF4~    5783  0.0735   5747.  0.0731
+ 3 198214     Shigella flexneri 2a str. 301 chr~    4706  0.0598   4706.  0.0599
+ 4 1202724    Flavobacterium akiainvivens strai~    3318  0.0422   3314   0.0421
+ 5 556533     Pseudomonas benzenivorans strain ~    2843  0.0362   2683.  0.0341
+ 6 48936      Novosphingobium subterraneum stra~    2690  0.0342   2686.  0.0342
+ 7 582680     Microbacterium azadirachtae strai~    2505  0.0319   2355.  0.0299
+ 8 1223505    Microbacterium resistens NBRC 103~    2422  0.0308   2572.  0.0327
+ 9 76759      Pseudomonas monteilii strain USDA~    2210  0.0281   2129   0.0271
+10 1236973    Alkalihalobacillus akibai JCM 915~     891  0.0113    930.  0.0118
+# ... with 167 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 30.17986 mins
+	Found 75750 reads aligned to 4924 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 50 chunks
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       	Found 3977 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+134207.9953551229
+2308724448.249165
+3108201793.467152
+rk/aodom/Sepsis/run_metascope/metascope_out/4654.metascope_id.csv
+No coverage plots created
+# A tibble: 146 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 76759      Pseudomonas monteilii strain USDA~   44692 0.614    44742. 0.615  
+ 2 1007099    Pseudomonas kuykendallii strain N~    9757 0.134     9690. 0.133  
+ 3 198616     Pseudomonas jinjuensis strain JCM~    4439 0.0610    4217  0.0580 
+ 4 171101     Streptococcus pneumoniae R6, comp~    2675 0.0368    2673. 0.0367 
+ 5 198214     Shigella flexneri 2a str. 301 chr~    2602 0.0358    2604. 0.0358 
+ 6 398511     Alkalihalophilus pseudofirmus OF4~    1605 0.0221    1542  0.0212 
+ 7 883103     Dolosigranulum pigrum ATCC 51524 ~    1307 0.0180    1307. 0.0180 
+ 8 53406      Pseudomonas anguilliseptica strai~     844 0.0116     884. 0.0121 
+ 9 525260     Corynebacterium accolens ATCC 497~     632 0.00869    630. 0.00866
+10 1236973    Alkalihalobacillus akibai JCM 915~     572 0.00786    637. 0.00875
+# ... with 136 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 22.7483 mins
+491916346.7208412
+58385020.43663908
+6165.193211773619
+783.6423883677007
+845.6126866713869
+945.6267407071741
+1045.6474690931179
+1145.6711012804533
+1245.6926062292659
+1345.7103035817
+1445.7257043997931
+1545.7404379943212
+1645.756290115283
+1745.7769029356752
+1845.8083410226402
+1945.860765159142
+2045.948848772046
+Library alignment complete
+DONE! Alignments written to /scratch/167689.22.linga/4478_tmp/4478.bam
+Reading .bam file: /scratch/167689.22.linga/4478_tmp/4478.bam
+dantly 0 times
+    13 (0.01%) aligned concordantly exactly 1 time
+    115261 (96.93%) aligned concordantly >1 times
+    ----
+    3641 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    3641 pairs aligned 0 times concordantly or discordantly; of these:
+      7282 mates make up the pairs; of these:
+        5057 (69.45%) aligned 0 times
+        21 (0.29%) aligned exactly 1 time
+        2204 (30.27%) aligned >1 times
+97.87% overall alignment rate
+Filtering unmapped reads
+es
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/4180.metascope_id.csv
+No coverage plots created
+# A tibble: 174 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 203120     Leuconostoc mesenteroides subsp. ~   34017 0.449    33888. 0.447  
+ 2 76759      Pseudomonas monteilii strain USDA~   13545 0.179    13445. 0.177  
+ 3 1007099    Pseudomonas kuykendallii strain N~    6803 0.0898    6909. 0.0912 
+ 4 1339247    Leuconostoc pseudomesenteroides P~    6300 0.0832    6429. 0.0849 
+ 5 525260     Corynebacterium accolens ATCC 497~    3932 0.0519    3607. 0.0476 
+ 6 169292     Corynebacterium aurimucosum strai~    3303 0.0436    3628. 0.0479 
+ 7 176280     Staphylococcus epidermidis ATCC 1~    3165 0.0418    3128. 0.0413 
+ 8 556533     Pseudomonas benzenivorans strain ~    1131 0.0149    1089. 0.0144 
+ 9 435837     Staphylococcus hominis subsp. hom~     746 0.00985    783. 0.0103 
+10 1157708    Variovorax paradoxus 110B G369DRA~     422 0.00557    422. 0.00557
+# ... with 164 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 26.51681 mins
+3427967.389937502
+hese:
+  149280 (100.00%) were paired; of these:
+    2791 (1.87%) aligned concordantly 0 times
+    33 (0.02%) aligned concordantly exactly 1 time
+    146456 (98.11%) aligned concordantly >1 times
+    ----
+    2791 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    2791 pairs aligned 0 times concordantly or discordantly; of these:
+      5582 mates make up the pairs; of these:
+        2635 (47.21%) aligned 0 times
+        24 (0.43%) aligned exactly 1 time
+        2923 (52.36%) aligned >1 times
+99.12% overall alignment rate
+451493.144058575
+54639.40866837654
+64670.33165418213
+74745.060031653
+84758.99393720177
+94716.06947585088
+104666.40606172159
+114344.44112017459
+1248.2339148116495
+1324.7851599717821
+1424.2689410216608
+1523.8926736415833
+1623.6218018333873
+1723.4307017807413
+1823.3028198991659
+1923.2260396277485
+2023.191049609092
+2123.1905728827981
+2223.2184660590809
+2323.2692971487363
+2423.3384463559258
+2523.4225695684963
+	DONE! Converged in 25 iterations.
+gned concordantly exactly 1 time
+    164558 (97.63%) aligned concordantly >1 times
+    ----
+    3968 pairs aligned concordantly 0 times; of these:
+      17 (0.43%) aligned discordantly 1 time
+    ----
+    3951 pairs aligned 0 times concordantly or discordantly; of these:
+      7902 mates make up the pairs; of these:
+        3600 (45.56%) aligned 0 times
+        35 (0.44%) aligned exactly 1 time
+        4267 (54.00%) aligned >1 times
+98.93% overall alignment rate
+[bam_sort_core] merging from 19 files and 1 in-memory blocks...
+onomy and genome names
+Accession list broken into 47 chunks
+Library alignment complete
+DONE! Alignments written to /scratch/167689.1.linga/1132_tmp/1132.bam
+Reading .bam file: /scratch/167689.1.linga/1132_tmp/1132.bam
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           	Found 210602 reads aligned to 5634 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 57 chunks
+432042.59603513
+/7691_tmp/7691.bam
+4274.940664124341
+5187.993253832809
+6112.025217787411
+7123.165037267281
+8113.485798915063
+9115.906622131519
+1078.6901288322817
+116.56291306420471
+126.17112115557012
+135.7484802935786
+145.40800923875024
+155.18310472783371
+165.0519482363972
+174.98045221024071
+184.94085717945094
+194.91728796323763
+204.90319331080066
+	Found 3972 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+129411.5357708717
+252085193.021869
+349993136.1877909
+446934026.0033084
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             5109728.176426965
+6108661.215305701
+771132.4229628796
+8556.53526244654
+9547.731455249888
+10544.808298053686
+11544.137058554679
+12543.940705149376
+13543.861294992563
+14543.806099815036
+15543.740019820466
+16543.653623041138
+17542.263665376581
+18236.071461598243
+193.42498092614796
+203.4249550660812
+213.42491744273394
+223.42484902233994
+	Found 92386 reads aligned to 5081 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 51 chunks
+lts written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/6731.metascope_id.csv
+No coverage plots created
+# A tibble: 172 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 203120     Leuconostoc mesenteroides subsp. ~   29313 0.432    29213. 0.431  
+ 2 1007099    Pseudomonas kuykendallii strain N~   22325 0.329    22387. 0.330  
+ 3 1339247    Leuconostoc pseudomesenteroides P~    4777 0.0705    4877  0.0719 
+ 4 76759      Pseudomonas monteilii strain USDA~    1921 0.0283    1852. 0.0273 
+ 5 556533     Pseudomonas benzenivorans strain ~    1278 0.0189    1266. 0.0187 
+ 6 48936      Novosphingobium subterraneum stra~    1186 0.0175    1182. 0.0174 
+ 7 38815      Desulfuromonas acetexigens isolat~     780 0.0115     776. 0.0114 
+ 8 1225127    Klenkia taihuensis strain DSM 459~     732 0.0108     732  0.0108 
+ 9 71421      Haemophilus influenzae Rd KW20, c~     617 0.00910    616. 0.00908
+10 156978     Corynebacterium imitans strain DS~     584 0.00861    582. 0.00859
+# ... with 162 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 25.17159 mins
+	Found 4341 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+157177.8012015123
+25750979.55076047
+3135807.086202161
+4107519.556383868
+5278.06723125449
+6278.071472067059
+7278.080765257928
+8278.092829844082
+9278.101013175682
+10278.103769147984
+11278.104503164848
+12278.104761910813
+13278.104958461014
+14278.105143294245
+15278.105314120855
+16278.105456210523
+	Found 4106 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+155771.3419437568
+84394
+237.25930804288179
+247.26449490552107
+257.26846116924582
+	DONE! Converged in 25 iterations.
+Starting EM iterations
+152520.9837975191
+21543380047894.72
+31111579389890.66
+49930231.60795278
+5139157.799101921
+6106976.949964623
+785009.9725435937
+819557.605632296
+9368.923182612619
+1097.0195437061736
+1197.134802397241
+1298.7534837895068
+1399.2921395637144
+1499.277735276477
+1599.2215603888175
+1699.1445006107682
+1799.074173569045
+1899.027046927273
+1998.9989210881833
+2098.9820429138673
+2198.9699674567305
+2298.8583926638648
+2389.478624334394
+248.61247270475073
+251.09644972118557
+	DONE! Converged in 25 iterations.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             Found reads for 215 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/3574.metascope_id.csv
+No coverage plots created
+# A tibble: 215 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 71421      Haemophilus influenzae Rd KW20, c~   56243 0.609    55858. 0.605  
+ 2 1351754    Avibacterium paragallinarum JF421~   11475 0.124    11740. 0.127  
+ 3 76759      Pseudomonas monteilii strain USDA~    6350 0.0687    6343. 0.0687 
+ 4 171101     Streptococcus pneumoniae R6, comp~    3668 0.0397    3667  0.0397 
+ 5 1121368    Corynebacterium pseudodiphtheriti~    3109 0.0337    3123. 0.0338 
+ 6 883103     Dolosigranulum pigrum ATCC 51524 ~    2704 0.0293    2701. 0.0292 
+ 7 1007099    Pseudomonas kuykendallii strain N~    1803 0.0195    1814. 0.0196 
+ 8 525260     Corynebacterium accolens ATCC 497~    1201 0.0130    1194. 0.0129 
+ 9 40215      Acinetobacter junii strain 65 chr~     729 0.00789    730. 0.00791
+10 169292     Corynebacterium aurimucosum strai~     498 0.00539    485. 0.00525
+# ... with 205 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 42.10512 mins
+111013 reads; of these:
+  111013 (100.00%) were paired; of these:
+    1994 (1.80%) aligned concordantly 0 times
+    7 (0.01%) aligned concordantly exactly 1 time
+    109012 (98.20%) aligned concordantly >1 times
+    ----
+    1994 pairs aligned concordantly 0 times; of these:
+      0 (0.00%) aligned discordantly 1 time
+    ----
+    1994 pairs aligned 0 times concordantly or discordantly; of these:
+      3988 mates make up the pairs; of these:
+        2120 (53.16%) aligned 0 times
+        16 (0.40%) aligned exactly 1 time
+        1852 (46.44%) aligned >1 times
+99.05% overall alignment rate
+Filtering unmapped reads
+es
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/7691.metascope_id.csv
+No coverage plots created
+# A tibble: 143 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 1007099    Pseudomonas kuykendallii strain N~   52272 0.604    52433. 0.606  
+ 2 198214     Shigella flexneri 2a str. 301 chr~    6358 0.0735    6272. 0.0725 
+ 3 76759      Pseudomonas monteilii strain USDA~    6236 0.0721    5896. 0.0681 
+ 4 <NA>       unknown                               5451 0.0630    5759  0.0666 
+ 5 48936      Novosphingobium subterraneum stra~    4096 0.0473    4092  0.0473 
+ 6 1157708    Variovorax paradoxus 110B G369DRA~    3901 0.0451    3875  0.0448 
+ 7 556533     Pseudomonas benzenivorans strain ~    2086 0.0241    1913. 0.0221 
+ 8 1036780    Bosea robiniae strain DSM 26672, ~    1308 0.0151    1308. 0.0151 
+ 9 1191209    Halomonas desiderata SP1 contig_1~    1241 0.0143    1342. 0.0155 
+10 205918     Pseudomonas syringae pv. syringae~     831 0.00960    847. 0.00978
+# ... with 133 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+Warning message:
+The following 100 of 100 queries could not be found:
+   [1] NZ_JXRR01000019.1 ... [100] NZ_FOUD01000014.1
+ 
+[1] TRUE
+Time difference of 27.59665 mins
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        Library alignment complete
+DONE! Alignments written to /scratch/167689.17.linga/3333_tmp/3333.bam
+Reading .bam file: /scratch/167689.17.linga/3333_tmp/3333.bam
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          	Found 149121 reads aligned to 4632 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 47 chunks
+                                                                                                                                                                                                  	Found 3692 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+191596.3168592115
+218331259.8604925
+311546624.3454718
+46932768.67429007
+5287.326394089855
+614.140485690382
+77.54793205664406
+87.8830323419805
+98.05135501255583
+108.08745752941122
+117.93381465438215
+127.09605756075953
+134.19979592844368
+142.27257504268821
+151.88869387515033
+161.76858618980887
+            171.74181737463371
+181.63261283570115
+191.3027484003321
+201.32286723796986
+211.34173367305972
+221.35680377569321
+231.36645057405972
+241.36931736360776
+251.36605396761327
+	DONE! Converged in 25 iterations.
+plots created
+# A tibble: 207 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 171101     Streptococcus pneumoniae R6, comp~   56963 0.452    56922. 0.452  
+ 2 93061      Staphylococcus aureus subsp. aure~   41074 0.326    40435. 0.321  
+ 3 29433      Moraxella ovis strain 199/55 chro~    6171 0.0490    6051. 0.0481 
+ 4 1888195    Streptococcus himalayensis strain~    5593 0.0444    5611. 0.0446 
+ 5 883103     Dolosigranulum pigrum ATCC 51524 ~    4991 0.0396    4991. 0.0396 
+ 6 176280     Staphylococcus epidermidis ATCC 1~    4891 0.0388    5529. 0.0439 
+ 7 1121368    Corynebacterium pseudodiphtheriti~    1164 0.00924   1161. 0.00922
+ 8 573983     Moraxella porci DSM 25326 strain ~     779 0.00619    899. 0.00714
+ 9 1007099    Pseudomonas kuykendallii strain N~     602 0.00478    598. 0.00475
+10 1335       Streptococcus equinus strain AG46~     433 0.00344    422. 0.00335
+# ... with 197 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 48.71472 mins
+Library alignment complete
+DONE! Alignments written to /scratch/167689.7.linga/1749_tmp/1749.bam
+Reading .bam file: /scratch/167689.7.linga/1749_tmp/1749.bam
+ time
+    225983 (94.19%) aligned concordantly >1 times
+    ----
+    13896 pairs aligned concordantly 0 times; of these:
+      3 (0.02%) aligned discordantly 1 time
+    ----
+    13893 pairs aligned 0 times concordantly or discordantly; of these:
+      27786 mates make up the pairs; of these:
+        22400 (80.62%) aligned 0 times
+        181 (0.65%) aligned exactly 1 time
+        5205 (18.73%) aligned >1 times
+95.33% overall alignment rate
+Filtering unmapped reads
+es
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/3333.metascope_id.csv
+No coverage plots created
+# A tibble: 165 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 759620     Weissella ceti strain WS105 chrom~   77729 5.21e-1 81895.  5.49e-1
+ 2 588932     Brevundimonas naejangsanensis str~   34904 2.34e-1 34908   2.34e-1
+ 3 1629       Weissella viridescens strain DSM ~   29176 1.96e-1 25010   1.68e-1
+ 4 633149     Brevundimonas subvibrioides ATCC ~    5106 3.42e-2  5101.  3.42e-2
+ 5 1007099    Pseudomonas kuykendallii strain N~     336 2.25e-3   336.  2.25e-3
+ 6 349519     Leuconostoc citreum KM20, complet~     333 2.23e-3   326   2.19e-3
+ 7 93061      Staphylococcus aureus subsp. aure~     211 1.41e-3   207.  1.39e-3
+ 8 262543     Exiguobacterium sibiricum 255-15,~     108 7.24e-4   104   6.98e-4
+ 9 137591     Weissella cibaria strain CH2 chro~      89 5.97e-4    80.4 5.39e-4
+10 1158606    Enterococcus asini ATCC 700915 ac~      78 5.23e-4    66.5 4.46e-4
+# ... with 155 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 51.52883 mins
+	Found 117412 reads aligned to 5238 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 53 chunks
+	Found 4202 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+129401.9596206514
+211241194.2403703
+310819822.073509
+41927606.5824327
+5800919.237575284
+6886103.177575605
+71325125.85041399
+812317.5542517548
+912231.0397768064
+1011816.7422931495
+1111365.5212061277
+1211222.200228939
+1311185.5637894287
+14454.710740920728
+155.02879824136878
+165.03076201099552
+175.03066531357949
+185.02526735322941
+194.99852287333622
+204.87951151866387
+214.39544315264136
+222.98613044532945
+232.05546797428488
+241.91260679990764
+251.91225252235456
+	DONE! Converged in 25 iterations.
+	Found 110799 reads aligned to 4755 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 48 chunks
+ope_out/5264.metascope_id.csv
+No coverage plots created
+# A tibble: 218 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 176280     Staphylococcus epidermidis ATCC 1~   84959 0.724    84344. 0.718  
+ 2 279808     Staphylococcus haemolyticus JCSC1~   18337 0.156    18952. 0.161  
+ 3 171101     Streptococcus pneumoniae R6, comp~    2384 0.0203    2347. 0.0200 
+ 4 592050     Acidovorax soli strain DSM 25157,~    2147 0.0183    2312. 0.0197 
+ 5 32040      Acidovorax konjaci strain DSM 748~    1874 0.0160    1710. 0.0146 
+ 6 1217658    Acinetobacter gyllenbergii NIPH 2~     775 0.00660    797  0.00679
+ 7 1888195    Streptococcus himalayensis strain~     706 0.00601    725. 0.00617
+ 8 1007099    Pseudomonas kuykendallii strain N~     612 0.00521    612. 0.00521
+ 9 759620     Weissella ceti strain WS105 chrom~     558 0.00475    558. 0.00475
+10 300267     Shigella dysenteriae Sd197, compl~     391 0.00333    389. 0.00332
+# ... with 208 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 45.52583 mins
+	Found 195399 reads aligned to 5269 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 53 chunks
+	Found 4112 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+                                                                                                                                                                                                                                                                                     Starting EM iterations
+160293.3506493863
+225991595827.2923
+33835446845.07305
+4650223877.638621
+5631770844.172247
+                                                                                                                                   6423871169.997684
+747.7573353969986
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      847.1271239090258
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          946.2335105807105
+1040.7670709344395
+1127.2110481232468
+1227.1832063309068
+1325.9749744710018
+1421.4460786263326
+1521.453681793688
+1621.462099016663
+1721.4711665592826
+1821.4800801084642
+1921.4878090404977
+2021.4936220956931
+2121.4973161421878
+2221.49918187527
+2321.4996405163879
+2421.4984942722991
+2521.4837663499121
+	DONE! Converged in 25 iterations.
+Found reads for 256 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/1749.metascope_id.csv
+No coverage plots created
+# A tibble: 256 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 93061      Staphylococcus aureus subsp. aure~  174456 8.93e-1  1.73e5 8.85e-1
+ 2 176280     Staphylococcus epidermidis ATCC 1~   16846 8.62e-2  1.83e4 9.36e-2
+ 3 1007099    Pseudomonas kuykendallii strain N~    1333 6.82e-3  1.34e3 6.84e-3
+ 4 1284       Staphylococcus hyicus strain ATCC~     257 1.31e-3  2.54e2 1.30e-3
+ 5 171101     Streptococcus pneumoniae R6, comp~     225 1.15e-3  2.25e2 1.15e-3
+ 6 198214     Shigella flexneri 2a str. 301 chr~     209 1.07e-3  2.08e2 1.07e-3
+ 7 72758      Staphylococcus capitis subsp. cap~      94 4.81e-4  9.08e1 4.65e-4
+ 8 522373     Stenotrophomonas maltophilia K279~      94 4.81e-4  9.4 e1 4.81e-4
+ 9 47917      Serratia fonticola strain DSM 457~      94 4.81e-4  9.75e1 4.99e-4
+10 1336246    Mitsuaria chitosanitabida ATCC BA~      91 4.66e-4  8.93e1 4.57e-4
+# ... with 246 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 1.222738 hours
+Library alignment complete
+DONE! Alignments written to /scratch/167689.15.linga/3181_tmp/3181.bam
+Reading .bam file: /scratch/167689.15.linga/3181_tmp/3181.bam
+	Found 256665 reads aligned to 5935 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 60 chunks
+	Found 168324 reads aligned to 5716 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 58 chunks
+	Found 4562 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+147678.252983051
+2572848795780.315
+385157949.5002711
+4151585852.69232
+5203649599.421152
+62934.03467383649
+7192.136386210384
+8179.695980254676
+9177.375175100389
+10176.693964528042
+11176.971032662258
+12177.612232777565
+13178.246759204356
+14130.134923928774
+1523.9193867226756
+162.60091219606281
+172.58732181911724
+182.58000504538946
+192.57609494723111
+202.87881859458824
+213.14138891185445
+223.3070926170469
+233.39484438750392
+7142958.367426623
+8141152.583266401
+9139653.630755615
+10138964.871677036
+11251.289822483836
+12129.962140727981
+13129.962034503016
+14129.96200792309
+15129.962001265004
+16129.961999596274
+17129.961999177914
+18129.961999072993
+19129.961999044039
+20129.961998690574
+21129.961953262431
+22129.956004392552
+23129.181605904366
+2472.5549340449906
+251.36037600864432
+	DONE! Converged in 25 iterations.
+ots created
+# A tibble: 414 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 93061      Staphylococcus aureus subsp. aure~  147439 0.574   143458. 0.559  
+ 2 176280     Staphylococcus epidermidis ATCC 1~   43092 0.168    47073. 0.183  
+ 3 146827     Corynebacterium simulans strain P~   34230 0.133    34200. 0.133  
+ 4 171101     Streptococcus pneumoniae R6, comp~    8484 0.0331    8479. 0.0330 
+ 5 169292     Corynebacterium aurimucosum strai~    8463 0.0330    8337. 0.0325 
+ 6 1285583    Corynebacterium casei LMG S-19264~    4767 0.0186    4720. 0.0184 
+ 7 306537     Corynebacterium jeikeium K411, co~    1916 0.00746   1981. 0.00772
+ 8 525260     Corynebacterium accolens ATCC 497~    1228 0.00478   1268. 0.00494
+ 9 1888195    Streptococcus himalayensis strain~     508 0.00198    510. 0.00199
+10 1437874    Corynebacterium sphenisci DSM 447~     505 0.00197    560. 0.00218
+# ... with 404 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 1.208158 hours
+Found reads for 388 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/3181.metascope_id.csv
+No coverage plots created
+# A tibble: 388 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 29433      Moraxella ovis strain 199/55 chro~   84941 0.505    84323. 0.501  
+ 2 93061      Staphylococcus aureus subsp. aure~   51095 0.304    50522. 0.300  
+ 3 573983     Moraxella porci DSM 25326 strain ~    7868 0.0467    8479. 0.0504 
+ 4 1007099    Pseudomonas kuykendallii strain N~    4813 0.0286    4784. 0.0284 
+ 5 176280     Staphylococcus epidermidis ATCC 1~    4372 0.0260    4945. 0.0294 
+ 6 146827     Corynebacterium simulans strain P~    2268 0.0135    2274. 0.0135 
+ 7 76759      Pseudomonas monteilii strain USDA~    1279 0.00760   1286. 0.00764
+ 8 169292     Corynebacterium aurimucosum strai~    1127 0.00670   1196. 0.00711
+ 9 525260     Corynebacterium accolens ATCC 497~    1113 0.00661   1041. 0.00618
+10 48936      Novosphingobium subterraneum stra~     610 0.00362    622  0.00370
+# ... with 378 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 1.220968 hours
+Library alignment complete
+DONE! Alignments written to /scratch/167689.27.linga/539_tmp/539.bam
+Reading .bam file: /scratch/167689.27.linga/539_tmp/539.bam
+	Found 230993 reads aligned to 6195 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 62 chunks
+	Found 4726 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+152662.5222293978
+2370231039.012782
+345084438.6262577
+4435257.324782077
+5434869.040820132
+6434678.521135979
+7304819.84551419
+839680.0477355259
+9109481.504078596
+10140969.832215026
+11149824.507617351
+12151906.573912848
+13152857.835200644
+1479239.1203076686
+1585.0433645922297
+16101.070439339078
+17103.515538295944
+18102.62281516362
+1978.3631545370093
+207.82267631252498
+217.77888871565178
+227.63823319798567
+237.24948787775525
+246.32529366898201
+254.7406410108681
+	DONE! Converged in 25 iterations.
+Found reads for 478 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/539.metascope_id.csv
+No coverage plots created
+# A tibble: 478 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 93061      Staphylococcus aureus subsp. aure~  146285 0.633   144871. 0.627  
+ 2 1121368    Corynebacterium pseudodiphtheriti~   16040 0.0694   16098. 0.0697 
+ 3 176280     Staphylococcus epidermidis ATCC 1~   13176 0.0570   14586  0.0631 
+ 4 171101     Streptococcus pneumoniae R6, comp~   10088 0.0437   10100. 0.0437 
+ 5 525260     Corynebacterium accolens ATCC 497~    5260 0.0228    5261. 0.0228 
+ 6 529122     Bacillus thuringiensis YBT-1518, ~    4206 0.0182    4176. 0.0181 
+ 7 169292     Corynebacterium aurimucosum strai~    2539 0.0110    2487. 0.0108 
+ 8 29433      Moraxella ovis strain 199/55 chro~    2160 0.00935   2134  0.00924
+ 9 592050     Acidovorax soli strain DSM 25157,~    1960 0.00849   2117. 0.00917
+10 32040      Acidovorax konjaci strain DSM 748~    1611 0.00697   1480. 0.00640
+# ... with 468 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 1.242848 hours
+Library alignment complete
+DONE! Alignments written to /scratch/167689.11.linga/2090_tmp/2090.bam
+Reading .bam file: /scratch/167689.11.linga/2090_tmp/2090.bam
+	Found 269718 reads aligned to 5587 NCBI accessions
+Obtaining taxonomy and genome names
+Accession list broken into 56 chunks
+	Found 4426 unique NCBI taxonomy IDs
+Setting up the EM algorithm
+Starting EM iterations
+1172013.938293694
+21051136874.2151
+32926826526.13057
+42706083586.53032
+5134428338.991721
+6155382732.284613
+75164792.1299417
+864870.3652495494
+964300.1380611369
+1016107.1923170602
+113669.31160447988
+1233.4725746071611
+133.63483296327982
+143.63426104372189
+153.6338057425075
+163.63337395757067
+173.63295345762643
+183.63258447025602
+193.63228013672689
+203.63202937279262
+213.63182145306464
+223.63164091148
+233.63147645953143
+243.63132184374597
+253.63117285215536
+	DONE! Converged in 25 iterations.
+Found reads for 361 genomes
+Results written to /restricted/projectnb/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out/2090.metascope_id.csv
+No coverage plots created
+# A tibble: 361 x 6
+   TaxonomyID Genome                             read_~1 Propo~2 readsEM EMPro~3
+   <chr>      <chr>                                <int>   <dbl>   <dbl>   <dbl>
+ 1 883103     Dolosigranulum pigrum ATCC 51524 ~  159794 0.592   159770. 5.92e-1
+ 2 1121368    Corynebacterium pseudodiphtheriti~   46525 0.172    46629. 1.73e-1
+ 3 525260     Corynebacterium accolens ATCC 497~   25662 0.0951   24658. 9.14e-2
+ 4 753702     Alkalibacterium subtropicum strai~   14820 0.0549   14810. 5.49e-2
+ 5 169292     Corynebacterium aurimucosum strai~   14534 0.0539   15430. 5.72e-2
+ 6 883081     Alloiococcus otitis ATCC 51267 su~    1173 0.00435   1191. 4.42e-3
+ 7 1121354    Corynebacterium capitovis DSM 446~    1037 0.00384   1042. 3.86e-3
+ 8 936154     Streptococcus parauberis KCTC 115~     687 0.00255    662. 2.45e-3
+ 9 1007099    Pseudomonas kuykendallii strain N~     618 0.00229    618. 2.29e-3
+10 161895     Corynebacterium phocae strain M40~     277 0.00103    223. 8.28e-4
+# ... with 351 more rows, and abbreviated variable names 1: read_count,
+#   2: Proportion, 3: EMProportion
+[1] TRUE
+Time difference of 1.87303 hours

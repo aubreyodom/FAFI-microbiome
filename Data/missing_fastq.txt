@@ -1,0 +1,4 @@
+/restricted/projectnb/infant-microbiome/data/2020_16S_fastq/200612_M02621_0210_000000000-J4WRB/2090_S29_L001_R1_001.fastq.gz
+/restricted/projectnb/infant-microbiome/data/2020_16S_fastq/200612_M02621_0210_000000000-J4WRB/2090_S29_L001_R2_001.fastq.gz
+/restricted/projectnb/infant-microbiome/data/2020_16S_fastq/200612_M02621_0210_000000000-J4WRB/3975_S30_L001_R1_001.fastq.gz
+/restricted/projectnb/infant-microbiome/data/2020_16S_fastq/200612_M02621_0210_000000000-J4WRB/3975_S30_L001_R2_001.fastq.gz

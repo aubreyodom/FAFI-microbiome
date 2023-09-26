@@ -1,0 +1,202 @@
+---
+title: "Sepsis Analysis"
+author: "Aubrey Odom-Mabey"
+date: "4/12/22"
+output: html_document
+---
+# Setup
+```{R setup}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(magrittr)
+})
+
+```
+# Clean Sepsis metadata
+
+Here, we take the table that Bill sent and make the metadata easier to use in downstream analysis
+```{R}
+clindat_og <- readxl::read_xlsx("Clinical data - infants who died of sepsis updated.xlsx")
+colnames(clindat_og) %<>% 
+  stringr::str_remove_all("\r") %>%
+  stringr::str_remove_all("\n")
+
+# Read in dates of visits
+visit_dates <- readxl::read_xlsx("sepsis_inf_list_withdates.xlsx") %>%
+  select(!"Subject.ID") %>% dplyr::rename("Sample ID" = Sample.ID,
+                                          "Date of visit" = "Date of Visit")
+
+# Fill in basic data across new "baseline" visits
+simple_info <- clindat_og %>%
+  filter(`Type of Visit` %in% c("1=SCHEDULED VISIT", "2=UNSCHEDULED VISIT")) %>%
+  select(`Subject ID`, `HIV Unexposed`, -`Month of Visit`) %>%
+  distinct(`Subject ID`, .keep_all = TRUE)
+ind <- unique(clindat_og$`Subject ID`) %in% simple_info$`Subject ID`
+complete_info <- dplyr::tibble("Subject ID" = unique(clindat_og$`Subject ID`)[!ind],
+              "HIV Unexposed" = NA) %>%
+  bind_rows(., simple_info) %>%
+  tidyr::separate(`Subject ID`, into = c(NA, "MothChild"), sep = "-",
+                  remove = FALSE) %>%
+  relocate(`Subject ID`, `HIV Unexposed`) %>%
+  dplyr::mutate(MothChild = replace(MothChild, MothChild == 0, "Mother"),
+                MothChild = replace(MothChild, MothChild == 1, "Infant"))
+clindat <- clindat_og %>%
+  select(-c(`HIV Unexposed`, `Infant or Mother`)) %>%
+  left_join(complete_info, ., by = "Subject ID") %>%
+  dplyr::mutate(`Type of Visit` = str_remove(`Type of Visit`, "1=|2="),
+                `Type of Visit` = str_remove(`Type of Visit`, " VISIT"),
+                `Type of Visit` = stringr::str_to_title(`Type of Visit`)) %>%
+  group_by(`Subject ID`) %>%
+  arrange(`Subject ID`, `Sample ID`) %>%
+  # mutate(timepoint = as.numeric(as.factor(`Sample ID`))) %>%
+  # replace anything coded as a . as missing
+  replace(., . == ".", NA) %>%
+  replace(., . == "9=TRUE MISSING", NA) %>%
+  replace(., . == "0=NO", "FALSE") %>%
+  replace(., . == "No", "FALSE") %>%
+  replace(., . == "Yes", "TRUE") %>%
+  mutate(`HIV Unexposed` = `HIV Unexposed` %in% FALSE,
+         `Sepsis state` = "pos") %>%
+  dplyr::rename("HIVStatus" = `HIV Unexposed`) %>%
+  relocate("Sample ID", "Subject ID", `Sepsis state`) %>%
+  full_join(visit_dates, by = "Sample ID")
+
+# Moms (unused)
+clindat %>%
+  filter(MothChild == "Mother") %>%
+  select(-MothChild) %>%
+  arrange(`Subject ID`)
+
+# Infants
+metadata <- clindat %>%
+  rename(Age = `Age at Test (days)`) %>%
+  filter(MothChild == "Infant") %>%
+  select(-MothChild) %>%
+  mutate(`Sepsis state` = "pos", Age = as.numeric(Age)) %>%
+  arrange(`Subject ID`)
+
+```
+
+When I was trying to separate by moms' first/last timepoints...
+```{R, eval = FALSE}
+## Find min, max timepoint for moms
+#moms_time_keep <- clindat %>%
+#  filter(MothChild == "Mother") %>%
+#  group_by(`Subject ID`) %>%
+#  summarise(last = max(timepoint)) %>%
+#  select(`Subject ID`, last)
+#
+## Pull out moms only and only keep first/last timepoints
+#moms_first_last <- clindat %>%
+#  left_join(., moms_time_keep, by = "Subject ID") %>%
+#  group_by(`Subject ID`) %>%
+#  filter(MothChild == "Mother", timepoint %in% c(1, last) ) %>%
+#  select(-last)
+#
+## Read all the mom datapoints
+#metadata <- clindat %>%
+#  filter(MothChild == "Infant") %>%
+#  bind_rows(., moms_first_last) %>%
+#  arrange(`Subject ID`)
+```
+
+## Some small checks
+Check that all IDs are present that should be!
+```{R}
+# Checking IDs in deaths and clindat
+deaths <- readxl::read_xlsx("SAMIPS Deaths Sample List.xlsx")
+
+deaths %<>% rename("Subject ID" = "Subject_barcode")
+
+clin_IDs <- metadata %>%
+  separate(., `Subject ID`, into = c("ID", NULL),
+           extra = "drop") %>%
+  distinct(ID) %>% arrange(ID) %>% unlist()
+
+deaths_IDs <- deaths %>%
+  separate(., `Subject ID`, into = c("ID", NULL),
+           extra = "drop") %>%
+  distinct(ID) %>% arrange(ID) %>% unlist()
+
+# All IDs are present in both
+deaths_IDs %in% clin_IDs
+
+```
+## Quick overview - how many samples per infant?
+```{R}
+metadata %>%
+  group_by(`Subject ID`) %>%
+  summarise(Total = n()) %>%
+  arrange(Total)
+```
+# Clean control metadata (from Tyler's LRTI study)
+```{R}
+controlloc <- "~/infant-microbiome/work/aodom/2018_Tyler/final_metadata.csv"
+control_metadat <- read_csv(controlloc, show_col_types = FALSE) %>%
+  filter(MothChild == "Infant", InfectionStatus == "Healthy") |>
+  mutate("Sepsis state" = "neg",
+         HIVStatus = replace(HIVStatus, HIVStatus == "HIV", TRUE),
+         HIVStatus = replace(HIVStatus, HIVStatus == "Control", FALSE),
+         HIVStatus = as.logical(HIVStatus)) %>%
+  dplyr::rename(`Subject ID` = Subject,
+                `Sample ID` = Sample) %>%
+  select(-c(Symptoms.x, PrePostSympt)) %>%
+  relocate(`Sample ID`, `Subject ID`, timepoint, HIVStatus, `Sepsis state`)
+```
+
+# Combine the metadata for infant controls and sepsis deaths
+```{R}
+# filter out any samples that are not present
+l2 <- list.files(path = "~/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out",
+                 pattern = "*.metascope_id.csv",
+                 full.names = FALSE, 
+                 include.dirs = FALSE, recursive = FALSE)
+all_tsvs <- sapply(str_split(l2, "-"),function(x) head(x, n = 1)) %>%
+  str_split("\\.") %>% sapply(function(x) x[[1]])
+  
+bind_rows(metadata, control_metadat) |>
+  mutate(`Sample ID` = paste0("X", `Sample ID`)) %>%
+  filter(`Sample ID` %in% all_tsvs) |>
+  select_if(~sum(!is.na(.)) > 0) %>%
+  mutate(timepoint = cut(Age, breaks = c(0, 15, 31, 47, 63, 79, 95, 120)),
+         timepoint = paste(as.numeric(timepoint))) %>%
+  relocate(`Sample ID`, `Subject ID`, timepoint) %>%
+  write_csv("Cleaned_metadata_allsamp.csv")
+```
+
+# Rename all pathoscope files with "X"
+```{R}
+  # Copy to different folder
+#setwd("~/infant-microbiome/work/aodom/Sepsis/Patho_out")
+#rename_tsvfiles <- function(inputfile) {
+#  newname <- paste0("X", inputfile)
+#  file.rename(inputfile, newname)
+#}
+#sapply(l2, rename_tsvfiles)
+```
+
+# Find barcodes for use with pathoscope data
+
+```{R}
+# counts <- animalcules::read_pathoscope_data("../Patho_out")
+# counts$countdat
+# 
+# # Trying to match up the metadata
+# all_files_patho <- c(list.files(path = "../Patho_out",
+#                                 pattern = "*.tsv", all.files = FALSE,
+#                                 full.names = FALSE, recursive = TRUE,
+#                                 ignore.case = FALSE, 
+#                                 include.dirs = TRUE, no.. = FALSE))
+# patho_IDs <- tibble(Sample_names = sapply(strsplit(all_files_patho,
+#                                                    split = "-sam"), 
+#                                           function(x) x[[1]])) %>%
+#   mutate(`Sample ID` = sapply(strsplit(Sample_names, split = "_"),
+#                               function(x) as.numeric(x[[1]]))) %>%
+#   left_join(., metadata, by = "Sample ID") %>%
+#   arrange(`Sample ID`)
+# 
+# patho_IDs
+# 
+# table(patho_IDs$`Subject ID`)
+# 
+```

@@ -1,0 +1,245 @@
+"TaxonomyID","Genome","read_count","Proportion","readsEM","EMProportion"
+"171101","Streptococcus pneumoniae R6, complete sequence",17112,0.520913242009132,17102,0.520657537736566
+"71421","Haemophilus influenzae Rd KW20, complete sequence",4774,0.145327245053272,4752.5,0.144685658776929
+"883103","Dolosigranulum pigrum ATCC 51524 supercont1.1, whole genome shotgun sequence",2833,0.0862404870624049,2828.3,0.0861049565057757
+"1351754","Avibacterium paragallinarum JF4211, whole genome shotgun sequence",2286,0.0695890410958904,2300.9,0.0700477740587564
+"1888195","Streptococcus himalayensis strain HTS2 chromosome, complete genome",1387,0.0422222222222222,1388.2,0.0422615022232002
+"29433","Moraxella ovis strain 199/55 chromosome, complete genome",946,0.0287975646879756,915.7,0.0278767889356993
+"753702","Alkalibacterium subtropicum strain DSM 23664, whole genome shotgun sequence",527,0.0160426179604262,529.8,0.0161288208467434
+"90241","Moraxella lincolnii strain CCUG 9405 CCUG9405T_R1__paired__trimmed__paired__contig_21, whole genome shotgun sequence",502,0.0152815829528158,513.6,0.0156365626652579
+"1121368","Corynebacterium pseudodiphtheriticum DSM 44287 O146DRAFT_scaffold00012.12_C, whole genome shotgun sequence",370,0.0112633181126332,369.9,0.0112605984349653
+"467705","Streptococcus gordonii str. Challis substr. CH1, complete sequence",209,0.00636225266362253,200.5,0.00610407815793188
+"573983","Moraxella porci DSM 25326 strain CCUG 54912 54912T_ctg_0000016, whole genome shotgun sequence",198,0.00602739726027397,211.3,0.00643271779875
+"1123317","Streptococcus sobrinus DSM 20742 = ATCC 33478 strain DSM 20742 BS63DRAFT_scaffold00049.49_C, whole genome shotgun sequence",109,0.00331811263318113,105.2,0.00320320345378057
+"747","Pasteurella multocida strain ATCC 43137 chromosome, complete genome",95,0.00289193302891933,101,0.00307552564192349
+"525260","Corynebacterium accolens ATCC 49725 SCAFFOLD5, whole genome shotgun sequence",84,0.00255707762557078,83.9,0.00255545423292673
+"1140003","Enterococcus sulfureus ATCC 49903 acyDF-supercont2.1, whole genome shotgun sequence",82,0.00249619482496195,81.6,0.00248399046700719
+"1121865","Enterococcus columbae DSM 7374 = ATCC 51263 acpMI-supercont1.2, whole genome shotgun sequence",64,0.0019482496194825,67.4,0.00205280410427698
+"1196094","Snodgrassella alvi wkB2 chromosome, complete genome",61,0.00185692541856925,60.9,0.00185551665272748
+"883081","Alloiococcus otitis ATCC 51267 supercont1.2, whole genome shotgun sequence",44,0.00133942161339422,47.2,0.00143628196925239
+"875093","Streptococcus pseudoporcinus LQ 940-04 Contig1216510750, whole genome shotgun sequence",40,0.00121765601217656,44.7,0.00136159184762938
+"365659","Streptococcus mitis B6, complete sequence",38,0.00115677321156773,43.7,0.00133076758956126
+"1545044","Paracoccus sanguinis strain DSM 29303, whole genome shotgun sequence",38,0.00115677321156773,37.7,0.00114866612798483
+"714","Aggregatibacter actinomycetemcomitans strain 624 chromosome, complete genome",35,0.00106544901065449,33.5,0.00102098597251574
+"465515","Micrococcus luteus NCTC 2665, complete sequence",35,0.00106544901065449,34.4,0.00104600712452696
+"44008","Enterococcus cecorum strain SA3 chromosome",35,0.00106544901065449,34.5,0.00105177775990359
+"393763","Anaerobacillus alkalilacustris strain DSM 18345 Ga0137925_101, whole genome shotgun sequence",33,0.00100456621004566,30.5,0.000929453428785673
+"199441","Alkalihalobacillus krulwichiae strain AM31D chromosome, complete genome",30,0.00091324200913242,27,0.000822668655406899
+"398578","Delftia acidovorans SPH-1, complete sequence",24,0.000730593607305936,24.1,0.00073515323403912
+"1397694","Exiguobacterium aurantiacum DSM 6208 P398DRAFT_scf7180000000004_quiver_dupTrim_9412.1_C, whole genome shotgun sequence",23,0.000700152207001522,23.2,0.000706043780907871
+"169292","Corynebacterium aurimucosum strain 1237_CAUR 173_5055_550973_73_,90+,99+, whole genome shotgun sequence",23,0.000700152207001522,21.9,0.000667441028150651
+"435837","Staphylococcus hominis subsp. hominis C80 supercont1.5, whole genome shotgun sequence",22,0.000669710806697108,23.2,0.000706355011635439
+"519472","Vagococcus teuberi strain DSM 21459 chromosome, complete genome",21,0.000639269406392694,22.1,0.000672164043418873
+"1033743","Paenibacillus senegalensis JC66, whole genome shotgun sequence",19,0.000578386605783866,20.9,0.000635326728346908
+"1405","Bacillus mycoides strain ATCC 6462 chromosome, complete genome",17,0.000517503805175038,17.6,0.000534402984632633
+"108981","Acinetobacter schindleri strain ACE chromosome, complete genome",17,0.000517503805175038,16.9,0.000515891323967503
+"626369","Granulicatella elegans ATCC 700633 supercont2.1, whole genome shotgun sequence",17,0.000517503805175038,17.2,0.000523502589507258
+"72758","Staphylococcus capitis subsp. capitis strain AYP1020 chromosome, complete genome",16,0.000487062404870624,16.4,0.000498070441570857
+"336292","Paracoccus tibetensis strain CGMCC 1.8925, whole genome shotgun sequence",16,0.000487062404870624,15.4,0.000468081392102753
+"398511","Alkalihalophilus pseudofirmus OF4, complete sequence",15,0.00045662100456621,14.9,0.000454299212184593
+"1423755","Ligilactobacillus hayakitensis DSM 18933 = JCM 14209, whole genome shotgun sequence",15,0.00045662100456621,13.8,0.000419238101907564
+"210007","Streptococcus mutans UA159, complete sequence",13,0.000395738203957382,13.5,0.000409756258384293
+"1374","Planococcus kocurii strain ATCC 43650 chromosome, complete genome",13,0.000395738203957382,10.9,0.000331309648533416
+"291169","Methylophaga muralis strain Bur 1 A9E74_contig000087, whole genome shotgun sequence",13,0.000395738203957382,11.7,0.000356545850451374
+"427920","Alkalihalobacterium alkalinitrilicum strain DSM 22532 Scaffold1, whole genome shotgun sequence",13,0.000395738203957382,13,0.000394671306761616
+"479434","Sphaerobacter thermophilus DSM 20745 chromosome 1, complete sequence",12,0.000365296803652968,12,0.000365328250656246
+"1242245","Acinetobacter johnsonii XBB1 chromosome, complete genome",12,0.000365296803652968,12.5,0.000381149558928287
+"53408","Pseudomonas citronellolis strain SJTE-3 chromosome, complete genome",12,0.000365296803652968,11.1,0.000337858520899535
+"681645","Corynebacterium pseudotuberculosis C231, complete sequence",11,0.000334855403348554,10.2,0.000310833098112415
+"2045","Pimelobacter simplex strain VKM Ac-2033D chromosome, complete genome",11,0.000334855403348554,10.5,0.000319941631679874
+"38815","Desulfuromonas acetexigens isolate DSM 1397, whole genome shotgun sequence",11,0.000334855403348554,10.5,0.000320613365932082
+"1158601","Enterococcus malodoratus ATCC 43197 acOtv-supercont2.1, whole genome shotgun sequence",11,0.000334855403348554,12.4,0.000378958346587699
+"1122244","Moraxella caprae DSM 19149 K941DRAFT_scaffold00065.65_C, whole genome shotgun sequence",11,0.000334855403348554,17.8,0.000541456988186958
+"589865","Desulfurivibrio alkaliphilus AHT 2, complete sequence",11,0.000334855403348554,11.1,0.000336928971399953
+"1284","Staphylococcus hyicus strain ATCC 11249 chromosome, complete genome",10,0.00030441400304414,10.1,0.000307215354594963
+"1354252","Buttiauxella ferragutiae ATCC 51602 Sequence00068, whole genome shotgun sequence",9,0.000273972602739726,8.9,0.000271330603561031
+"872970","Amphibacillus marinus strain CGMCC 1.10434, whole genome shotgun sequence",9,0.000273972602739726,11.4,0.000347486140281721
+"966","Oceanospirillum linum strain ATCC 11336 NODE_128_length_432_cov_0.662295, whole genome shotgun sequence",8,0.000243531202435312,7.9,0.000239499760270474
+"71999","Kocuria palustris strain MU14/1 chromosome, complete genome",8,0.000243531202435312,8.8,0.000266924375258795
+"1120929","Acinetobacter towneri DSM 14962 = CIP 107472 acMad-supercont1.37, whole genome shotgun sequence",8,0.000243531202435312,7.7,0.000234698640711646
+"1385518","Knoellia flava TL1 contig88, whole genome shotgun sequence",8,0.000243531202435312,8.1,0.000245081455289504
+"1582270","Acinetobacter populi strain PBJ7 Contig2, whole genome shotgun sequence",8,0.000243531202435312,6.6,0.0002018759208264
+"244","Planomicrobium okeanokoites strain Marseille-P2029, whole genome shotgun sequence",7,0.000213089802130898,8.6,0.000262253833553594
+"362948","Ligilactobacillus salivarius UCC118, complete sequence",7,0.000213089802130898,7.7,0.000233630251794259
+"1121354","Corynebacterium capitovis DSM 44611 A3E3DRAFT_scaffold00005.5_C, whole genome shotgun sequence",7,0.000213089802130898,6.6,0.000200700061101327
+"1266845","Carnobacterium inhibens subsp. gilichinskyi, complete sequence",7,0.000213089802130898,6.8,0.000207736580474391
+"1294265","Mesobacillus boroniphilus JCM 21738, whole genome shotgun sequence",7,0.000213089802130898,7.3,0.000222055519905579
+"591962","Aeromonas fluvialis strain LMG 24681, whole genome shotgun sequence",7,0.000213089802130898,6.8,0.000205786361314104
+"665550","Dietzia alimentaria strain BP 27/1 BP27/1_c60_length_15841_cov_411.133, whole genome shotgun sequence",7,0.000213089802130898,6.8,0.000207663944861628
+"1341679","Acinetobacter indicus CIP 110367 adgTv-supercont2.1, whole genome shotgun sequence",7,0.000213089802130898,7.5,0.000228696312380171
+"927787","Microbulbifer mangrovi strain DD-13 816, whole genome shotgun sequence",7,0.000213089802130898,6.8,0.000206817274070425
+"1162717","Pseudostreptobacillus hongkongensis strain DSM 26322 DSM26322_S22CLC_contig_52, whole genome shotgun sequence",7,0.000213089802130898,6.5,0.000197913364759617
+"652","Aeromonas schubertii strain WL1483 chromosome, complete genome",6,0.000182648401826484,6.2,0.000190249859477191
+"281309","[Bacillus thuringiensis] serovar konkukian str. 97-27, complete sequence",6,0.000182648401826484,7.5,0.00022822657431759
+"1206725","Nocardia brevicatena NBRC 12119, whole genome shotgun sequence",6,0.000182648401826484,6,0.000183297298425404
+"1158606","Enterococcus asini ATCC 700915 acOtD-supercont2.1, whole genome shotgun sequence",6,0.000182648401826484,5.4,0.000163342226380622
+"1755098","Brachybacterium massiliense strain mt5, whole genome shotgun sequence",6,0.000182648401826484,6.3,0.000191801644434079
+"1123499","Vitreoscilla stercoraria DSM 513 H150DRAFT_scaffold00033.33, whole genome shotgun sequence",5,0.00015220700152207,5.1,0.00015379847404903
+"269796","Rhodospirillum rubrum ATCC 11170, complete sequence",5,0.00015220700152207,3.7,0.00011342131450205
+"306537","Corynebacterium jeikeium K411, complete sequence",5,0.00015220700152207,4.7,0.000144503195334948
+"743718","Isoptericola variabilis 225, complete sequence",5,0.00015220700152207,5.1,0.000155936356508215
+"1347368","Bacillus ndiopicus isolate FF3, whole genome shotgun sequence",5,0.00015220700152207,4.7,0.000144336726502348
+"883096","Bergeyella zoohelcum ATCC 43767 supercont1.1, whole genome shotgun sequence",4,0.000121765601217656,3.7,0.000113452977103097
+"1349773","Micrococcus lylae NBRC 15355, whole genome shotgun sequence",4,0.000121765601217656,3.9,0.000117321390916214
+"649754","Corynebacterium ammoniagenes DSM 20306 strain DSM 20306 = 9.6 chromosome, complete genome",4,0.000121765601217656,4.7,0.000144367869188493
+"411460","[Ruminococcus] torques ATCC 27756 Scfld0235, whole genome shotgun sequence",4,0.000121765601217656,4,0.000121747652968583
+"243231","Geobacter sulfurreducens PCA, complete sequence",4,0.000121765601217656,4,0.000121776722379517
+"41276","Brevundimonas vesicularis strain FDAARGOS_289 chromosome, complete genome",4,0.000121765601217656,4.3,0.00013027726783894
+"887901","Porphyromonas catoniae ATCC 51270 ctg7180000005748, whole genome shotgun sequence",4,0.000121765601217656,4,0.000121789051879933
+"1112204","Gordonia polyisoprenivorans VH2, complete sequence",4,0.000121765601217656,4.1,0.000124219535564645
+"146827","Corynebacterium simulans strain PES1 chromosome, complete genome",4,0.000121765601217656,4,0.000122269213048962
+"621456","Sphingomonas melonis TY chromosome, complete genome",4,0.000121765601217656,4.7,0.000142008184019135
+"455488","Anaeromyxobacter dehalogenans 2CP-1, complete sequence",4,0.000121765601217656,4,0.000122050491727819
+"379066","Gemmatimonas aurantiaca T-27, complete sequence",4,0.000121765601217656,4,0.000121776722379517
+"348824","Rhizobium favelukesii strain LPU83 chromosome, complete genome",4,0.000121765601217656,3.5,0.000107999865898139
+"1122622","Ornithinimicrobium pekingense DSM 21552 K330DRAFT_scaffold00001.1_C, whole genome shotgun sequence",4,0.000121765601217656,4,0.000121827127270565
+"642780","Marmoricola scoriae strain DSM 22127 chromosome I",4,0.000121765601217656,4.3,0.000132171123628657
+"1513592","Colwellia marinimaniae strain MTCD1, whole genome shotgun sequence",4,0.000121765601217656,3.9,0.000119301516930828
+"1688639","Noviherbaspirillum humi strain U15, whole genome shotgun sequence",4,0.000121765601217656,4.4,0.00013523675676684
+"399739","Pseudomonas mendocina ymp, complete sequence",3,9.1324200913242e-05,2.9,8.95481163083032e-05
+"1377","Aerococcus viridans strain CCUG4311 chromosome, complete genome",3,9.1324200913242e-05,2.9,8.85562484827591e-05
+"1599","Latilactobacillus sakei strain FAM18311 chromosome, complete genome",3,9.1324200913242e-05,2.6,8.03155682348612e-05
+"1286171","Peptoclostridium acidaminophilum DSM 3953 strain al-2 chromosome, complete genome",3,9.1324200913242e-05,3,9.13283779653252e-05
+"867902","Ornithobacterium rhinotracheale DSM 15997, complete sequence",3,9.1324200913242e-05,3,9.2744223637514e-05
+"592010","Abiotrophia defectiva ATCC 49176 Scfld1, whole genome shotgun sequence",3,9.1324200913242e-05,2.5,7.73130474182249e-05
+"1123016","Stutzerimonas balearica DSM 6083 strain DSM6083 (=SP1402) chromosome, complete genome",3,9.1324200913242e-05,3.3,0.000101421330593729
+"610130","[Clostridium] saccharolyticum WM1, complete sequence",3,9.1324200913242e-05,3,9.15944716630063e-05
+"883112","Falseniella ignava CCUG 37419 supercont1.1, whole genome shotgun sequence",3,9.1324200913242e-05,2.9,8.83081127600059e-05
+"1120926","Acinetobacter gerneri DSM 14967 = CIP 107464 = MTCC 9824 strain CIP 107464 acLZs-supercont1.27, whole genome shotgun sequence",3,9.1324200913242e-05,3,9.04522044616834e-05
+"298654","Frankia inefficax, complete sequence",3,9.1324200913242e-05,3.2,9.61852752601593e-05
+"1258574","Streptococcus gallolyticus subsp. gallolyticus DSM 16831 chromosome, complete genome",3,9.1324200913242e-05,3.8,0.000115359009852352
+"1122128","Jeotgalicoccus marinus DSM 19772 H624DRAFT_scaffold00026.26_C, whole genome shotgun sequence",3,9.1324200913242e-05,3.3,0.000101386188884663
+"1074488","Brachybacterium squillarum M-6-3 50.WUPEI.1.00008, whole genome shotgun sequence",3,9.1324200913242e-05,2.9,8.760224522411e-05
+"930124","Metabacillus halosaccharovorans strain DSM 25387 Scaffold1, whole genome shotgun sequence",3,9.1324200913242e-05,4.4,0.000135353272652006
+"1338011","Elizabethkingia anophelis NUHP1 chromosome, complete genome",3,9.1324200913242e-05,3,8.98655008802241e-05
+"1196095","Gilliamella apicola strain wkB1 chromosome, complete genome",3,9.1324200913242e-05,3,9.04892948004981e-05
+"1247514","Luteimonas abyssi strain XH031 Scaffold1, whole genome shotgun sequence",3,9.1324200913242e-05,3,9.26686787455275e-05
+"1317125","Pontibacter indicus strain LP100, whole genome shotgun sequence",3,9.1324200913242e-05,3,9.13325425204513e-05
+"1712031","Streptobacillus notomytis strain KWG2 KWG2_S20CLC_contig_21, whole genome shotgun sequence",3,9.1324200913242e-05,3.5,0.000106528441189174
+"214688","Gemmata obscuriglobus UQM 2246 gcontig_1106221704897, whole genome shotgun sequence",2,6.0882800608828e-05,2,6.107663836001e-05
+"733","Canicola haemoglobinophilus strain CCUG 3714 3714T_ctg_0000061, whole genome shotgun sequence",2,6.0882800608828e-05,2.2,6.66980039431208e-05
+"936154","Streptococcus parauberis KCTC 11537, complete genome",2,6.0882800608828e-05,3,9.1493692535128e-05
+"1452","Bacillus atrophaeus strain SRCM101359 chromosome, complete genome",2,6.0882800608828e-05,2.2,6.76901013275575e-05
+"203275","Tannerella forsythia 92A2, complete sequence",2,6.0882800608828e-05,2,6.08959195301581e-05
+"29539","Thermoleophilum album strain ATCC 35263, whole genome shotgun sequence",2,6.0882800608828e-05,2,6.1045905736088e-05
+"1367847","Paracoccus aminophilus JCM 7686, complete sequence",2,6.0882800608828e-05,2.2,6.75110806502807e-05
+"37927","Sinomonas atrocyanea strain KCTC 3377 chromosome, complete genome",2,6.0882800608828e-05,2.2,6.55112984353984e-05
+"411459","Blautia obeum ATCC 29174 Scfld0250, whole genome shotgun sequence",2,6.0882800608828e-05,2,6.0731692753006e-05
+"53376","Mycobacterium heidelbergense strain DSM 44471 NODE_34_length_45987_cov_51.3431, whole genome shotgun sequence",2,6.0882800608828e-05,1.5,4.64545899589526e-05
+"1336246","Mitsuaria chitosanitabida ATCC BAA-476 = NBRC 102408, whole genome shotgun sequence",2,6.0882800608828e-05,2,6.08596913329364e-05
+"339671","Actinobacillus succinogenes 130Z, complete sequence",2,6.0882800608828e-05,2.6,7.76691079850268e-05
+"69960","Rhodospira trueperi strain ATCC 700224, whole genome shotgun sequence",2,6.0882800608828e-05,2.2,6.79504949536218e-05
+"120956","Facklamia miroungae strain ATCC BAA-466, whole genome shotgun sequence",2,6.0882800608828e-05,2.1,6.30559651591944e-05
+"136273","Kocuria polaris strain CMS 76or contig31, whole genome shotgun sequence",2,6.0882800608828e-05,1.9,5.76333267835318e-05
+"1117379","Neobacillus bataviensis LMG 21833 contig64, whole genome shotgun sequence",2,6.0882800608828e-05,2.1,6.48417605551325e-05
+"220687","Neobacillus novalis strain FJAT-14227 Scaffold1, whole genome shotgun sequence",2,6.0882800608828e-05,1.8,5.52786121232795e-05
+"225991","Comamonas aquatica strain CJG chromosome",2,6.0882800608828e-05,1.8,5.56506745132654e-05
+"981369","Streptacidiphilus rugosus AM-16 BS83DRAFT_scf7180000000013_quiver.3_C, whole genome shotgun sequence",2,6.0882800608828e-05,1.4,4.26435127707916e-05
+"1450526","Kaistella haifensis DSM 19056 contig07, whole genome shotgun sequence",2,6.0882800608828e-05,2.3,6.92674655177153e-05
+"489703","Solimonas aquatica strain DSM 25927, whole genome shotgun sequence",2,6.0882800608828e-05,1.8,5.53278904274564e-05
+"494023","Paeniglutamicibacter antarcticus strain W2, whole genome shotgun sequence",2,6.0882800608828e-05,2,6.17119379785036e-05
+"1195246","Alishewanella agri BL06 contig023, whole genome shotgun sequence",2,6.0882800608828e-05,2.1,6.34151148436269e-05
+"556325","Neomicrococcus aestuarii strain B18 chromosome, complete genome",2,6.0882800608828e-05,2.5,7.75949590710914e-05
+"577470","Demequina salsinemoris strain NBRC 105323, whole genome shotgun sequence",2,6.0882800608828e-05,1.6,5.01819911786978e-05
+"582672","Methylobacterium phyllostachyos strain BL47, whole genome shotgun sequence",2,6.0882800608828e-05,1.8,5.55705528440868e-05
+"709839","Noviherbaspirillum autotrophicum strain TSA66 Contig18, whole genome shotgun sequence",2,6.0882800608828e-05,2.2,6.55229898856004e-05
+"570277","Endozoicomonas montiporae CL-33 chromosome",2,6.0882800608828e-05,2,6.08885150066538e-05
+"1130080","Alkalibacterium gilvum strain DSM 25751, whole genome shotgun sequence",2,6.0882800608828e-05,1.9,5.64351201847882e-05
+"1302690","Cnuella takakiae strain RG1-1 Scaffold1, whole genome shotgun sequence",2,6.0882800608828e-05,1.9,5.86606562504528e-05
+"994573","Youngiibacter fragilis 232.1 contig_74, whole genome shotgun sequence",2,6.0882800608828e-05,2.1,6.24763484890573e-05
+"1462996","Paenibacillus yonginensis strain DCY84 chromosome, complete genome",2,6.0882800608828e-05,2.5,7.47060337011149e-05
+"883156","Veillonella seminalis ACS-216-V-Col6b supercont1.2, whole genome shotgun sequence",2,6.0882800608828e-05,2.1,6.25375306953807e-05
+"1508404","Jeotgalibacillus malaysiensis strain malaysiensis chromosome, complete genome",2,6.0882800608828e-05,2.1,6.34418938201881e-05
+"1610493","Tessaracoccus flavus strain RP1 chromosome, complete genome",2,6.0882800608828e-05,2,6.08571641421345e-05
+"2029567","Rhodomicrobium sp. R_RK_3 BLEFHOIH_16, whole genome shotgun sequence",2,6.0882800608828e-05,2.4,7.15477079068221e-05
+"402626","Ralstonia pickettii 12J chromosome 1, complete sequence",1,3.0441400304414e-05,1,3.0733320971976e-05
+"529507","Proteus mirabilis HI4320, complete sequence",1,3.0441400304414e-05,1,3.10932556652374e-05
+"233412","[Haemophilus] ducreyi 35000HP, complete sequence",1,3.0441400304414e-05,1,3.08321570530612e-05
+"457405","Fusobacterium nucleatum subsp. animalis 7_1 chromosome, complete genome",1,3.0441400304414e-05,1,3.04441805948816e-05
+"1458465","Megasphaera elsdenii 14-14 chromosome, complete genome",1,3.0441400304414e-05,1.2,3.70400585789972e-05
+"388919","Streptococcus sanguinis SK36, complete sequence",1,3.0441400304414e-05,0.8,2.34177471972825e-05
+"764298","Streptococcus macacae NCTC 11558 final_molecule, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.05543985313711e-05
+"1376","Aerococcus urinae strain CCUG36881 chromosome, complete genome",1,3.0441400304414e-05,0.9,2.73738207450314e-05
+"546270","Gemella haemolysans ATCC 10379 ctg1119035638548, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.02911877420475e-05
+"1348628","Metabacillus fastidiosus NBRC 101226, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.18086043589718e-05
+"1717","Corynebacterium diphtheriae strain NCTC11397 chromosome 1, complete sequence",1,3.0441400304414e-05,1.7,5.08060344362124e-05
+"1265861","Brochothrix campestris FSL F6-1037 rep_c86, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.11533846381694e-05
+"1368415","Agrobacterium rubi TR3 = NBRC 13261, whole genome shotgun sequence",1,3.0441400304414e-05,1,2.95998113131625e-05
+"479436","Veillonella parvula DSM 2008, complete sequence",1,3.0441400304414e-05,0.7,2.21748963434725e-05
+"1170318","Cutibacterium avidum 44067, complete sequence",1,3.0441400304414e-05,1,3.0450587362515e-05
+"411474","Coprococcus eutactus ATCC 27759 Scfld_02_19, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.03565448514439e-05
+"38289","Corynebacterium jeikeium strain FDAARGOS_328 chromosome, complete genome",1,3.0441400304414e-05,1.1,3.3445169727582e-05
+"1139996","Enterococcus saccharolyticus subsp. saccharolyticus ATCC 43076 acyDA-supercont2.2, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.1290066063833e-05
+"935948","Caldanaerobius polysaccharolyticus DSM 13641 CalpoDRAFT_CPK.3, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.05814352371977e-05
+"1302863","Streptococcus cristatus AS 1.3089, complete sequence",1,3.0441400304414e-05,1.1,3.19921451512327e-05
+"638301","Granulicatella adiacens ATCC 49175 SCAFFOLD6, whole genome shotgun sequence",1,3.0441400304414e-05,1.1,3.35450709872108e-05
+"1351755","Clostridium chauvoei JF4335 chromosome I, complete sequence",1,3.0441400304414e-05,1,3.13234273907223e-05
+"871585","Acinetobacter pittii PHEA-2 chromosome, complete genome",1,3.0441400304414e-05,0.9,2.75295423513077e-05
+"941824","Thermobrachium celere DSM 8682, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04053373498576e-05
+"64971","Pseudospirillum japonicum strain DSM 7165, whole genome shotgun sequence",1,3.0441400304414e-05,2.7,8.07407047980005e-05
+"1121383","Deinococcus murrayi DSM 11303 H565DRAFT_scaffold00010.10_C, whole genome shotgun sequence",1,3.0441400304414e-05,0.2,7.61104514871982e-06
+"70584","Aquabacterium parvum strain B6 contig000030, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.07802641498371e-05
+"394221","Maricaulis maris MCS10, complete sequence",1,3.0441400304414e-05,1,3.04426260024275e-05
+"1223509","Cellulomonas iranensis NBRC 101100 = JCM 18110 strain NBRC 101100, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.07276527152227e-05
+"1370122","Allorhizobium undicola ORS 992 = ATCC 700741 T424DRAFT_scaffold00043.43_C, whole genome shotgun sequence",1,3.0441400304414e-05,1.2,3.50723063707672e-05
+"485918","Chitinophaga pinensis DSM 2588, complete sequence",1,3.0441400304414e-05,1.1,3.24299229595118e-05
+"1236960","Stenotrophomonas pictorum JCM 9942, whole genome shotgun sequence",1,3.0441400304414e-05,0.9,2.84409372163852e-05
+"246200","Ruegeria pomeroyi DSS-3, complete sequence",1,3.0441400304414e-05,1.1,3.3551883521399e-05
+"107327","Pseudoalteromonas ulvae strain TC14 Contig_103, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04441817380586e-05
+"981333","Acinetobacter parvus DSM 16617 = CIP 108168 acLZw-supercont1.1, whole genome shotgun sequence",1,3.0441400304414e-05,1.3,4.07478922148851e-05
+"764291","Streptococcus urinalis 2285-97 final_molecule, whole genome shotgun sequence",1,3.0441400304414e-05,1.5,4.55704408589891e-05
+"349521","Hahella chejuensis KCTC 2396, complete sequence",1,3.0441400304414e-05,1.3,4.06829461001403e-05
+"1158607","Enterococcus pallens ATCC BAA-351 acOtw-supercont2.5, whole genome shotgun sequence",1,3.0441400304414e-05,0.7,2.26004756663569e-05
+"188932","Pedobacter cryoconitis strain PAMC 27485 chromosome, complete genome",1,3.0441400304414e-05,1.1,3.19964439348276e-05
+"191610","Corynebacterium atypicum strain R2070 chromosome, complete genome",1,3.0441400304414e-05,0.6,1.82347825392644e-05
+"1120977","Alkanindiges illinoisensis DSM 15370 Q337DRAFT_scaffold00011.11_C, whole genome shotgun sequence",1,3.0441400304414e-05,1.4,4.19037485257051e-05
+"536227","Clostridium carboxidivorans P7 chromosome, complete genome",1,3.0441400304414e-05,1,3.04830243865901e-05
+"237069","Tenuibacillus multivorans strain CGMCC 1.3442, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.08822387605018e-05
+"1121380","Deinococcus frigens DSM 12807 Q322DRAFT_scaffold00136.136_C, whole genome shotgun sequence",1,3.0441400304414e-05,0.2,7.61104514871982e-06
+"1121381","Deinococcus marmoris DSM 12784 Q319DRAFT_scaffold00229.229_C, whole genome shotgun sequence",1,3.0441400304414e-05,0.2,7.61104514871982e-06
+"1090318","Sphingomonas phyllosphaerae 5.2 SphphyDRAFT_contig1.1_C, whole genome shotgun sequence",1,3.0441400304414e-05,0.6,1.70936664045407e-05
+"258723","Marinilactibacillus piezotolerans strain Marseille-P2378, whole genome shotgun sequence",1,3.0441400304414e-05,1.1,3.42105919742435e-05
+"261164","Psychrobacter alimentarius strain PAMC 27889 chromosome, complete genome",1,3.0441400304414e-05,1.1,3.46334025535584e-05
+"582744","Methylovorus glucosetrophus SIP3-4, complete sequence",1,3.0441400304414e-05,1.4,4.33939488808625e-05
+"937773","Staphylococcus pseudintermedius HKU10-03, complete sequence",1,3.0441400304414e-05,1.1,3.36277171335775e-05
+"284581","Priestia koreensis strain DSM 16467 Contig9, whole genome shotgun sequence",1,3.0441400304414e-05,1.1,3.37173203485608e-05
+"1223521","Comamonas granuli NBRC 101663, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.09124404852376e-05
+"1386082","Cellulomonas bogoriensis 69B4 = DSM 16987 strain 69B4 contig245, whole genome shotgun sequence",1,3.0441400304414e-05,1.3,3.87302107231488e-05
+"318464","Clostridium sulfidigenes strain 113A c9, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04366232136746e-05
+"326523","Neisseria zoodegmatis strain DSM 21643 NODE_27_length_6165_cov_212.833_ID_53, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04682571883424e-05
+"1121302","Clostridium cavendishii DSM 21758, whole genome shotgun sequence",1,3.0441400304414e-05,1,2.99291450489224e-05
+"1123233","Salinicoccus luteus DSM 17002 BO53DRAFT_scaffold00012.12_C, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.06747111798318e-05
+"882085","Saccharomonospora saliphila YIM 90502 SacsaDRAFT_Scaffold116.70, whole genome shotgun sequence",1,3.0441400304414e-05,1.4,4.14394003975076e-05
+"1121928","Gordonia shandongensis DSM 45094 G528DRAFT_scaffold00027.27_C, whole genome shotgun sequence",1,3.0441400304414e-05,1.4,4.17411529889653e-05
+"1122605","Niabella aurantiaca DSM 17617 B160DRAFT_scaffold_2.3, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.0450773735155e-05
+"394096","Hyalangium minutum strain DSM 14724 contig_38, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.01704010978424e-05
+"1341683","Acinetobacter brisouii CIP 110357 adgTE-supercont2.1, whole genome shotgun sequence",1,3.0441400304414e-05,0.8,2.55776946579803e-05
+"1423750","Liquorilactobacillus ghanensis DSM 18630 NODE_31, whole genome shotgun sequence",1,3.0441400304414e-05,1.1,3.41512451003868e-05
+"1123308","Streptococcus merionis DSM 19192 A3I5DRAFT_scaffold_23.24, whole genome shotgun sequence",1,3.0441400304414e-05,0.6,1.88812197692715e-05
+"979226","Cohnella panacarvi Gsoil 349 CohpaDRAFT_scaffold1.1, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.06266256911019e-05
+"435897","Lysobacter capsici strain 55 chromosome, complete genome",1,3.0441400304414e-05,1.2,3.74685299281761e-05
+"1149865","Pedobacter agri PB92 contig00244, whole genome shotgun sequence",1,3.0441400304414e-05,0.9,2.8891949384138e-05
+"1121884","Flavisolibacter ginsengisoli DSM 18119, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.06796120141355e-05
+"487184","Halopseudomonas xinjiangensis strain NRRL B-51270 chromosome I",1,3.0441400304414e-05,1,3.05696854783643e-05
+"1122612","Novosphingobium acidiphilum DSM 19966 G404DRAFT_scaffold00044.44_C, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.05221457015702e-05
+"546874","Microlunatus sagamiharensis strain DSM 21743 chromosome I",1,3.0441400304414e-05,1,2.9700771118022e-05
+"1304275","Salinisphaera hydrothermalis C41B8 contig77, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04452270534173e-05
+"681398","Paludibacter jiangxiensis strain NM7, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04570112165558e-05
+"1437608","Bifidobacterium biavatii DSM 23969 Contig03, whole genome shotgun sequence",1,3.0441400304414e-05,1.3,3.88251065645071e-05
+"864069","Microvirga lotononidis strain WSM3557 Micloscaffold_10, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.03101900061919e-05
+"938293","Anaerococcus provencensis strain 9402080, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04441805948793e-05
+"1134413","Halalkalibacterium ligniniphilum strain L1 contig139, whole genome shotgun sequence",1,3.0441400304414e-05,0.7,2.16883792095836e-05
+"545243","Clostridium arbusti SL206, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.13444443054683e-05
+"57497","Deinococcus radiopugnans strain DY59 chromosome, complete genome",1,3.0441400304414e-05,0.2,7.61104514871982e-06
+"1229203","Actinobacterium LLX17 strain LLX17 scaffold00001, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.12173071752061e-05
+"1335616","Paucilactobacillus wasatchensis strain WDC04 contig00084, whole genome shotgun sequence",1,3.0441400304414e-05,1.4,4.29746952420941e-05
+"1424294","Geosporobacter ferrireducens strain IRF9 chromosome, complete genome",1,3.0441400304414e-05,0.9,2.85304846617893e-05
+"1445510","Gynuella sunshinyii YC6258 chromosome, complete genome",1,3.0441400304414e-05,1.3,3.95480726934012e-05
+"1577687","Terracidiphilus gabretensis strain S55 contig_10, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.0444173568792e-05
+"1666912","Roseibaca calidilacus strain HL-91, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04546432420523e-05
+"1811193","Streptococcus pantholopis strain TA 26 chromosome, complete genome",1,3.0441400304414e-05,1,3.14965224246728e-05
+"1838280","Desulfotomaculum copahuensis strain LMa1 LMA27_trimmed_contig_224, whole genome shotgun sequence",1,3.0441400304414e-05,0.9,2.68194647825133e-05
+"1841865","Mediterranea massiliensis strain Marseille-P2645T, whole genome shotgun sequence",1,3.0441400304414e-05,1,3.04114621323878e-05
+"1817405","Abyssicoccus albus strain S31 chromosome, complete genome",1,3.0441400304414e-05,1.1,3.27375509510853e-05
+"1926280","Bacillus sinesaloumensis strain Marseille-P3516T, whole genome shotgun sequence",1,3.0441400304414e-05,1.1,3.38861345359388e-05
+"1986204","Brevefilum fermentans isolate CAMBI-1 chromosome I, complete sequence",1,3.0441400304414e-05,1,3.04441805948793e-05

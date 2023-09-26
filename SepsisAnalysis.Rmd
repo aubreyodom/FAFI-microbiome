@@ -1,0 +1,981 @@
+---
+title: "Sepsis Analysis"
+author: "Aubrey Odom"
+date: '2022-11-01'
+output: html_document
+---
+
+# Setup
+```{r setup, message = FALSE}
+suppressPackageStartupMessages({
+  # General use
+  library(tidyverse)
+  library(knitr)
+  library(magrittr)
+  # Data formats
+  library(animalcules)
+  library(MultiAssayExperiment)
+  library(SummarizedExperiment)
+  # Modeling
+  library(lme4)
+  library(geepack)
+  # Plotting
+  library(alluvial)
+  library(ggeffects)
+  library(emmeans)
+})
+```
+
+# Extract data
+```{r}
+# Read in MAE of data
+OG_dat <- readRDS("Data/animalcules_0.05pct.rds")
+dat <- OG_dat[["MicrobeGenetics"]]
+
+# Extract metadata, taxonomic info, and counts
+tax_table <- as.data.frame(SummarizedExperiment::rowData(dat))
+sam_table_pre <- as.data.frame(SummarizedExperiment::colData(dat))
+```
+
+## Subset sepsis(+) infants into groups
+```{R}
+# Group 1 <= 16 days
+# Group 2 <65 days
+# Group 3 >65 days
+pos_grp <- tibble("fAFI(+) Grp1" = c("0177-1", "0707-1", "0832-1", "1354-1",
+                                       rep(NA, 1)),
+                  "Neither" = "0058-1",
+                  "fAFI(+) Grp2" = c("0345-1", "0526-1", "0697-1",
+                                       "0071-1", "1480-1")) %>%
+  pivot_longer(cols = everything()) %>%
+  filter(!is.na(value)) %>% arrange(name) %>%
+  dplyr::rename("Group" = name, "Subject.ID" = value) %>%
+  distinct(Subject.ID, .keep_all = TRUE)
+
+sam_table_1 <- left_join(sam_table_pre, pos_grp, by = "Subject.ID") %>%
+  dplyr::relocate(Group)
+sam_table_1$Group %<>% replace(is.na(sam_table_1$Group), "fAFI(-)")
+
+sam_table <- sam_table_1 %>% filter(Group != "Neither")
+
+all_neither <- sam_table_1 %>% filter(Subject.ID == "0058-1") %>%
+  pull(Sample.ID)
+```
+
+## Extract counts table
+```{R}
+counts_table <- as.data.frame(SummarizedExperiment::assay(
+  dat, "counts"))[, rownames(sam_table_pre)] %>%
+  select(!all_of(all_neither))
+  
+
+counts_lcpm_species <- SummarizedExperiment::assay(dat , "log_counts_cpm") %>%
+  as.data.frame()
+counts_lcpm_genus <- counts_lcpm_species %>% upsample_counts(tax_table, "genus")
+```
+
+## Define timepoints
+```{R}
+# Pulled timepoints from Tyler's paper
+params_mat <- tibble(start = c(0, 16, 32, 48, 64, 80, 96),
+                     end = c(15, 31, 47, 63, 79, 95, 120),
+                     timepoint = paste0("t", seq(0, 6)))
+```
+
+# Basic Data Exploration
+
+## How many unique phyla, genera, species (post-“othering”)
+```{R}
+tax_table %>%
+  # Remove "others"
+  filter(species != "Other") %>%
+  summarise(across(.fns = function(x) length(unique(x))))
+```
+
+## Do all samples have 10000+ reads?
+```{R}
+any(colSums(counts_table) < 10000)
+```
+
+## Obtain most abundant genera
+
+Using average relative abundance
+```{R}
+obtain_gn <- function(counts_tab, tax_tab) {
+  all_relabu_genus <- counts_tab |>
+    upsample_counts(tax_table = tax_tab, higher_level = "genus") |>
+    counts_to_relabu() |>
+    rownames_to_column(var = "genus") |>
+    filter(genus != "Other") |>
+    rowwise(genus) |>
+    # Sum everything but the first columm ("genus")
+    summarise(allmeans = mean(c_across(starts_with("X"))),
+              .groups = "drop") |>
+    arrange(desc(allmeans))
+  
+  all_relabu_genus |> select(genus) |> unlist() |> unname() %>% 
+    c(., "Other") %>% return()
+}
+
+best_genus <- obtain_gn(counts_table, tax_table)
+```
+
+## Line Plots of infants ages at clinic visits
+```{R}
+create_plot <- function(state = "pos", title_in = "Line plot of Sepsis(+) infant ages at clinic visits") {
+  sam_table %>%
+  filter(Sepsis.state == state) %>%
+  group_by(Subject.ID) %>%
+  ggplot2::ggplot(aes(x = Subject.ID, Age, color = Subject.ID)) +
+  geom_point() +
+  geom_line() +
+  scale_y_continuous(breaks = seq(0, 120, by = 10)) +
+  theme_bw() +
+  geom_hline(yintercept = c(0, 15, 31, 47, 63, 79, 95, 120), col = "red", alpha = 0.35,
+             linetype = "dashed") +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  labs(y = "Infant age at visit (days)",
+       x = "Subject ID",
+       title = title_in)
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/lineplot_",
+              state, ".png"),
+       device = "png", units = "in", width = 6, height = 4)
+}
+
+create_plot("pos",
+            "Line plot of fAFI(+) infant ages at clinic visits")
+
+create_plot("neg",
+            "Line plot of fAFI(-) infant ages at clinic visits")
+```
+
+## Individual line plot of AFI infants with information
+```{R}
+# Read in all sick / AFI time intervals, by subject ID (AFI+ only)
+sick_dates <- read_csv("Data/sick_dates.csv", show_col_types = FALSE,
+                       col_types = cols("Start Sick" = col_date(format = "%m/%d/%y"),
+                                        "Death Date" = col_date(format = "%m/%d/%y"),
+                                        "Start Sepsis" = col_date(format = "%m/%d/%y"),
+                                        "End Sepsis" = col_date(format = "%m/%d/%y")))
+
+# Initialize data frame
+init_dat <- sam_table %>%
+  left_join(sick_dates, by = "Subject.ID") %>%
+  filter(Sepsis.state == "pos") %>%
+  arrange(Subject.ID, Age) %>% 
+  mutate(Visit_Date = as.Date(Date.of.visit, format = "%m/%d/%Y"),
+         birth = Visit_Date - Age,
+         Sep_Age = `Start Sepsis` - birth,
+         Death = `Death Date` - birth,
+         Sep_End = `End Sepsis` - birth,
+         Sick = `Start Sick` - birth) %>%
+  group_by(Subject.ID)
+
+ord_ID <- init_dat %>%
+  #summarise(diff = min(`Start Sepsis` - Visit_Date)) %>%
+  arrange(Group) %>%
+  pull(Subject.ID) %>% unique
+
+```
+
+```{R}
+
+# Create plot
+init_dat %>%
+  mutate(Subject.ID = factor(Subject.ID, levels = ord_ID)) %>%
+  ggplot2::ggplot(aes(y = Age, x = Subject.ID)) +
+  geom_point(col = "black") +
+  geom_line(col = "black") +
+  geom_hline(yintercept = params_mat$start, col = "grey", alpha = 0.7,
+             linetype = "dashed") +
+  geom_point(aes(y = `Sep_Age`), col = "cornflowerblue",
+             position = position_nudge(x = 0.2)) +
+  geom_point(aes(y = Sep_End), col = "cornflowerblue",
+             position = position_nudge(x = 0.2)) +
+  geom_segment(aes(y = `Sick`, yend = `Death`, xend = Subject.ID), col = "red",
+               position = position_nudge(x = 0.2)) +
+  theme_bw() +
+  labs(y = "Infant Age (days)",
+       x= "Subject ID",
+       title = "Symptom development timeline, fAFI(+) infants") +
+  ggpubr::geom_bracket(xmin = "0177-1", xmax = "1354-1", y.position = 40,
+    label = "fAFI(+) Grp1 Early Onset") +
+  ggpubr::geom_bracket(xmin = "0071-1", xmax = "1480-1", y.position = 90,
+    label = "fAFI(+) Grp2 Late Onset")
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/lineplot_sepsis_dates.png"),
+       device = "png", units = "in", width = 7, height = 6)
+
+```
+
+## How many visits per infant
+```{R}
+sam_table %>%
+  dplyr::filter(Sepsis.state == "pos") %>%
+  group_by(Subject.ID) %>%
+  summarise(`Number of samples` = n())
+
+sam_table %>%
+  dplyr::filter(Sepsis.state == "neg") %>%
+  group_by(Subject.ID) %>%
+  summarise(`Number of samples` = n())
+```
+
+## Characterizing illness
+```{R}
+allnum <- "
+0058-1	17
+0071-1	44
+0177-1	7
+0345-1	32
+0526-1	2
+0697-1	2
+0707-1	2
+0832-1	19
+1354-1	2
+1480-1	0"
+sympt_dur <- read_delim(allnum, 
+                        show_col_types = FALSE,
+                        col_names = FALSE)
+
+stem(sympt_dur$X2)
+
+```
+
+## For Bill
+```{R}
+sam_table %>%
+  arrange(Sepsis.state) %>%
+  filter(Group != "Neither") %>%
+  select(Sepsis.state, Sample, Subject.ID) %>%
+  write.csv("Data/Samples_for_Bill.csv")
+
+```
+
+## Basic statistics
+```{R}
+# How many samples in each group;???
+
+sam_table %>%
+  group_by(Sepsis.state) %>%
+  summarise(all_num = n())
+```
+
+```{R}
+# Look at pseudomonas abundances
+counts_lcpm_genus %>%
+  rownames_to_column("Genus") %>%
+  filter(Genus == "Pseudomonas") %>%
+  select(-Genus) %>%
+  t() %>%
+  as.data.frame() %>%
+  rownames_to_column("Sample") %>%
+  arrange(desc(V1)) %>%
+  right_join(sam_table, by = "Sample")
+
+```
+
+# Visualization & plots
+
+## Stacked bar plots
+```{r}
+get_stacked_data <- function(SE, sam_tab, tax_tab, cov1 = "Group",
+                             cov2 = "timepoint") {
+  counts_table_raw <- SummarizedExperiment::assay(SE, "counts") %>%
+    as.data.frame() %>%
+    select(sam_tab$Sample)
+  relabu_table <- counts_table_raw %>%
+    animalcules::upsample_counts(., tax_tab, "genus") %>%
+    animalcules::counts_to_relabu() %>% t() %>% as.data.frame() %>%
+    # Add grouping vars
+    mutate(covariate1 = sam_tab[, cov1],
+           covariate2 = sam_tab[, cov2]) %>%
+    pivot_longer(!c(covariate1, covariate2), names_to = "taxon") %>%
+    S4Vectors::aggregate(. ~ taxon + covariate1 + covariate2, ., mean)
+  return(relabu_table)
+}
+
+stacked_dat <- get_stacked_data(dat, sam_tab = sam_table, tax_tab = tax_table)
+```
+
+### Plot only the healthy controls
+```{R}
+# Color palette
+usepalette <- paletteer::palettes_d[["ggsci"]]["category20_d3"] |>
+  unlist() |> unname() %>% 
+  # Make "Other" show as grey
+  .[seq_along(best_genus[-1])] %>% c(., "grey")
+
+# Plot stacked barplot
+myplot <- stacked_dat %>%
+  filter(covariate1 == "fAFI(-)") %>%
+  mutate("Genus" = factor(taxon, levels = best_genus)) %>%
+  dplyr::rename("Visit number" = covariate2,
+                "Relative abundance" = `value`) %>%
+  ggplot(aes(fill = Genus, x = `Visit number`, y = `Relative abundance`)) + 
+    geom_bar(position = "stack", stat = "identity") + theme_classic() +
+  labs(title = "Relative abundances of genera",
+       subtitle = "fAFI(-) infants (ONLY)") +
+  theme(legend.position = "bottom",
+        #axis.title.x = element_blank(), axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  scale_fill_manual(values = usepalette) +
+  coord_flip()
+print(myplot)
+
+ggsave(filename = "PaperFigs/stacked_barplot_groups_SepsisNeg.png",
+  device = "png", width = 10, height = 6, units = "in", scale = 1)
+
+```
+
+### Plot both groups
+```{R}
+# Color palette
+usepalette <- paletteer::palettes_d[["ggsci"]]["category20_d3"] |>
+  unlist() |> unname() %>% 
+  # Make "Other" show as grey
+  .[seq_along(best_genus[-1])] %>% c(., "grey")
+
+# Plot stacked barplot
+myplot <- stacked_dat %>%
+  mutate(Group = factor(covariate1)) %>% #,
+  #                      levels = c("neg", "pos"),
+  #                      labels = c("Control", "AFI"))) %>%
+  mutate("Genus" = factor(taxon, levels = best_genus)) %>%
+  dplyr::rename("Visit number" = covariate2,
+                "Relative abundance" = `value`) %>%
+  ggplot(aes(fill = Genus, x = `Visit number`, y = `Relative abundance`)) + 
+    geom_bar(position = "stack", stat = "identity") +
+  facet_grid(~Group) + theme_classic() +
+  labs(title = "Relative abundances of genera",
+       subtitle = "fAFI(-) versus early and late fAFI(+) infants") +
+  theme(legend.position = "bottom",
+        #axis.title.x = element_blank(), axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()) +
+  scale_fill_manual(values = usepalette) +
+  scale_x_continuous(breaks = seq(1, 7,1)) +
+  coord_flip()
+print(myplot)
+
+ggsave(filename = "PaperFigs/stacked_barplot_groups.png",
+  device = "png", width = 10, height = 6, units = "in", scale = 1)
+```
+
+## Stacked area chart
+
+```{r function for stacked barplot}
+# Creates relative abundance table by timepoint, HIV status
+get_relabu <- function(stacked_df) {
+  relabu_table <- stacked_df %>%
+  dplyr::rename(Group = "covariate1", `Visit number` = "covariate2",
+                `Relative abundance` = "value",
+         genus = taxon) %>%
+  relocate(Group, `Visit number`, genus, `Relative abundance`)
+  return(relabu_table)
+}
+```
+
+```{R}
+# Function to make plot
+genus_stacked <- function(input_df, genus_inp) {
+  p <- input_df %>%
+    mutate(Genus = factor(genus, levels = genus_inp)) %>%
+    ggplot(aes(x = `Visit number`, y = `Relative abundance`,
+               fill = Genus)) + 
+    geom_area(alpha = 0.7, linewidth = .5, colour = "white") +
+    scale_fill_manual(values = usepalette) +
+    theme_classic() +
+    facet_grid(rows = vars(Group)) +
+    labs(title = paste("Microbe composition of samples"),
+         subtitle = "Relative abundance across groups")
+  p
+  #if(mothinf == "mother") return(p + scale_x_continuous(breaks = c(0, 6)))
+  #if(mothinf == "infant") return(p + scale_x_continuous(breaks = seq(0, 6)))
+}
+```
+
+### Stacked area chart for infants
+```{R}
+input_df <- get_relabu(stacked_dat)
+genus_stacked(input_df, best_genus)
+ggsave(filename = "PaperFigs/stacked_area.png",
+       width = 6, height = 4, units = "in",
+       scale = 1)
+```
+
+## Alluvial plot
+
+```{R}
+plot_alluvial <- function(input_df, genus_inp) {
+  p <- input_df %>%
+    mutate(Genus = factor(genus, levels = genus_inp)) %>%
+    # Get into alluvial format
+    select(Group, `Visit number`, Genus, `Relative abundance`) %>%
+    ggplot(aes(y = `Relative abundance`, x = `Visit number`, alluvium = Genus)) +
+    ggalluvial::geom_alluvium(aes(fill = Genus, color = Genus),
+                              width = 1/4, alpha = 0.7, decreasing = FALSE) +
+    scale_fill_manual(values = usepalette) +
+    scale_color_manual(values = usepalette) +
+    theme_classic() +
+    facet_grid(rows = vars(Group)) +
+    labs(title = "Relative abundance of genera over time",
+         subtitle = "By group")
+  return(p)
+}
+```
+
+```{R}
+plot_alluvial(input_df, genus_inp = best_genus)
+ggsave(filename = "PaperFigs/alluvial_genus.png",
+       width = 6, height = 4, units = "in",
+       scale = 1)
+```
+
+## Spaghetti plots
+```{R}
+create_sphaget <- function(this_taxon, tax_level = "genus",
+                           sample_var = "Sample.ID",
+                           xlabel = "Infant Age (Days)",
+                           ylabel = "Relative Abundance (log CPM)",
+                           path) {
+  
+  prefab_dat <- counts_table %>%
+    upsample_counts(tax_table, tax_level) %>%
+    counts_to_logcpm() %>%
+    rownames_to_column("tax_level") %>%
+    dplyr::filter(tax_level == this_taxon) %>%
+    dplyr::select(-tax_level) %>% t() %>%
+    as.data.frame() %>%
+    tibble::rownames_to_column(sample_var) %>%
+    left_join(sam_table, by = sample_var) %>%
+    dplyr::rename(taxon = V1, "AFI state" = "Sepsis.state") %>%
+    mutate(`AFI state` = factor(`AFI state`,
+                                  levels = c("neg", "pos"),
+                                  labels = c("fAFI(-)",
+                                             "fAFI(+)")))
+  
+  prefab_dat %>%
+    ggplot2::ggplot(aes(x = Age, y = taxon, group = Subject.ID,
+                        color = `Group`)) +
+    ggplot2::geom_line(alpha = 0.7) +
+    ggplot2::geom_point(alpha = 0.7, size = 0.5) +
+    ggplot2::labs(title = "Spaghetti plot of microbe abundance",
+                  subtitle = this_taxon) +
+    ggplot2::xlab(xlabel) +
+    ggplot2::ylab(ylabel) +
+    ggplot2::facet_grid(~`AFI state`) +
+    ggplot2::theme_bw()
+  
+  # Save plot
+  file.path(path, paste0("spaghetti_", this_taxon, ".png")) %>%
+    ggplot2::ggsave(device = "png", width = 6, height = 4,
+                    units = "in")
+}
+
+path <- "~/infant-microbiome/work/aodom/Sepsis/PaperFigs"
+sapply(best_genus, create_sphaget, path = path)
+```
+
+# Statistical analyses
+
+## Create MAE w/o filtering
+
+```{R}
+# Return MAE with no NA genera
+filter_MAE <- function() {
+  raw_MAE <- readRDS("Data/animalcules_raw_revised.rds")
+  new_MAE <- raw_MAE
+  all_rowdat <- rowData(new_MAE[["MicrobeGenetics"]]) 
+  no_taxa <- all_rowdat %>%
+    as.data.frame() %>%
+    filter(is.na(genus)) %>%
+    tibble::rownames_to_column("taxon") %>%
+    pull(taxon)
+  
+  new_rowdat <- all_rowdat %>% as.data.frame() %>% 
+    filter(!(species %in% no_taxa)) %>% DataFrame()
+  
+  new_dat <- assay(new_MAE[["MicrobeGenetics"]], "MGX") %>%
+    as.data.frame() %>%
+    tibble::rownames_to_column("rownames") %>%
+    filter(!(rownames %in% no_taxa)) %>%
+    tibble::column_to_rownames("rownames") %>%
+    DataFrame()
+  
+  new_SE <- SummarizedExperiment(assays = SimpleList("MGX" = new_dat),
+                       colData = colData(raw_MAE),
+                       rowData = new_rowdat)
+  
+  raw_MAE[["MicrobeGenetics"]] <- new_SE 
+  return(raw_MAE)
+}
+
+raw_dat <- filter_MAE()
+
+```
+
+## Two sample t-tests
+
+### Function
+```{R}
+perform_t_test <- function(this_taxon, these_samples, counts) {
+  # Create dataset for testing
+  test_data <- counts %>% rownames_to_column("taxa") %>% 
+    filter(taxa == this_taxon) %>% select(-taxa) %>% t() %>% as.data.frame() %>%
+    rownames_to_column("Sample.ID") %>% dplyr::rename(abundance = "V1") %>% 
+    left_join(sam_table, by = "Sample.ID") %>%
+    filter(Sample.ID %in% these_samples) %>%
+    mutate(Group = factor(Sepsis.state)) %>% select(abundance, Group)
+  
+  # test if not enough obs
+  test_enough <- test_data %>% group_by(Group) %>% summarise(total = n() < 2) %>%
+    pull(total)
+  if (length(test_enough) < 2 | sum(test_enough) > 0) return(NULL) 
+  
+  test_out <- t.test(abundance ~ Group, data = test_data,
+                     alternative = "two.sided", var.equal = FALSE, paired = FALSE) %>%
+    unlist() %>% magrittr::extract(seq(1, 7)) %>% as.data.frame() %>% 
+    set_colnames("value") %>% mutate(value = as.numeric(value) %>% round(4))
+  test_out %>% pull(value) %>% set_names(rownames(test_out)) %>% return()
+}
+
+```
+
+### Apply function
+```{R}
+conduct_t_test <- function(grp, time, these_samples, counts = counts_lcpm_genus) {
+  age_lower <- params_mat %>% filter(timepoint %in% time) %>% pull(start)
+  age_upper <- params_mat %>% filter(timepoint %in% time) %>% pull(end)
+  controls <- sam_table %>% filter(Sepsis.state == "neg",
+                                   Age > min(age_lower), Age <= max(age_upper)) %>%
+    pull(Sample.ID)
+  these_samples %<>% append(controls)
+  all_genera <- rownames(counts)
+  result <- plyr::ldply(all_genera,
+                        function(x) perform_t_test(x, these_samples, counts),
+                        .progress = "text") %>%
+    mutate(genus = all_genera,
+           adj.p = p.adjust(p.value, "bonferroni")) %>%
+    arrange(`adj.p`) %>%
+    relocate("genus", "adj.p", "p.value")
+  result %>%
+    write_csv(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/",
+                     "grp", grp, "time", paste(time, collapse = ""), ".csv"))
+  return(result)
+}
+
+grp1_t0_samps <- c("X5264", "X4180", "X12014", "X1998")
+conduct_t_test(grp = 1, time = "t0", these_samples = grp1_t0_samps)
+
+grp2_t0_samps <- sam_table %>%
+  filter(Group == "fAFI(+) Grp2", Age <= params_mat$end[1]) %>% pull(Sample.ID)
+conduct_t_test(2, "t0", grp2_t0_samps)
+
+grp2_t1_samps <- sam_table %>%
+  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[1 + 1],
+         Age <= params_mat$end[1 + 1]) %>% pull(Sample.ID)
+conduct_t_test(2, "t1", grp2_t1_samps)
+
+grp2_t2_samps <- sam_table %>%
+  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[2 + 1],
+         Age <= params_mat$end[2 + 1]) %>% pull(Sample.ID)
+conduct_t_test(2, "t2", grp2_t2_samps)
+
+grp2_t3_4_samps <- c("X1749", "X4654", "X6731", "X17642", "X7691")
+conduct_t_test(2, c("t3", "t4"), grp2_t3_4_samps)
+
+```
+
+### AFI cases against each other
+```{R}
+test_AFI <- function(this_taxon) {
+  AFI_t0_IDs <- c("X5264", "X4180", "X12014", "X1998")
+  AFI_t3_4_IDs <- c("X1749", "X4654", "X6731", "X17642", "X7691")
+  # Create dataset for testing
+  test_data <- counts_lcpm_genus %>% rownames_to_column("taxa") %>% 
+    filter(taxa == this_taxon) %>% select(-taxa) %>% t() %>% as.data.frame() %>%
+    rownames_to_column("Sample.ID") %>% dplyr::rename(abundance = "V1") %>% 
+    left_join(sam_table, by = "Sample.ID") %>%
+    filter(Sample.ID %in% c(AFI_t0_IDs, AFI_t3_4_IDs)) %>% select(abundance, Group) %>%
+    mutate(Group = paste(Group))
+  
+  output <- t.test(abundance ~ Group, data = test_data,
+         alternative = "two.sided", var.equal = FALSE, paired = FALSE) %>%
+    unlist() %>% magrittr::extract(seq(1, 7)) %>% as.data.frame() %>% 
+    set_colnames("value") %>% mutate(value = as.numeric(value) %>% round(4)) 
+  output %>% pull(value) %>% set_names(rownames(output)) %>% return()
+}
+
+all_genera <- rownames(counts_lcpm_genus)
+result <- plyr::ldply(all_genera, test_AFI, .progress = "text") %>%
+  mutate(genus = all_genera,
+         adj.p = p.adjust(p.value, "bonferroni")) %>%
+  arrange(`adj.p`) %>%
+  relocate("genus", "adj.p", "p.value")
+result %>%
+  write_csv(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/",
+                   "sepsis_against.csv"))
+```
+
+### Species level - Streptococcus
+I want to check what type of streptococcus we are seeing in our data at the species level.
+
+```{R}
+strep <- counts_lcpm_species %>% rownames() %>%
+  stringr::str_split_i("_", 1) %>% is.element("Streptococcus") %>% which()
+strep_top <- counts_lcpm_species[strep, ] %>% rowSums() %>% sort(decreasing = TRUE) %>% head() %>% names()
+test_strep <- c("Streptococcus_thermophilus",
+                "Streptococcus_agalactiae",
+                "Streptococcus_pneumoniae")
+strep_counts <- counts_lcpm_species[test_strep, ]
+
+
+
+conduct_t_test(grp = 1, time = "t0", these_samples = grp1_t0_samps,
+               counts = strep_counts)
+conduct_t_test(2, "t0", grp2_t0_samps, counts = strep_counts)
+conduct_t_test(2, "t1", grp2_t1_samps, counts = strep_counts)
+conduct_t_test(2, "t2", grp2_t2_samps, counts = strep_counts)
+conduct_t_test(2, c("t3", "t4"), grp2_t3_4_samps, counts = strep_counts)
+```
+
+## Beta diversity analysis
+### Function
+```{R}
+run_beta_test <- function(these_samples) {
+  data_in <- subsetByColData(raw_dat,
+                               which(raw_dat$Sample.ID %in% these_samples))
+  diversity_beta_boxplot(data_in, "genus", "bray", "Sepsis.state") %>%
+    print()
+  output <- diversity_beta_test(data_in,
+                    tax_level = "genus",
+                    input_beta_method = "bray", #jaccard 
+                    input_select_beta_condition = "Sepsis.state",
+                    input_select_beta_stat_method = "Kruskal-Wallis")
+  return(output)
+}
+```
+
+### Results
+```{R}
+beta_res <- function(grp, time, these_samples) {
+  # pull control samples
+  age_lower <- params_mat %>% filter(timepoint %in% time) %>% pull(start)
+  age_upper <- params_mat %>% filter(timepoint %in% time) %>% pull(end)
+  controls <- sam_table %>% filter(Sepsis.state == "neg",
+                                   Age > min(age_lower), Age <= max(age_upper)) %>%
+    pull(Sample.ID)
+  these_samples %<>% append(controls)
+  
+  # Run test
+  fileout <- paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/betatest_",
+                     "grp", grp, "time", paste(time, collapse = ""), ".csv")
+  res <- run_beta_test(these_samples) 
+  res %>% write_csv(fileout)
+  return(res)
+}
+
+# Group 1
+grp1_t0_samps <- c("X5264", "X4180", "X12014", "X1998")
+beta_res(1, "t0", grp1_t0_samps)
+
+# Group 2
+grp2_t0_samps <- sam_table %>%
+  filter(Group == "fAFI(+) Grp2", Age <= params_mat$end[1]) %>% pull(Sample.ID)
+beta_res(2, "t0", grp2_t0_samps)
+
+grp2_t1_samps <- sam_table %>%
+  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[1 + 1],
+         Age <= params_mat$end[1 + 1]) %>% pull(Sample.ID)
+beta_res(2, "t1", grp2_t1_samps)
+
+grp2_t2_samps <- sam_table %>%
+  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[2 + 1],
+         Age <= params_mat$end[2 + 1]) %>% pull(Sample.ID)
+beta_res(2, "t2", grp2_t2_samps)
+
+grp2_t3_4_samps <- c("X1749", "X4654", "X6731", "X17642", "X7691")
+beta_res(2, c("t3", "t4"), grp2_t3_4_samps)
+```
+
+# UMAP plot
+```{R}
+# Inputs
+metric <- "manhattan"
+init <- "random"
+color <- "Group"
+umap.custom <- umap::umap.defaults
+umap.custom$n_neighbors <- 10
+umap.custom$n_components <- max(1, 2, NULL)
+umap.custom$metric <- metric
+umap.custom$n_epochs <- 200
+umap.custom$init <- init
+umap.custom$min_dist <- 0.1
+
+# Obtain raw data
+OG_dat_raw <- readRDS("Data/animalcules_raw_revised.rds")
+dat_raw <- OG_dat_raw[["MicrobeGenetics"]]
+
+# Extract metadata, taxonomic info, and counts
+counts_table_raw <- as.data.frame(SummarizedExperiment::assay(
+  dat_raw, "MGX")) %>%
+  select(!all_of(all_neither))
+df <- counts_table_raw %>% as.matrix() %>% t()
+
+umap.data <- umap::umap(df, config = umap.custom, method = "naive")
+df.umap <- umap.data$layout
+colnames(df.umap) <- paste("C", seq_len(ncol(df.umap)), sep = "")
+df.umap %<>% as.data.frame() %>% rownames_to_column(var = "Sample")
+
+# Max microbe
+get_max <- function (this_column) {
+  ind <- which(max(this_column) == this_column)
+  return(rownames(counts_table_raw)[ind])
+}
+
+max_microbe_res <- plyr::alply(counts_table_raw, 2, get_max,
+                               .progress = "text") %>%
+  unlist() %>%
+  stringr::str_split_i("_", i = 1)
+
+# Merge in covariate information
+sample_map <- sam_table %>%
+  mutate(Microbe = max_microbe_res,
+         `AFI Timepoint` = timepoint,
+         `AFI Timepoint` = replace(`AFI Timepoint`,
+         Group == "fAFI(-)" | Group == "Neither",
+         "fAFI(-)"),
+         Subject.ID = replace(Subject.ID,
+         Group == "fAFI(-)" | Group == "Neither",
+         "fAFI(-)")) %>%
+  select(Sample, all_of(color), `AFI Timepoint`, Microbe, 
+         shape = timepoint, "Subject.ID") %>%
+  mutate(shape = as.factor(shape))
+```
+
+## Groups
+```{R}
+df.umap.m <-
+  left_join(df.umap, sample_map, by = "Sample")
+shape <- "shape" # Referenced by plotly later
+
+UMAP1 <- ggplot2::ggplot(aes(x = C1, y = C2, color = Group), data = df.umap.m) +
+  ggplot2::geom_point(alpha = 0.5, size = 3) +
+  ggplot2::labs(title = "UMAP plot",
+                subtitle = "fAFI status") +
+  ggplot2::theme_classic() +
+  theme(legend.position = "right")
+
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP.png"),
+       device = "png", units = "in", width = 6, height = 4)
+```
+
+## Time points
+```{R}
+df.umap.m <-
+  left_join(df.umap, sample_map, by = "Sample")
+shape <- "shape" # Referenced by plotly later
+
+UMAP2 <- ggplot2::ggplot(aes(x = C1, y = C2, color = `AFI Timepoint`), data = df.umap.m) +
+  ggplot2::geom_point(alpha = 0.5, size = 3) +
+  ggplot2::labs(title = "UMAP plot",
+                subtitle = "fAFI(+) time points") +
+  ggplot2::theme_classic() +
+  theme(legend.position = "right")
+
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_time.png"),
+       device = "png", units = "in", width = 6, height = 4)
+```
+
+## Subject ID
+```{R}
+df.umap.m <-
+  left_join(df.umap, sample_map, by = "Sample")
+shape <- "shape" # Referenced by plotly later
+
+UMAP3 <- ggplot2::ggplot(aes(x = C1, y = C2, color = Subject.ID), data = df.umap.m) +
+  ggplot2::geom_point(alpha = 0.5, size = 3) +
+  paletteer::scale_color_paletteer_d("pals::polychrome") +
+  ggplot2::labs(title = "UMAP plot",
+                subtitle = "fAFI(+) subject IDs") +
+  ggplot2::theme_classic() +
+  theme(legend.position = "right")
+
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_infant.png"),
+       device = "png", units = "in", width = 6, height = 4)
+```
+
+## Microbe abundance
+```{R}
+df.umap.m <-
+  left_join(df.umap, sample_map, by = "Sample")
+shape <- "shape" # Referenced by plotly later
+
+UMAP4 <- ggplot2::ggplot(aes(x = C1, y = C2, color = Microbe), data = df.umap.m) +
+  ggplot2::geom_point(alpha = 0.5, size = 3) +
+  paletteer::scale_color_paletteer_d("pals::polychrome") +
+  ggplot2::labs(title = "UMAP plot",
+                subtitle = "Most prevalent genus") +
+  ggplot2::theme_classic() +
+  theme(legend.position = "right")
+
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_microbe.png"),
+       device = "png", units = "in", width = 6, height = 4)
+```
+
+## Figure 4
+```{R}
+this_one <- gridExtra::arrangeGrob(UMAP1, UMAP4, UMAP2, UMAP3,
+                                   nrow = 2)
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_combined.png"), plot = this_one,
+       device = "png", units = "in", width = 10, height = 6)
+```
+
+# PCOA of Bray distance
+## Boxplot
+
+```{R}
+animalcules::diversity_beta_boxplot(raw_dat, "genus", "bray", "Sepsis.state")
+
+```
+
+```{R}
+MAE <- raw_dat
+tax_level = "genus"
+input_beta_method = "bray"
+input_select_beta_condition = "Sepsis.state"
+input_select_beta_stat_method = "Kruskal-Wallis"
+input_num_permutation_permanova = 999
+
+# Extract data
+microbe <- MAE[["MicrobeGenetics"]]
+# organism x taxlev
+tax_table_init <- microbe %>%
+  SummarizedExperiment::rowData() %>%
+  as.data.frame()
+# sample x condition
+sam_table_new <- sam_table
+rownames(sam_table_new) <- sam_table_new$Sample.ID
+counts_table_init <- microbe %>%
+  SummarizedExperiment::assays() %>%
+  as.data.frame() %>%
+  dplyr::select(all_of(rownames(sam_table_new)))
+
+# Sum counts by taxon level and return counts
+counts_table <- counts_table_init %>% # Sum counts by taxon level
+  upsample_counts(tax_table_init, tax_level)
+
+# change tax table size
+tax_table_int <- tax_table_init %>%
+  dplyr::select(seq_len(dplyr::all_of(tax_level))) %>%
+  dplyr::arrange(dplyr::across(dplyr::starts_with(tax_level))) %>%
+  dplyr::distinct(.keep_all = TRUE) %>%
+  # Remove columns consisting of only NA's
+  dplyr::select_if(~ sum(!is.na(.)) > 0)
+# factorize each column
+cols <- colnames(tax_table_int)
+tax_table <- dplyr::mutate(tax_table_int, 
+                           dplyr::across(.cols = all_of(cols), 
+                                         .fns = factor))
+# Genera must also be in the counts_table rownames
+ind <- tax_table[, tax_level] %in% rownames(counts_table)
+tax_table <- tax_table[ind, ]
+rownames(tax_table) <- tax_table[, tax_level]
+
+# generate beta diversity
+if (input_beta_method %in% c("bray", "jaccard")) {
+  # Then use vegdist from vegan to generate a bray distance object:
+  dist.mat <- counts_table %>%
+    t() %>%
+    vegan::vegdist(method = input_beta_method) %>%
+    as.matrix()
+} else {
+  stop("input_beta_method not recognized.")
+}
+
+ind <- which(colnames(sam_table_new) == input_select_beta_condition)
+colnames(sam_table_new)[ind] <- "FAFI"
+```
+
+## Now conduct principal coordinate analysis
+
+```{R}
+pcoa_res <- ape::pcoa(dist.mat, rn = row.names(dist.mat)) %>%
+  magrittr::extract2("vectors") %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column("Sample.ID")
+
+cond_pcoa <- sam_table_new %>% select(Sample.ID, FAFI) %>%
+  left_join(pcoa_res, "Sample.ID")
+```
+
+## Create my own biplot
+```{R}
+cond_pcoa %>%
+  ggplot(aes(x = Axis.1, y = Axis.2, col = FAFI)) +
+  ggplot2::geom_point() +
+  ggplot2::labs(x = "Axis 1", y = "Axis 2",
+                subtitle = "Bray Distance") +
+  ggplot2::ggtitle("PCOA of Beta Diversity") +
+  ggforce::geom_mark_ellipse(aes(fill = FAFI), 
+                             alpha = 0.1, expand = unit(0.2, "mm")) +
+    ggplot2::xlim(-0.5, 0.6) +
+    ggplot2::ylim(-0.6, 0.6) +
+    ggplot2::theme_classic()
+  
+```
+
+## NMDS
+```{R}
+NMDS_res <- vegan::metaMDS(dist.mat, # Our community-by-species matrix
+                     k=2, try = 20, trymax = 500) # The number of reduced dimensions
+
+# Large scatter around lines would indicate failure to preserve fit
+vegan::stressplot(NMDS_res)
+
+NMDS_res_2 <- NMDS_res %>%
+  magrittr::extract2("points") %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column("Sample.ID")
+
+cond_nmds <- sam_table_new %>%
+  left_join(NMDS_res_2, "Sample.ID")
+```
+
+```{R}
+tmp <- sam_table_new %>%
+  select(Group, timepoint)
+
+fit_grp <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$Group), perm = 999)
+fit_timepoint <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$timepoint), perm = 999)
+fit_FAFI <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$FAFI), perm = 999)
+
+fit_all <- vegan::envfit(NMDS_res, as.data.frame(tmp), perm = 999)
+```
+
+## Create my own biplot
+```{R}
+centroids <- fit_grp$factors$centroids %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column("Group") %>%
+  tidyr::separate(Group, c(NA, "Group"), sep = ".Group") %>%
+  dplyr::rename(c1 = NMDS1, c2 = NMDS2)
+
+cond_nmds %>%
+  left_join(centroids, by = "Group") %>%
+  ggplot(aes(x = MDS1, y = MDS2, col = `Group`)) +
+  ggplot2::geom_point() +
+  ggplot2::labs(x = "Axis 1", y = "Axis 2",
+                subtitle = "Bray-Curtis Dissimilarity") +
+  ggplot2::ggtitle("NMDS of Beta Diversity") +
+  ggforce::geom_mark_ellipse(aes(fill = Group), 
+                             alpha = 0.1, expand = unit(0.2, "mm")) +
+  ggplot2::geom_point(aes(x = c1, y = c2),
+                      shape = 8, size = 3) +
+    ggplot2::xlim(-0.5, 0.6) +
+    ggplot2::ylim(-0.6, 0.6) +
+    ggplot2::theme_classic()
+
+ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/NMDS_Beta.png"),
+       device = "png", units = "in", width = 6, height = 4)
+```
+
