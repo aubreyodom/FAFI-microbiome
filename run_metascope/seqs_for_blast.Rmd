@@ -12,15 +12,16 @@ output: html_document
 suppressPackageStartupMessages({
   library(Rsamtools)
   library(tidyverse)
-  library(seqRFLP) #https://github.com/helixcn/seqRFLP
+  library(seqRFLP) # https://github.com/helixcn/seqRFLP
 })
 ```
 
 # Get fastas
 ```{R}
-stem <- "~/infant-microbiome/work/aodom/Sepsis/run_metascope/metascope_out"
+stem <- "/restricted/projectnb/singlecell/aodom/fafi_SRA/Sepsis/metascope_bam"
+stem2 <- "/restricted/projectnb/singlecell/aodom/fafi_SRA/Sepsis/FAFI-microbiome/run_metascope/metascope_out/blast_fastas"
 
-check_blast <- function(org = "Shigella_flexneri", fileID = "X1998", subN = 100) {
+check_blast <- function(org = "Alkalibacterium_subtropicum", fileID = "X1998", subN = 100) {
   # Pull out the bam file
   reads_bam <- file.path(stem, paste0(fileID, ".bam"))
 
@@ -48,27 +49,17 @@ check_blast <- function(org = "Shigella_flexneri", fileID = "X1998", subN = 100)
   # Create fasta with
   org_file <- str_replace_all(org, " ", "_") %>%
     str_remove_all(",")
-  destination <- file.path(stem, paste0("blast_fastas/", fileID, "_", org_file, ".fasta"))
+  destination <- file.path(stem2, paste0(fileID, "_", org_file, ".fasta"))
   this_seq %>% as_tibble() %>% mutate(pos = paste("Seq", seq_along(this_seq),
                        "Pos", this_pos, sep = "_")) %>%
     relocate(pos) %>% as.data.frame() %>%
     seqRFLP::dataframe2fas(., file = destination)
 }
 
-#check_blast("Streptococcus_sobrinus", "X1402")
-#check_blast("Streptococcus_pseudoporcinus", "X1402")
-#check_blast("Streptococcus_himalayensis", "X3975")
-#check_blast("Streptococcus_gordonii", "X3573")
-#check_blast("Streptococcus_thermophilus", "X13225")
-#check_blast("Streptococcus_pneumoniae", "X3975")
-#check_blast("Streptococcus_agalactiae", "X11223")
-#
-#check_blast("Streptococcus_agalactiae", "X8404")
-
-#check_blast("Leuconostoc_mesenteroides", "X4180")
-#check_blast("Leuconostoc_pseudomesenteroides", "X4180")
-check_blast(org = "Weissella_ceti", fileID = "X3333")
-check_blast(org = "Weissella_viridescens", fileID = "X3333")
+check_blast(org = "Haemophilus_ducreyi", fileID = "X7395")
+check_blast(org = "Haemophilus_influenzae", fileID = "X12220")
+check_blast(org = "Haemophilus_paracuniculus", fileID = "X3574")
+check_blast(org = "Haemophilus_sputorum", fileID = "X11895")
 ```
 
 ```{R}

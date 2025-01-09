@@ -1,0 +1,129 @@
+---
+title: "Reorganize Data"
+author: "Aubrey Odom"
+date: "2022-11-21"
+output: html_document
+---
+
+# Setup
+```{R}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(magrittr)
+  library(LegATo)
+})
+```
+
+# Initial data extraction
+```{R}
+dat <- readRDS("raw_BEA.RDS") |>
+  LegATo::clean_MAE() |>
+  LegATo::parse_MAE_SE()
+
+tax_table <- dat$tax
+sam_table <- dat$sam
+counts_table <- dat$counts
+
+# Add in new data
+sam_table_new <- read.csv("Cleaned_metadata_allsamp.csv") %>%
+  arrange(factor(Sample.ID, levels = rownames(sam_table))) %>%
+  mutate(rownames = Sample.ID) %>%
+  column_to_rownames("rownames")
+```
+
+# Create revised MAE
+```{R}
+MAE_revised <- LegATo::create_formatted_MAE(counts_dat = counts_table,
+                                        tax_dat = tax_table,
+                                        metadata_dat = sam_table_new)
+```
+
+## Relabel specific taxa based on BLAST results
+
+### Function
+```{R}
+replace_species <- function(MAE_in, old_genus,
+                            old_species, new_genus,
+                            new_species) {
+  all_new <- LegATo::parse_MAE_SE(MAE_in)
+  tax_new <- all_new$tax |>
+    mutate(genus = replace(genus, genus %in% old_genus, new_genus),
+           species = replace(species,
+                             species %in% old_species, new_species)) |>
+    distinct(species, .keep_all = TRUE)
+  rownames(tax_new) <- tax_new$species
+  
+  # Fix rownames
+  counts_table_in <- all_new$counts
+  all_ind_E <- which(stringr::str_detect(rownames(counts_table_in),
+                                         paste0("^", new_genus)))
+  all_ind_S <- sapply(old_genus, 
+                      function(x) which(stringr::str_detect(
+    rownames(counts_table_in), paste0("^", x)))) |>
+    unlist() |> unname()
+    
+  appended <- sort(c(all_ind_E, all_ind_S))
+  
+  new_row_counts <- counts_table_in[appended, ] |>
+    colSums()
+  counts_table_in[appended[1], ] <- new_row_counts
+  rownames(counts_table_in)[appended[1]] <- new_species
+  counts_table_new <- counts_table_in[-appended[-1], ]
+  
+  MAE_new <- LegATo::create_formatted_MAE(counts_dat = counts_table_new,
+                                          tax_dat = tax_new,
+                                          metadata_dat = all_new$sam)
+  
+  return(MAE_new)
+}
+```
+
+## Implementation
+```{R}
+# Which species in genera
+all_avi <- LegATo::parse_MAE_SE(MAE_revised)$tax |>
+  dplyr::select(species) |>
+  filter(stringr::str_detect(species, "^Avibacterium")) |>
+  pull()
+all_alki <- LegATo::parse_MAE_SE(MAE_revised)$tax |>
+  dplyr::select(species) |>
+  filter(stringr::str_detect(species, "^Alkalibacterium")) |>
+  pull()
+
+MAE_1 <- replace_species(MAE_in = MAE_revised,
+                old_genus = "Shigella",
+                new_genus = "Escherichia",
+                old_species = c("Shigella dysenteriae",
+                                "Shigella flexneri"),
+                new_species = "Escherichia coli")
+
+# These were labeled as "Uncultured bacterium" in BLAST, so will put as "Other"
+MAE_new <- replace_species(MAE_1,
+                           old_genus = c("Alkalibacterium",
+                                "Avibacterium"),
+                  new_genus = "Other",
+                  old_species = c(all_avi, all_alki),
+                  new_species = "Other")
+saveRDS(MAE_new, file = "animalcules_raw_revised.rds")
+```
+
+# Filtering
+
+The purpose of this code is to take the final formatted Multi-Assay Experiment output by Animalcules and label as "Other" all the taxons belonging to genera that represent <0.5% average relative abundances across samples. 
+
+The resulting data object is a SummarizedExperiment object saved as "animalcules_1pct.rds"
+
+```{R}
+prop_cutoff <- 0.005
+MAE_pct <- LegATo::filter_animalcules_MAE(MAE_new, prop_cutoff)
+saveRDS(MAE_pct, file = paste0("animalcules_", prop_cutoff*100, "pct.rds"))
+```
+
+## How many genera?
+```{R}
+tax_table_2 <- LegATo::parse_MAE_SE(MAE_pct)$tax
+
+length(unique(tax_table_2$genus))
+
+length(unique(tax_table_2$species))
+```

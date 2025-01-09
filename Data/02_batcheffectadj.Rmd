@@ -1,0 +1,63 @@
+---
+title: "Adjusting for Batch Effects"
+author: "Aubrey Odom"
+date: "2024-11-15"
+output: html_document
+---
+
+
+
+# Setup
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(tidyverse)
+})
+
+stem <- "/restricted/projectnb/singlecell/aodom/fafi_SRA/Sepsis/FAFI-microbiome/Data"
+```
+
+# Read in data
+```{R}
+# Sample batch processing runs
+batches <- readxl::read_xlsx(file.path(stem, "seq_batches_arshad.xlsx"))
+
+# Join with SRA data
+conjoined <- read.csv(file.path(stem, "SraRunTable.csv")) |>
+  dplyr::select(Run, SAMPLE, subject, timepoint, FAFI.state) |>
+  mutate(Sample = stringr::str_remove_all(SAMPLE, "X") |> as.numeric()) |>
+  left_join(batches, by = "Sample" )
+
+# Raw counts data
+MAE_raw <- readRDS(file.path(stem, "raw_nofilter.RDS")) 
+all_dat_raw <- MAE_raw |>
+  LegATo::parse_MAE_SE()
+```
+
+# Ready metadata for correction
+```{R}
+# Rearrange to match raw counts sample order
+ind <- match(colnames(all_dat_raw$counts), conjoined$SAMPLE)
+metadata_batches <- conjoined[ind, ]
+
+# Which batch to reassign to?
+metadata_batches |>
+  select(FAFI.state, Batch) |>
+  distinct_all()
+
+metadata_batches_2 <- metadata_batches |>
+  mutate(Batch_fix = replace(Batch, FAFI.state == "pos" & Batch == "A/B", "A"))
+```
+
+# Adjust for Batch effects with ComBat-seq
+```{R}
+adjusted_counts <- sva::ComBat_seq(as.matrix(all_dat_raw$counts),
+                                   batch = metadata_batches_2$Batch_fix,
+                                   group = metadata_batches_2[, c("FAFI.state")])
+```
+
+# Export new data
+```{R}
+assays(MAE_raw[["MicrobeGenetics"]])[["MGX"]] <- adjusted_counts
+saveRDS(MAE_raw, file.path(stem, "raw_BEA.RDS"))
+```
+

@@ -1,0 +1,38 @@
+---
+title: "Convert MetaScope ID output into MAE"
+author: "Aubrey Odom"
+date: "2024-11-15"
+output: html_document
+---
+Only run this once!!
+
+```{R}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(MetaScope)
+})
+```
+
+# Fix MetaScope data
+```{R}
+stem <- "/restricted/projectnb/singlecell/aodom/fafi_SRA/Sepsis/FAFI-microbiome"
+all_files <- list.files(file.path(stem, "run_metascope/metascope_out"),
+                        full.names = TRUE, pattern = "*.metascope_id.csv")
+```
+
+# Conversion
+```{R}
+Sys.setenv(ENTREZ_KEY = "01d22876be34df5c28f4aedc479a2674c809")
+now <- Sys.time()
+out_MAE <- MetaScope::convert_animalcules(all_files,
+                               annot_path = file.path(stem, "Data/Cleaned_metadata_allsamp.csv"),
+                               which_annot_col = 1,
+                               end_string = ".metascope_id.csv",
+                               NCBI_key = NULL)
+Sys.time() - now 
+```
+
+# Save output
+```{R}
+saveRDS(out_MAE, file.path(stem, "Data/raw_nofilter.RDS"))
+```

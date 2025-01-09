@@ -1,7 +1,7 @@
 ---
-title: "Sepsis Analysis"
+title: "fAFI Analysis"
 author: "Aubrey Odom"
-date: '2022-11-01'
+date: '2025-01-07'
 output: html_document
 ---
 
@@ -24,13 +24,15 @@ suppressPackageStartupMessages({
   library(ggeffects)
   library(emmeans)
 })
+figpath <- "/restricted/projectnb/singlecell/aodom/fafi_SRA/Sepsis/FAFI-microbiome/PaperFigs"
 ```
 
 # Extract data
 ```{r}
 # Read in MAE of data
-OG_dat <- readRDS("Data/animalcules_0.05pct.rds")
-dat <- OG_dat[["MicrobeGenetics"]]
+OG_dat <- readRDS("Data/animalcules_0.5pct.rds")
+dat <- OG_dat[["MicrobeGenetics"]] |>
+  TBSignatureProfiler::mkAssay("MGX", "counts", log = TRUE, counts_to_CPM = TRUE)
 
 # Extract metadata, taxonomic info, and counts
 tax_table <- as.data.frame(SummarizedExperiment::rowData(dat))
@@ -65,10 +67,9 @@ all_neither <- sam_table_1 %>% filter(Subject.ID == "0058-1") %>%
 ## Extract counts table
 ```{R}
 counts_table <- as.data.frame(SummarizedExperiment::assay(
-  dat, "counts"))[, rownames(sam_table_pre)] %>%
+  dat, "MGX"))[, rownames(sam_table_pre)] %>%
   select(!all_of(all_neither))
   
-
 counts_lcpm_species <- SummarizedExperiment::assay(dat , "log_counts_cpm") %>%
   as.data.frame()
 counts_lcpm_genus <- counts_lcpm_species %>% upsample_counts(tax_table, "genus")
@@ -83,6 +84,17 @@ params_mat <- tibble(start = c(0, 16, 32, 48, 64, 80, 96),
 ```
 
 # Basic Data Exploration
+
+## How many unique phyla, genera, species (RAW)
+```{R}
+stem3 <- "/restricted/projectnb/singlecell/aodom/fafi_SRA/Sepsis/FAFI-microbiome/Data"
+
+MAE_raw <- readRDS(file.path(stem3, "raw_BEA.RDS"))
+LegATo::parse_MAE_SE(MAE_raw)$tax %>%
+  # Remove "others"
+  filter(species != "Other") %>%
+  summarise(across(.fns = function(x) length(unique(x))))
+```
 
 ## How many unique phyla, genera, species (post-“othering”)
 ```{R}
@@ -137,8 +149,7 @@ create_plot <- function(state = "pos", title_in = "Line plot of Sepsis(+) infant
   labs(y = "Infant age at visit (days)",
        x = "Subject ID",
        title = title_in)
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/lineplot_",
-              state, ".png"),
+ggsave(file.path(figpath, paste0("/lineplot_", state, ".png")),
        device = "png", units = "in", width = 6, height = 4)
 }
 
@@ -202,7 +213,7 @@ init_dat %>%
     label = "fAFI(+) Grp1 Early Onset") +
   ggpubr::geom_bracket(xmin = "0071-1", xmax = "1480-1", y.position = 90,
     label = "fAFI(+) Grp2 Late Onset")
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/lineplot_sepsis_dates.png"),
+ggsave(file.path(figpath, "lineplot_sepsis_dates.png"),
        device = "png", units = "in", width = 7, height = 6)
 
 ```
@@ -241,19 +252,9 @@ stem(sympt_dur$X2)
 
 ```
 
-## For Bill
-```{R}
-sam_table %>%
-  arrange(Sepsis.state) %>%
-  filter(Group != "Neither") %>%
-  select(Sepsis.state, Sample, Subject.ID) %>%
-  write.csv("Data/Samples_for_Bill.csv")
-
-```
-
 ## Basic statistics
 ```{R}
-# How many samples in each group;???
+# How many samples in each group?
 
 sam_table %>%
   group_by(Sepsis.state) %>%
@@ -268,9 +269,9 @@ counts_lcpm_genus %>%
   select(-Genus) %>%
   t() %>%
   as.data.frame() %>%
-  rownames_to_column("Sample") %>%
+  rownames_to_column("Sample.ID") %>%
   arrange(desc(V1)) %>%
-  right_join(sam_table, by = "Sample")
+  right_join(sam_table, by = "Sample.ID")
 
 ```
 
@@ -280,7 +281,7 @@ counts_lcpm_genus %>%
 ```{r}
 get_stacked_data <- function(SE, sam_tab, tax_tab, cov1 = "Group",
                              cov2 = "timepoint") {
-  counts_table_raw <- SummarizedExperiment::assay(SE, "counts") %>%
+  counts_table_raw <- SummarizedExperiment::assay(SE, "MGX") %>%
     as.data.frame() %>%
     select(sam_tab$Sample)
   relabu_table <- counts_table_raw %>%
@@ -322,9 +323,8 @@ myplot <- stacked_dat %>%
   coord_flip()
 print(myplot)
 
-ggsave(filename = "PaperFigs/stacked_barplot_groups_SepsisNeg.png",
+ggsave(filename = file.path(figpath, "stacked_barplot_groups_SepsisNeg.png"),
   device = "png", width = 10, height = 6, units = "in", scale = 1)
-
 ```
 
 ### Plot both groups
@@ -356,7 +356,7 @@ myplot <- stacked_dat %>%
   coord_flip()
 print(myplot)
 
-ggsave(filename = "PaperFigs/stacked_barplot_groups.png",
+ggsave(filename = file.path(figpath, "stacked_barplot_groups.png"),
   device = "png", width = 10, height = 6, units = "in", scale = 1)
 ```
 
@@ -397,7 +397,7 @@ genus_stacked <- function(input_df, genus_inp) {
 ```{R}
 input_df <- get_relabu(stacked_dat)
 genus_stacked(input_df, best_genus)
-ggsave(filename = "PaperFigs/stacked_area.png",
+ggsave(filename = file.path(figpath, "stacked_area.png"),
        width = 6, height = 4, units = "in",
        scale = 1)
 ```
@@ -425,7 +425,7 @@ plot_alluvial <- function(input_df, genus_inp) {
 
 ```{R}
 plot_alluvial(input_df, genus_inp = best_genus)
-ggsave(filename = "PaperFigs/alluvial_genus.png",
+ggsave(filename = file.path(figpath, "alluvial_genus.png"),
        width = 6, height = 4, units = "in",
        scale = 1)
 ```
@@ -471,8 +471,7 @@ create_sphaget <- function(this_taxon, tax_level = "genus",
                     units = "in")
 }
 
-path <- "~/infant-microbiome/work/aodom/Sepsis/PaperFigs"
-sapply(best_genus, create_sphaget, path = path)
+sapply(best_genus, create_sphaget, path = figpath)
 ```
 
 # Statistical analyses
@@ -532,7 +531,7 @@ perform_t_test <- function(this_taxon, these_samples, counts) {
   if (length(test_enough) < 2 | sum(test_enough) > 0) return(NULL) 
   
   test_out <- t.test(abundance ~ Group, data = test_data,
-                     alternative = "two.sided", var.equal = FALSE, paired = FALSE) %>%
+                     alternative = "two.sided", var.equal = FALSE) %>%
     unlist() %>% magrittr::extract(seq(1, 7)) %>% as.data.frame() %>% 
     set_colnames("value") %>% mutate(value = as.numeric(value) %>% round(4))
   test_out %>% pull(value) %>% set_names(rownames(test_out)) %>% return()
@@ -542,12 +541,13 @@ perform_t_test <- function(this_taxon, these_samples, counts) {
 
 ### Apply function
 ```{R}
-conduct_t_test <- function(grp, time, these_samples, counts = counts_lcpm_genus) {
+conduct_t_test <- function(grp, time, these_samples, counts = counts_lcpm_genus, prefix) {
   age_lower <- params_mat %>% filter(timepoint %in% time) %>% pull(start)
   age_upper <- params_mat %>% filter(timepoint %in% time) %>% pull(end)
   controls <- sam_table %>% filter(Sepsis.state == "neg",
                                    Age > min(age_lower), Age <= max(age_upper)) %>%
-    pull(Sample.ID)
+
+        pull(Sample.ID)
   these_samples %<>% append(controls)
   all_genera <- rownames(counts)
   result <- plyr::ldply(all_genera,
@@ -558,30 +558,37 @@ conduct_t_test <- function(grp, time, these_samples, counts = counts_lcpm_genus)
     arrange(`adj.p`) %>%
     relocate("genus", "adj.p", "p.value")
   result %>%
-    write_csv(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/",
-                     "grp", grp, "time", paste(time, collapse = ""), ".csv"))
+    write_csv(file.path(figpath, 
+                        paste0(
+                          prefix, "grp", grp, "time", 
+                          paste(time, collapse = ""), ".csv")))
   return(result)
 }
 
 grp1_t0_samps <- c("X5264", "X4180", "X12014", "X1998")
-conduct_t_test(grp = 1, time = "t0", these_samples = grp1_t0_samps)
+conduct_t_test(grp = 1, time = "t0", these_samples = grp1_t0_samps,
+               prefix = "fullgroup")
 
 grp2_t0_samps <- sam_table %>%
   filter(Group == "fAFI(+) Grp2", Age <= params_mat$end[1]) %>% pull(Sample.ID)
-conduct_t_test(2, "t0", grp2_t0_samps)
+conduct_t_test(2, "t0", grp2_t0_samps,
+               prefix = "fullgroup")
 
 grp2_t1_samps <- sam_table %>%
   filter(Group == "fAFI(+) Grp2", Age > params_mat$start[1 + 1],
          Age <= params_mat$end[1 + 1]) %>% pull(Sample.ID)
-conduct_t_test(2, "t1", grp2_t1_samps)
+conduct_t_test(2, "t1", grp2_t1_samps,
+               prefix = "fullgroup")
 
 grp2_t2_samps <- sam_table %>%
   filter(Group == "fAFI(+) Grp2", Age > params_mat$start[2 + 1],
          Age <= params_mat$end[2 + 1]) %>% pull(Sample.ID)
-conduct_t_test(2, "t2", grp2_t2_samps)
+conduct_t_test(2, "t2", grp2_t2_samps,
+               prefix = "fullgroup")
 
 grp2_t3_4_samps <- c("X1749", "X4654", "X6731", "X17642", "X7691")
-conduct_t_test(2, c("t3", "t4"), grp2_t3_4_samps)
+conduct_t_test(2, c("t3", "t4"), grp2_t3_4_samps,
+               prefix = "fullgroup")
 
 ```
 
@@ -599,7 +606,7 @@ test_AFI <- function(this_taxon) {
     mutate(Group = paste(Group))
   
   output <- t.test(abundance ~ Group, data = test_data,
-         alternative = "two.sided", var.equal = FALSE, paired = FALSE) %>%
+         alternative = "two.sided", var.equal = FALSE) %>%
     unlist() %>% magrittr::extract(seq(1, 7)) %>% as.data.frame() %>% 
     set_colnames("value") %>% mutate(value = as.numeric(value) %>% round(4)) 
   output %>% pull(value) %>% set_names(rownames(output)) %>% return()
@@ -612,30 +619,33 @@ result <- plyr::ldply(all_genera, test_AFI, .progress = "text") %>%
   arrange(`adj.p`) %>%
   relocate("genus", "adj.p", "p.value")
 result %>%
-  write_csv(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/",
-                   "sepsis_against.csv"))
+  write_csv(file.path(figpath, "sepsis_against.csv"))
 ```
 
-### Species level - Streptococcus
+### Streptococcus
 I want to check what type of streptococcus we are seeing in our data at the species level.
 
 ```{R}
-strep <- counts_lcpm_species %>% rownames() %>%
-  stringr::str_split_i("_", 1) %>% is.element("Streptococcus") %>% which()
-strep_top <- counts_lcpm_species[strep, ] %>% rowSums() %>% sort(decreasing = TRUE) %>% head() %>% names()
-test_strep <- c("Streptococcus_thermophilus",
-                "Streptococcus_agalactiae",
-                "Streptococcus_pneumoniae")
+# Identify the strep species present
+strep_ind <- stringr::str_detect(rownames(counts_lcpm_species), "^Streptococcus")
+
+# Analysis
+prelim_strep_counts <- counts_lcpm_species[strep_ind, ]
+test_strep <- names(sort(rowSums(prelim_strep_counts), decreasing = TRUE))[1:5]
 strep_counts <- counts_lcpm_species[test_strep, ]
 
-
-
 conduct_t_test(grp = 1, time = "t0", these_samples = grp1_t0_samps,
-               counts = strep_counts)
-conduct_t_test(2, "t0", grp2_t0_samps, counts = strep_counts)
-conduct_t_test(2, "t1", grp2_t1_samps, counts = strep_counts)
-conduct_t_test(2, "t2", grp2_t2_samps, counts = strep_counts)
-conduct_t_test(2, c("t3", "t4"), grp2_t3_4_samps, counts = strep_counts)
+               counts = strep_counts,
+               prefix = "strep")
+conduct_t_test(2, "t0", grp2_t0_samps, counts = strep_counts,
+               prefix = "strep")
+conduct_t_test(2, "t1", grp2_t1_samps, counts = strep_counts,
+               prefix = "strep")
+conduct_t_test(2, "t2", grp2_t2_samps, counts = strep_counts,
+               prefix = "strep")
+conduct_t_test(2, c("t3", "t4"), grp2_t3_4_samps,
+               counts = strep_counts,
+               prefix = "strep")
 ```
 
 ## Beta diversity analysis
@@ -667,8 +677,8 @@ beta_res <- function(grp, time, these_samples) {
   these_samples %<>% append(controls)
   
   # Run test
-  fileout <- paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/betatest_",
-                     "grp", grp, "time", paste(time, collapse = ""), ".csv")
+  fileout <- file.path(figpath, paste0("betatest_",
+                     "grp", grp, "time", paste(time, collapse = ""), ".csv"))
   res <- run_beta_test(these_samples) 
   res %>% write_csv(fileout)
   return(res)
@@ -735,7 +745,7 @@ get_max <- function (this_column) {
 max_microbe_res <- plyr::alply(counts_table_raw, 2, get_max,
                                .progress = "text") %>%
   unlist() %>%
-  stringr::str_split_i("_", i = 1)
+  stringr::str_split_i(" ", i = 1)
 
 # Merge in covariate information
 sample_map <- sam_table %>%
@@ -747,7 +757,7 @@ sample_map <- sam_table %>%
          Subject.ID = replace(Subject.ID,
          Group == "fAFI(-)" | Group == "Neither",
          "fAFI(-)")) %>%
-  select(Sample, all_of(color), `AFI Timepoint`, Microbe, 
+  select(Sample = Sample.ID, all_of(color), `AFI Timepoint`, Microbe, 
          shape = timepoint, "Subject.ID") %>%
   mutate(shape = as.factor(shape))
 ```
@@ -765,7 +775,7 @@ UMAP1 <- ggplot2::ggplot(aes(x = C1, y = C2, color = Group), data = df.umap.m) +
   ggplot2::theme_classic() +
   theme(legend.position = "right")
 
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP.png"),
+ggsave(file.path(figpath, "UMAP.png"),
        device = "png", units = "in", width = 6, height = 4)
 ```
 
@@ -782,7 +792,7 @@ UMAP2 <- ggplot2::ggplot(aes(x = C1, y = C2, color = `AFI Timepoint`), data = df
   ggplot2::theme_classic() +
   theme(legend.position = "right")
 
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_time.png"),
+ggsave(file.path(figpath, "UMAP_time.png"),
        device = "png", units = "in", width = 6, height = 4)
 ```
 
@@ -800,7 +810,7 @@ UMAP3 <- ggplot2::ggplot(aes(x = C1, y = C2, color = Subject.ID), data = df.umap
   ggplot2::theme_classic() +
   theme(legend.position = "right")
 
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_infant.png"),
+ggsave(file.path(figpath, "UMAP_infant.png"),
        device = "png", units = "in", width = 6, height = 4)
 ```
 
@@ -818,7 +828,7 @@ UMAP4 <- ggplot2::ggplot(aes(x = C1, y = C2, color = Microbe), data = df.umap.m)
   ggplot2::theme_classic() +
   theme(legend.position = "right")
 
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_microbe.png"),
+ggsave(file.path(figpath, "UMAP_microbe.png"),
        device = "png", units = "in", width = 6, height = 4)
 ```
 
@@ -826,8 +836,8 @@ ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_microbe.png"
 ```{R}
 this_one <- gridExtra::arrangeGrob(UMAP1, UMAP4, UMAP2, UMAP3,
                                    nrow = 2)
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/UMAP_combined.png"), plot = this_one,
-       device = "png", units = "in", width = 10, height = 6)
+ggsave(file.path(figpath, "UMAP_combined.png"), plot = this_one,
+       device = "png", units = "in", width = 10, height = 8)
 ```
 
 # PCOA of Bray distance
@@ -929,6 +939,9 @@ cond_pcoa %>%
 NMDS_res <- vegan::metaMDS(dist.mat, # Our community-by-species matrix
                      k=2, try = 20, trymax = 500) # The number of reduced dimensions
 
+# stress value
+NMDS_res$stress
+
 # Large scatter around lines would indicate failure to preserve fit
 vegan::stressplot(NMDS_res)
 
@@ -939,18 +952,23 @@ NMDS_res_2 <- NMDS_res %>%
 
 cond_nmds <- sam_table_new %>%
   left_join(NMDS_res_2, "Sample.ID")
+
+```
+### envfit - time point
+```{R}
+fit_timepoint <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$timepoint), perm = 999)
+
+fit_timepoint
 ```
 
+### envfit - group
 ```{R}
-tmp <- sam_table_new %>%
-  select(Group, timepoint)
-
 fit_grp <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$Group), perm = 999)
-fit_timepoint <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$timepoint), perm = 999)
 fit_FAFI <- vegan::envfit(NMDS_res, as.data.frame(sam_table_new$FAFI), perm = 999)
 
-fit_all <- vegan::envfit(NMDS_res, as.data.frame(tmp), perm = 999)
+fit_FAFI
 ```
+
 
 ## Create my own biplot
 ```{R}
@@ -975,7 +993,7 @@ cond_nmds %>%
     ggplot2::ylim(-0.6, 0.6) +
     ggplot2::theme_classic()
 
-ggsave(paste0("~/infant-microbiome/work/aodom/Sepsis/PaperFigs/NMDS_Beta.png"),
+ggsave(file.path(figpath, "NMDS_Beta.png"),
        device = "png", units = "in", width = 6, height = 4)
 ```
 
