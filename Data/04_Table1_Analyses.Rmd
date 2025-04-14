@@ -1,0 +1,60 @@
+---
+title: "04_Table1_Analyses"
+output: html_document
+---
+
+# Setup
+```{R}
+suppressPackageStartupMessages({
+  library(tidyverse)
+})
+```
+
+# Table 1 datalines
+
+```{R}
+Table1 <- matrix(c(
+  "Place of Birth: UTH % (n)", 2, 9, 5, 10,
+  "Place of Birth: Chawama Clinic % (n)", 7, 9, 5, 10,
+  "Male Sex", 7, 9, 5, 10,
+  "BCG % (n)", 4, 9, 6, 10,
+  "OPV % (n)", 4, 9, 3, 10,
+  "Married % (n)", 9, 9, 9, 10,
+  "Mother HIV Positive % (n)", 3, 9, 1, 3,
+  "Mother on ART % (n)", 0, 3, 3, 3,
+  "Mother on ART Prior to Pregnancy % (n)", 0, 0, 1, 3,
+  "Third Trimester % (n)", 0, 0, 2, 2
+), byrow = TRUE, ncol = 5,
+dimnames = list(c(), c("Comp", "yes1", "total1", "yes2", "total2")))
+```
+
+# Function for Chi-square
+Univariate inter-group analyses
+Present P-value as a column in Table 1
+
+```{R}
+perform_fisher_test <- function(row) {
+  print(row)
+  success1 <- row[1]
+  total1 <- row[2]
+  success2 <- row[3]
+  total2 <- row[4]
+  # Create contingency table
+  observed <- matrix(c(success1, total1 - success1, success2, total2 - success2), 
+                     nrow = 2, byrow = TRUE)
+  
+  # Perform Fisher's exact test (useful for small sample sizes)
+  fisher_test <- fisher.test(observed)
+  
+  return(fisher_test$p.value)
+}
+
+# Example usage:
+all_ps <- as.data.frame(apply(Table1[, -1] , 2, as.numeric)) |>
+  apply(1, perform_fisher_test)
+
+Table1 |>
+  as.data.frame() |>
+  mutate(p = all_ps,
+         adj_p = p.adjust(all_ps, method = "fdr"))
+```

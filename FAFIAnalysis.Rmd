@@ -134,30 +134,34 @@ best_genus <- obtain_gn(counts_table, tax_table)
 
 ## Line Plots of infants ages at clinic visits
 ```{R}
-create_plot <- function(state = "pos", title_in = "Line plot of Sepsis(+) infant ages at clinic visits") {
+create_plot <- function(state = "pos", title_in = "Clinic Visits of fAFI(+) Infants") {
   sam_table %>%
   filter(Sepsis.state == state) %>%
-  group_by(Subject.ID) %>%
-  ggplot2::ggplot(aes(x = Subject.ID, Age, color = Subject.ID)) +
-  geom_point() +
-  geom_line() +
-  scale_y_continuous(breaks = seq(0, 120, by = 10)) +
+  mutate(Subject = factor(as.numeric(as.factor(Subject.ID)))) %>%
+  group_by(Subject) %>%
+  ggplot2::ggplot(aes(x = Subject, Age, color = Subject)) +
+  geom_point(size = 3) +
+  geom_line(size = 2) +
+  scale_y_continuous(limits = c(0, 90), breaks = seq(0, 90, by = 10)) +
   theme_bw() +
   geom_hline(yintercept = c(0, 15, 31, 47, 63, 79, 95, 120), col = "red", alpha = 0.35,
              linetype = "dashed") +
-  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1),
+        legend.position = "none") +
   labs(y = "Infant age at visit (days)",
-       x = "Subject ID",
-       title = title_in)
+       x = "Subject Number",
+       title = title_in,
+       subtitle = "With ages at clinic visits") +
+  ggplot2::coord_flip()
 ggsave(file.path(figpath, paste0("/lineplot_", state, ".png")),
-       device = "png", units = "in", width = 6, height = 4)
+       device = "png", units = "in", width = 5, height = 3)
 }
 
 create_plot("pos",
-            "Line plot of fAFI(+) infant ages at clinic visits")
+            "Ages at Clinic Visits of fAFI(+) Infants")
 
 create_plot("neg",
-            "Line plot of fAFI(-) infant ages at clinic visits")
+            "Clinic Visits of fAFI(+) Infants")
 ```
 
 ## Individual line plot of AFI infants with information
@@ -190,31 +194,40 @@ ord_ID <- init_dat %>%
 ```
 
 ```{R}
-
 # Create plot
 init_dat %>%
-  mutate(Subject.ID = factor(Subject.ID, levels = ord_ID)) %>%
-  ggplot2::ggplot(aes(y = Age, x = Subject.ID)) +
-  geom_point(col = "black") +
-  geom_line(col = "black") +
-  geom_hline(yintercept = params_mat$start, col = "grey", alpha = 0.7,
+  mutate(Subject = factor(Subject.ID, levels = ord_ID,
+         labels = as.character(1:9))) %>%
+  ggplot2::ggplot(aes(y = Age, x = Subject)) +
+  # Infant regular visits
+  geom_point(col = "black", size = 4) +
+  geom_line(col = "black", size = 2) +
+  # Time point lines
+  geom_hline(yintercept = params_mat$start, col = "grey", alpha = 1,
              linetype = "dashed") +
+  # Points/segments for illness
+  geom_segment(aes(y = `Sick`, yend = `Death`, xend = Subject), col = "red",
+               position = position_nudge(x = 0.3),
+               size = 1) +
   geom_point(aes(y = `Sep_Age`), col = "cornflowerblue",
-             position = position_nudge(x = 0.2)) +
+             position = position_nudge(x = 0.3),
+             size = 3) +
   geom_point(aes(y = Sep_End), col = "cornflowerblue",
-             position = position_nudge(x = 0.2)) +
-  geom_segment(aes(y = `Sick`, yend = `Death`, xend = Subject.ID), col = "red",
-               position = position_nudge(x = 0.2)) +
+             position = position_nudge(x = 0.3),
+             size = 3) +
+  scale_y_continuous(breaks = seq(0, 100, by = 10)) +
   theme_bw() +
   labs(y = "Infant Age (days)",
-       x= "Subject ID",
+       x= "Subject",
        title = "Symptom development timeline, fAFI(+) infants") +
-  ggpubr::geom_bracket(xmin = "0177-1", xmax = "1354-1", y.position = 40,
-    label = "fAFI(+) Grp1 Early Onset") +
-  ggpubr::geom_bracket(xmin = "0071-1", xmax = "1480-1", y.position = 90,
-    label = "fAFI(+) Grp2 Late Onset")
+  ggpubr::geom_bracket(xmin = "1", xmax = "4", y.position = 40,
+    label = "Group 1 - Early Onset",
+    coord.flip = TRUE) +
+  ggpubr::geom_bracket(xmin = "5", xmax = "9", y.position = 90,
+    label = "Group 2 - Late Onset", coord.flip = TRUE) +
+  coord_flip()
 ggsave(file.path(figpath, "lineplot_sepsis_dates.png"),
-       device = "png", units = "in", width = 7, height = 6)
+       device = "png", units = "in", width = 8, height = 6)
 
 ```
 
@@ -261,6 +274,41 @@ sam_table %>%
   summarise(all_num = n())
 ```
 
+## How old were infants?
+
+### Time point 1
+```{R}
+dates_neg <- sam_table |>
+  filter(Sepsis.state == "neg") |>
+  dplyr::arrange(Subject.ID, Age) |>
+  group_by(Subject.ID) |>
+  dplyr::slice_head(n = 1) |>
+  pull(Age)
+
+dates_pos <- sam_table |>
+  filter(Sepsis.state == "pos") |>
+  dplyr::arrange(Subject.ID, Age) |>
+  group_by(Subject.ID) |>
+  dplyr::slice_head(n = 1) |>
+  pull(Age)
+
+t.test(dates_neg, dates_pos)
+```
+
+### Across time points 
+```{R}
+true_ages <- sam_table |>
+  group_by(timepoint) |>
+  summarise(min_age = min(Age),
+            max_age = max(Age)) |>
+  mutate(exp_min = 7*2*0:6,
+         exp_max = 7*2.5*1:7,
+         age_int = paste0(min_age, "–", max_age))
+
+```
+
+
+## look at pseudomonas
 ```{R}
 # Look at pseudomonas abundances
 counts_lcpm_genus %>%
@@ -289,7 +337,9 @@ get_stacked_data <- function(SE, sam_tab, tax_tab, cov1 = "Group",
     animalcules::counts_to_relabu() %>% t() %>% as.data.frame() %>%
     # Add grouping vars
     mutate(covariate1 = sam_tab[, cov1],
-           covariate2 = sam_tab[, cov2]) %>%
+           covariate2 = factor(sam_tab[, cov2],
+                               levels = true_ages$timepoint,
+                               labels = true_ages$age_int)) %>%
     pivot_longer(!c(covariate1, covariate2), names_to = "taxon") %>%
     S4Vectors::aggregate(. ~ taxon + covariate1 + covariate2, ., mean)
   return(relabu_table)
@@ -310,9 +360,9 @@ usepalette <- paletteer::palettes_d[["ggsci"]]["category20_d3"] |>
 myplot <- stacked_dat %>%
   filter(covariate1 == "fAFI(-)") %>%
   mutate("Genus" = factor(taxon, levels = best_genus)) %>%
-  dplyr::rename("Visit number" = covariate2,
+  dplyr::rename("Age at visit (days)" = covariate2,
                 "Relative abundance" = `value`) %>%
-  ggplot(aes(fill = Genus, x = `Visit number`, y = `Relative abundance`)) + 
+  ggplot(aes(fill = Genus, x = `Age at visit (days)`, y = `Relative abundance`)) + 
     geom_bar(position = "stack", stat = "identity") + theme_classic() +
   labs(title = "Relative abundances of genera",
        subtitle = "fAFI(-) infants (ONLY)") +
@@ -341,9 +391,9 @@ myplot <- stacked_dat %>%
   #                      levels = c("neg", "pos"),
   #                      labels = c("Control", "AFI"))) %>%
   mutate("Genus" = factor(taxon, levels = best_genus)) %>%
-  dplyr::rename("Visit number" = covariate2,
+  dplyr::rename("Age at visit (days)" = covariate2,
                 "Relative abundance" = `value`) %>%
-  ggplot(aes(fill = Genus, x = `Visit number`, y = `Relative abundance`)) + 
+  ggplot(aes(fill = Genus, x = `Age at visit (days)`, y = `Relative abundance`)) + 
     geom_bar(position = "stack", stat = "identity") +
   facet_grid(~Group) + theme_classic() +
   labs(title = "Relative abundances of genera",
@@ -352,7 +402,7 @@ myplot <- stacked_dat %>%
         #axis.title.x = element_blank(), axis.text.x = element_blank(),
         axis.ticks.x = element_blank()) +
   scale_fill_manual(values = usepalette) +
-  scale_x_continuous(breaks = seq(1, 7,1)) +
+  # scale_x_continuous(breaks = seq(1, 7,1)) +
   coord_flip()
 print(myplot)
 
@@ -379,7 +429,7 @@ get_relabu <- function(stacked_df) {
 genus_stacked <- function(input_df, genus_inp) {
   p <- input_df %>%
     mutate(Genus = factor(genus, levels = genus_inp)) %>%
-    ggplot(aes(x = `Visit number`, y = `Relative abundance`,
+    ggplot(aes(x = `Age at visit (days)`, y = `Relative abundance`,
                fill = Genus)) + 
     geom_area(alpha = 0.7, linewidth = .5, colour = "white") +
     scale_fill_manual(values = usepalette) +
