@@ -1,6 +1,6 @@
 genus,adj.p,p.value,statistic.t,parameter.df,conf.int1,conf.int2,estimate.mean in group neg,estimate.mean in group pos
-Streptococcus mitis,0.020999999999999998,0.0042,3.937,8.1075,2.0812,7.9337,9.9357,4.9282
-Streptococcus salivarius,0.1465,0.0293,2.5758,9.2561,0.5554,8.3001,8.5148,4.087
-Streptococcus gordonii,0.1535,0.0307,2.6454,7.6451,0.4586,7.1091,10.252,6.4682
-Streptococcus pneumoniae,0.3805,0.0761,2.205,5.2397,-0.9273,13.2977,17.0385,10.8533
-Streptococcus himalayensis,0.3905,0.0781,2.1071,6.2071,-0.7162,10.1445,12.789,8.0749
+Streptococcus mitis,0.0205,0.0041,3.9345,8.1981,2.0648,7.8535,9.9146,4.9554
+Streptococcus salivarius,0.14550000000000002,0.0291,2.5813,9.2155,0.5576,8.2408,8.5243,4.1251
+Streptococcus gordonii,0.15,0.03,2.6522,7.734,0.4705,7.0395,10.231,6.476
+Streptococcus pneumoniae,0.379,0.0758,2.2071,5.2495,-0.9147,13.2539,17.0154,10.8458
+Streptococcus himalayensis,0.39,0.078,2.1069,6.2278,-0.7094,10.0944,12.767,8.0745
