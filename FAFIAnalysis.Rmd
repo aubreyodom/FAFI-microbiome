@@ -46,11 +46,10 @@ sam_table_pre <- as.data.frame(SummarizedExperiment::colData(dat))
 ```{R}
 # Group 1 <= 16 days
 # Group 2 <65 days
-# Group 3 >65 days
-pos_grp <- tibble("fAFI(+) Grp1" = c("0177-1", "0707-1", "0832-1", "1354-1",
+pos_grp <- tibble("fAFI(+) Early" = c("0177-1", "0707-1", "0832-1", "1354-1",
                                        rep(NA, 1)),
                   "Neither" = "0058-1",
-                  "fAFI(+) Grp2" = c("0345-1", "0526-1", "0697-1",
+                  "fAFI(+) Late" = c("0345-1", "0526-1", "0697-1",
                                        "0071-1", "1480-1")) %>%
   pivot_longer(cols = everything()) %>%
   filter(!is.na(value)) %>% arrange(name) %>%
@@ -234,10 +233,10 @@ init_dat %>%
        x= "Subject",
        title = "Symptom development timeline, fAFI(+) infants") +
   ggpubr::geom_bracket(xmin = "1", xmax = "4", y.position = 40,
-    label = "Group 1 - Early Onset",
+    label = "Early Onset Group",
     coord.flip = TRUE) +
   ggpubr::geom_bracket(xmin = "5", xmax = "9", y.position = 90,
-    label = "Group 2 - Late Onset", coord.flip = TRUE) +
+    label = "Late Onset Group", coord.flip = TRUE) +
   coord_flip()
 ggsave(file.path(figpath, "lineplot_sepsis_dates.png"),
        device = "png", units = "in", width = 8, height = 6)
@@ -576,13 +575,16 @@ conduct_t_test <- function(grp, time, these_samples, counts = counts_lcpm_genus,
         pull(Sample.ID)
   these_samples %<>% append(controls)
   all_genera <- rownames(counts)
-  result <- plyr::ldply(all_genera,
+  result_pre <- plyr::ldply(all_genera,
                         function(x) perform_t_test(x, these_samples, counts),
-                        .progress = "text") %>%
+                        .progress = "text") 
+  
+  result <- result_pre %>%
     mutate(genus = all_genera,
            adj.p = p.adjust(p.value, "bonferroni")) %>%
     arrange(`adj.p`) %>%
     relocate("genus", "adj.p", "p.value")
+  
   result %>%
     write_csv(file.path(figpath, 
                         paste0(
@@ -596,18 +598,18 @@ conduct_t_test(grp = 1, time = "t0", these_samples = grp1_t0_samps,
                prefix = "fullgroup")
 
 grp2_t0_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age <= params_mat$end[1]) %>% pull(Sample.ID)
+  filter(Group == "fAFI(+) Late", Age <= params_mat$end[1]) %>% pull(Sample.ID)
 conduct_t_test(2, "t0", grp2_t0_samps,
                prefix = "fullgroup")
 
 grp2_t1_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[1 + 1],
+  filter(Group == "fAFI(+) Late", Age > params_mat$start[1 + 1],
          Age <= params_mat$end[1 + 1]) %>% pull(Sample.ID)
 conduct_t_test(2, "t1", grp2_t1_samps,
                prefix = "fullgroup")
 
 grp2_t2_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[2 + 1],
+  filter(Group == "fAFI(+) Late", Age > params_mat$start[2 + 1],
          Age <= params_mat$end[2 + 1]) %>% pull(Sample.ID)
 conduct_t_test(2, "t2", grp2_t2_samps,
                prefix = "fullgroup")
@@ -716,16 +718,16 @@ beta_res(1, "t0", grp1_t0_samps)
 
 # Group 2
 grp2_t0_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age <= params_mat$end[1]) %>% pull(Sample.ID)
+  filter(Group == "fAFI(+) Late", Age <= params_mat$end[1]) %>% pull(Sample.ID)
 beta_res(2, "t0", grp2_t0_samps)
 
 grp2_t1_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[1 + 1],
+  filter(Group == "fAFI(+) Late", Age > params_mat$start[1 + 1],
          Age <= params_mat$end[1 + 1]) %>% pull(Sample.ID)
 beta_res(2, "t1", grp2_t1_samps)
 
 grp2_t2_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[2 + 1],
+  filter(Group == "fAFI(+) Late", Age > params_mat$start[2 + 1],
          Age <= params_mat$end[2 + 1]) %>% pull(Sample.ID)
 beta_res(2, "t2", grp2_t2_samps)
 
@@ -1066,18 +1068,18 @@ run_permanova(grp = 1, time = "t0", fafi_samps = grp1_t0_samps,
               prefix = "fullgroup")
 
 grp2_t0_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age <= params_mat$end[1]) %>% pull(Sample.ID)
+  filter(Group == "fAFI(+) Late", Age <= params_mat$end[1]) %>% pull(Sample.ID)
 run_permanova(2, "t0", grp2_t0_samps,
               prefix = "fullgroup")
 
 grp2_t1_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[1 + 1],
+  filter(Group == "fAFI(+) Late", Age > params_mat$start[1 + 1],
          Age <= params_mat$end[1 + 1]) %>% pull(Sample.ID)
 run_permanova(2, "t1", grp2_t1_samps,
               prefix = "fullgroup")
 
 grp2_t2_samps <- sam_table %>%
-  filter(Group == "fAFI(+) Grp2", Age > params_mat$start[2 + 1],
+  filter(Group == "fAFI(+) Late", Age > params_mat$start[2 + 1],
          Age <= params_mat$end[2 + 1]) %>% pull(Sample.ID)
 run_permanova(2, "t2", grp2_t2_samps,
               prefix = "fullgroup")

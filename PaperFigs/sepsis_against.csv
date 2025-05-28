@@ -1,4 +1,4 @@
-genus,adj.p,p.value,statistic.t,parameter.df,conf.int1,conf.int2,estimate.mean in group fAFI(+) Grp1,estimate.mean in group fAFI(+) Grp2
+genus,adj.p,p.value,statistic.t,parameter.df,conf.int1,conf.int2,estimate.mean in group fAFI(+) Early,estimate.mean in group fAFI(+) Late
 Dolosigranulum,0.8426,0.0766,-2.3732,4,-7.9384,0.6216,3.6608,7.3193
 Corynebacterium,0.9372,0.0852,2.2059,4.4515,-6.7229,70.7922,339.123,307.0884
 Acinetobacter,1,0.5842,0.6008,3.5491,-24.0482,36.5018,116.2007,109.9739
